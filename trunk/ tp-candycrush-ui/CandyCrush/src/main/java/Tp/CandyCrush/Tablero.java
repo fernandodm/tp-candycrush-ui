@@ -4,7 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tablero {
+	private int alto;
+	private int ancho;
 	private List<Caramelo> caramelos = new ArrayList<Caramelo>();
+	
+	public int getAlto() {
+		return alto;
+	}
+	public void setAlto(int x) {
+		this.alto = x;
+	}
+	public int getAncho() {
+		return ancho;
+	}
+	public void setAncho(int x) {
+		this.ancho = x;
+	}
+	public int getCaramelos() {
+		return caramelos;
+	}
+
 	
 	/**
 	 * mueve el caramelo si es valido el movimeinto
