@@ -6,8 +6,14 @@ import java.util.List;
 public class Tablero {
 	private int alto;
 	private int ancho;
-	private List<Caramelo> caramelos = new ArrayList<Caramelo>();
+	private Caramelo[][] caramelos;
 	
+	public Caramelo[][] getCaramelos() {
+		return caramelos;
+	}
+	public void setCaramelos(Caramelo[][] carameloss) {
+		this.caramelos = carameloss;
+	}
 	public int getAlto() {
 		return alto;
 	}
@@ -20,9 +26,6 @@ public class Tablero {
 	public void setAncho(int x) {
 		this.ancho = x;
 	}
-	public List<Caramelo> getCaramelos() {
-		return caramelos;
-	}
 
 	/**
 	 * Inicia el tablero con los caramelos
@@ -32,27 +35,23 @@ public class Tablero {
 	 */
 	public void iniciar(int filas,int columnas, Nivel unNivel){
 		
-		// va llenando por fila
-		for(int laFila = 0; laFila<filas; laFila++){
-			llenarFilas(laFila + 1, columnas, unNivel);
-		}
+		caramelos = new Caramelo[filas][columnas];
 		
+		for(int x = 0; x < filas; x++){
+			for(int y = 0; y < columnas; y++){
+				Caramelo caramelo = carameloAleatorio(unNivel);
+				caramelos[x][y] = caramelo;
+			}
+		}
 	}
 	
-	/**
-	 * Llena una fila con caramelos
-	 * @param fila
-	 * @param columnas
-	 * @param unNivel
-	 */
-	public void llenarFilas(int fila,int columnas, Nivel unNivel){
+	public Caramelo carameloAleatorio(Nivel unNivel){
 		
-		for(int i = 0; i<columnas; i++){
-			int num = ((int) Math.random()) * (unNivel.cantidadDeCaramelos()); 
-			String colorCaramelo = unNivel.caramelosDelNivel().get(num);
-			Caramelo caramelo = new Caramelo(fila, i+1, colorCaramelo);
-			caramelos.add(caramelo);
-		}
+		int num = (int) (Math.random() * (unNivel.cantidadDeCaramelos())); 
+		String colorCaramelo = unNivel.caramelosDelNivel().get(num);
+		Caramelo caramelo = new Caramelo(colorCaramelo);
+		
+		return caramelo;
 	}
 	
 	/**
@@ -146,7 +145,8 @@ public class Tablero {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+	 Caramelo[][] n = new Caramelo[2][3];
+	 System.out.println(n[0][0]);
 	}
 
 }
