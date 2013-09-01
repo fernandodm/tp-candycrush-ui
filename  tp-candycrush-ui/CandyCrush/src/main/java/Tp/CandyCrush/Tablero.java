@@ -20,10 +20,40 @@ public class Tablero {
 	public void setAncho(int x) {
 		this.ancho = x;
 	}
-	public int getCaramelos() {
+	public List<Caramelo> getCaramelos() {
 		return caramelos;
 	}
 
+	/**
+	 * Inicia el tablero con los caramelos
+	 * @param filas
+	 * @param columnas
+	 * @param unNivel
+	 */
+	public void iniciar(int filas,int columnas, Nivel unNivel){
+		
+		// va llenando por fila
+		for(int laFila = 0; laFila<filas; laFila++){
+			llenarFilas(laFila + 1, columnas, unNivel);
+		}
+		
+	}
+	
+	/**
+	 * Llena una fila con caramelos
+	 * @param fila
+	 * @param columnas
+	 * @param unNivel
+	 */
+	public void llenarFilas(int fila,int columnas, Nivel unNivel){
+		
+		for(int i = 0; i<columnas; i++){
+			int num = ((int) Math.random()) * (unNivel.cantidadDeCaramelos()); 
+			String colorCaramelo = unNivel.caramelosDelNivel().get(num);
+			Caramelo caramelo = new Caramelo(fila, i+1, colorCaramelo);
+			caramelos.add(caramelo);
+		}
+	}
 	
 	/**
 	 * mueve el caramelo si es valido el movimeinto

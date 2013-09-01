@@ -5,6 +5,13 @@ public class Caramelo {
 	private int y;
 	private String color;
 	
+	public Caramelo(int x, int y, String color){
+		
+		this.x = x;
+		this.y = y;
+		this.color = color;
+	}
+	
 	public String getColor() {
 		return color;
 	}
