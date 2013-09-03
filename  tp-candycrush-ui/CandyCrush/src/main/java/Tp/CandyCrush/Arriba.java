@@ -8,8 +8,7 @@ public class Arriba extends Movimiento {
 	@Override
 	public boolean esValido(Caramelo caramelo) {
 				
-		return ((caramelo.getY() - 1) != 0) && 
-				getTablero().hayExplosiones(caramelo.getX(),caramelo.getY()-1, caramelo.getColor());
+		return (caramelo.getY() - 1 > 0);
 	}
 
 	/**
@@ -18,10 +17,11 @@ public class Arriba extends Movimiento {
 	 */
 	@Override
 	public void realizar(Caramelo caramelo) {
-		
-		caramelo.setY(caramelo.getY() - 1);
-		
+		if(this.esValido(caramelo)){
+			this.getTablero().swapCaramelos(caramelo.getX(), caramelo.getY(), caramelo.getX(), caramelo.getY() + 1);
+			}
 	}
+	
 	public static void main(String[] args) {
 	
 	}
