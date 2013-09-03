@@ -82,19 +82,32 @@ public class Tablero {
 	 * @param mov
 	 */
 	public void moverCaramelo(int x, int y, Movimiento movimiento){
+		//los moviemientos deberian saber si son verticales u horizontales para simplificar los chequeos
 		for(int x1 = 0; x1 < alto; x++){
 			for(int y1 = 0; y1 < ancho; y++){
 				if(x == x1 & y == y1){
 					movimiento.realizar(x,y);
 				}
 			}
-		if(esValidoElMovimiento(x,y,movimiento)){
+		if(esValidoElMovimiento(x,y,movimiento))
+		//aca se deberia chequear que los caramelos a intercambiar sean de un color diferente
+		{
 			caramelos[x][y]
+		// no entiendo mucho el codigo aca pongo lo q se deberia hacer si el movimiento			
+		// no se sale del tablero y son caramelos diferentes
+			
+					
+		}
+		else{
+		// aca se manda mje de erro tanto si eran caramelos iguales, si se salian de los 
+		// o si no genero explosion el moviemiento	
+			
+			//SystemOut mensajeMoviemientoInvalido
 		}
 		
-		
 	}
-
+		
+		
 	/**
 	 * @param args
 	 */
