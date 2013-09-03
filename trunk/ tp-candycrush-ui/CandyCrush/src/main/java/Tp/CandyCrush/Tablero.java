@@ -91,12 +91,15 @@ public class Tablero {
 			}
 		if(esValidoElMovimiento(x,y,movimiento))
 		//aca se deberia chequear que los caramelos a intercambiar sean de un color diferente
+		//y si generaron explosion
 		{
 			caramelos[x][y]
 		// no entiendo mucho el codigo aca pongo lo q se deberia hacer si el movimiento			
-		// no se sale del tablero y son caramelos diferentes
-			
-					
+		// genero explosion
+			this.propagarExplosion(x, y);
+			this.propagarExplosion(vecino);
+			this.bajarCaramelos();
+			this.explosionesEnCadena();
 		}
 		else{
 		// aca se manda mje de erro tanto si eran caramelos iguales, si se salian de los 
