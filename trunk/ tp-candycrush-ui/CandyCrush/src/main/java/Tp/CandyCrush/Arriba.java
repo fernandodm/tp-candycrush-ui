@@ -18,7 +18,7 @@ public class Arriba extends Movimiento {
 	@Override
 	public void realizar(Caramelo caramelo) {
 		if(this.esValido(caramelo)){
-			this.getTablero().swapCaramelos(caramelo.getX(), caramelo.getY(), caramelo.getX(), caramelo.getY() + 1);
+			this.getTablero().swapCaramelos(caramelo.getX(), caramelo.getY(), caramelo.getX(), caramelo.getY() - 1);
 			}
 	}
 	
