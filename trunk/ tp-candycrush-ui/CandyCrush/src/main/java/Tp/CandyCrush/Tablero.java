@@ -43,6 +43,8 @@ public class Tablero {
 		for(int x = 0; x < filas; x++){
 			for(int y = 0; y < columnas; y++){
 				Caramelo caramelo = carameloAleatorio(unNivel);
+				caramelo.setX(x);
+				caramelo.setY(y);
 				caramelos[x][y] = caramelo;
 			}
 		}
@@ -61,6 +63,16 @@ public class Tablero {
 		Caramelo caramelo = new Caramelo(colorCaramelo);
 		
 		return caramelo;
+	}
+	
+	public void swapCaramelos(int x1, int y1, int x2, int y2){
+		Caramelo aux = this.getCaramelos()[x1][y1];
+		this.getCaramelos()[x1][y1] = this.getCaramelos()[x2][y2]; 
+		this.getCaramelos()[x2][y2] = aux;
+	}
+	
+	public Caramelo carameloVecinoDe(Movimiento mov, int x, int y){
+		
 	}
 	
 	/**
