@@ -22,5 +22,8 @@ public class Arriba extends Movimiento {
 		caramelo.setY(caramelo.getY() - 1);
 		
 	}
+	public static void main(String[] args) {
+	
+	}
 
 }

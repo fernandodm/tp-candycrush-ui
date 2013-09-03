@@ -31,9 +31,11 @@ public class TableroTest extends TestCase {
 
 	
 	public void testIniciar(){
+		
 		tablero.iniciar(2, 3, nivel);
 		Caramelo[][] caramelo = tablero.getCaramelos();
 		int cantidad = 0;
+		
 		for(int x = 0; x < 2; x++){
 			for(int y = 0; y < 3; y++){
 				if(caramelo[x][y] != null){
