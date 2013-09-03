@@ -20,6 +20,7 @@ public class Derecha extends Movimiento {
 	public void realizar(Caramelo caramelo) {
 		if(this.esValido(caramelo)){
 			this.getTablero().swapCaramelos(caramelo.getX(), caramelo.getY(), caramelo.getX() + 1, caramelo.getY());
+			caramelo.swapPosicionesCon(getTablero().getCaramelos()[caramelo.getX() + 1][caramelo.getY()]);
 			}
 	}
 

@@ -1,5 +1,7 @@
 package Tp.CandyCrush;
 
+import excepciones.ExcepcionNoSePuedeMover;
+
 public abstract class Movimiento {
 	private Tablero tablero;
 	
@@ -10,6 +12,6 @@ public abstract class Movimiento {
 		this.tablero = tablero;
 	}
 	public abstract boolean esValido(Caramelo caramelo);
-	public abstract void realizar(Caramelo caramelo);
+	public abstract void realizar(Caramelo caramelo) throws ExcepcionNoSePuedeMover;
 
 }

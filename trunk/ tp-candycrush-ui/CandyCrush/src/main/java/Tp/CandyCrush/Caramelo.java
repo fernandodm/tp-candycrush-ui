@@ -43,7 +43,14 @@ public class Caramelo {
 		this.color = color;
 	}
 	
-
+	public void swapPosicionesCon(Caramelo c){
+		int xAux = this.getX();
+		int yAux = this.getY();
+		this.setX(c.getX());
+		this.setY(c.getY());
+		c.setX(xAux);
+		c.setY(yAux);
+	}
 	
 	public void mover(Movimiento mov){
 		
