@@ -82,7 +82,6 @@ public class Tablero {
 	 * @param mov
 	 */
 	public void moverCaramelo(int x, int y, Movimiento movimiento){
-		//los moviemientos deberian saber si son verticales u horizontales para simplificar los chequeos
 		for(int x1 = 0; x1 < alto; x++){
 			for(int y1 = 0; y1 < ancho; y++){
 				if(x == x1 & y == y1){
