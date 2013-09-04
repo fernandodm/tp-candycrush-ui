@@ -29,12 +29,12 @@ public class Explosion {
          }
     }
     
-    private static void bajarCaramelos(Tablero t) {
+    public static void bajarCaramelos(Tablero t) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	private static void propagarExplosion(Tablero t, int x1, int y1,
+	public static void propagarExplosion(Tablero t, int x1, int y1,
 			Movimiento mov1, Movimiento mov2) {
 		// TODO Auto-generated method stub	
 	}
@@ -45,7 +45,7 @@ public class Explosion {
      * @return true si se generó una explosión en la posición x y     
      * */
     
-	private static boolean explotaVertical(Tablero t, int x, int y) {
+	public static boolean explotaVertical(Tablero t, int x, int y) {
 		List<Movimiento> arriba1 = new ArrayList<Movimiento>();
 		arriba1.add(new Arriba());
 		List<Movimiento> arriba2 = new ArrayList<Movimiento>();
@@ -62,7 +62,7 @@ public class Explosion {
 				explosionHacia(t, x, y, arriba1, abajo1) ;
 	}
 	
-	private static boolean explotaHorizontal(Tablero t, int x, int y) {
+	public static boolean explotaHorizontal(Tablero t, int x, int y) {
 		List<Movimiento> izq1 = new ArrayList<Movimiento>();
 		izq1.add(new Izquierda());
 		List<Movimiento> izq2 = new ArrayList<Movimiento>();
@@ -79,7 +79,7 @@ public class Explosion {
 				explosionHacia(t, x, y, izq1, der1) ;
 	}
 	
-	private static boolean explosionHacia(Tablero t, int x, int y, List<Movimiento> vecino1, List<Movimiento> vecino2){
+	public static boolean explosionHacia(Tablero t, int x, int y, List<Movimiento> vecino1, List<Movimiento> vecino2){
 		String colorOriginal= t.getCaramelos()[x][y].getColor();
 		String colorVecino1= t.colorCarameloEn(t, x, y, vecino1);
 		String colorVecino2= t.colorCarameloEn(t, x, y, vecino2);

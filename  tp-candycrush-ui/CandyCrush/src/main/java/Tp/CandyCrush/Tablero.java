@@ -80,11 +80,24 @@ public class Tablero {
 	 * @param mov
 	 */
 	public void moverCaramelo(int x, int y, Movimiento movimiento){
-		if(esValidoElMovimiento(x,y,movimiento))
+		int x1=x;
+		int y1=y;
+		movimiento.coordenadaMovimiento(x1, y1);
+		if(this.incluidoEnTablero(x1, y1)) //chequear posibles explosiones
 		{
-			//this.propagarExplosion(x, y);
-			//this.propagarExplosion(vecino);
-			this.bajarCaramelos();
+			//swapear x y con x1 y1
+			// REFACTORING!!!
+			if(Explosion.explotaHorizontal(this, x, y))
+			Explosion.propagarExplosion(this, x, y, new Arriba(), new Abajo());
+			if(Explosion.explotaVertical(this, x, y))
+			Explosion.propagarExplosion(this, x, y, new Izquierda(), new Derecha());
+			
+			if(Explosion.explotaHorizontal(this, x1, y1))
+			Explosion.propagarExplosion(this, x1, y1, new Arriba(), new Abajo());
+			if(Explosion.explotaVertical(this, x1, y1))
+			Explosion.propagarExplosion(this, x1, y1, new Izquierda(), new Derecha());
+			
+			Explosion.bajarCaramelos(this);
 			Explosion.explosionesEnCadena(this);
 		}
 		else{
