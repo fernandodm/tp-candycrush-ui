@@ -10,10 +10,20 @@ import static org.mockito.Mockito.*;
 public class TableroTest extends TestCase {
 	private Tablero tablero;
 	private Nivel nivel;
+	private Caramelo caramelo1;
+	private Caramelo caramelo2;
 	
 	public void setUp(){
-		tablero = new Tablero();
 		
+		caramelo1 = mock(Caramelo.class);
+		caramelo2 = mock(Caramelo.class);
+		
+		Caramelo[][] caramelos = new Caramelo[3][5];
+		caramelos[2][2] = caramelo1;
+		caramelos[1][3] = caramelo2;
+		
+		tablero = new Tablero();
+		tablero.setCaramelos(caramelos);
 		nivel = mock(Nivel.class);
 		
 		List<String> colores = new ArrayList<String>();
@@ -25,10 +35,15 @@ public class TableroTest extends TestCase {
 		when(nivel.cantidadDeCaramelos()).thenReturn(4);
 		when(nivel.caramelosDelNivel()).thenReturn(colores);// Nivel Facil
 		
-		
-		
 	}
 
+	
+	public void testSwapCaramelos(){
+		
+		tablero.swapCaramelos(2, 2, 1, 3);
+		Assert.assertEquals(tablero.getCaramelos()[2][2], caramelo2);
+		
+	}
 	
 	public void testIniciar(){
 		
