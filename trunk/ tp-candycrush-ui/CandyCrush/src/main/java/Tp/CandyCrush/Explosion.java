@@ -9,27 +9,41 @@ public class Explosion {
 	 * baja los caramelos y hace una llamada recursiva
 	 */
     public static void explosionesEnCadena(Tablero t){
-    //	Caramelo actual= this.getCaramelos()[0][0] ;
+    	boolean ver;
+    	boolean hor;
 		for(int x1 = 0; x1 < t.getAlto(); x1++){
 			for(int y1 = 0; y1 < t.getAncho(); y1++){
-				if(generaExplosion(t, x1, y1)){
-					this.propagarExplosion(t, x1, y1);
-					this.bajarCaramelos(t);
-					this.explosionesEnCadena(t);
+				ver= explotaVertical(t, x1, y1);
+				hor= explotaHorizontal(t, x1, y1);
+				if(ver){
+					propagarExplosion(t, x1, y1, new Arriba(), new Abajo());
+				}
+				if(hor){
+					propagarExplosion(t, x1, y1, new Izquierda(), new Derecha());		
+				}
+				if(ver || hor){
+					bajarCaramelos(t);
+					explosionesEnCadena(t);
 				}
 			}
-    	 
          }
     }
     
-    /**
+    private static void bajarCaramelos(Tablero t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void propagarExplosion(Tablero t, int x1, int y1,
+			Movimiento mov1, Movimiento mov2) {
+		// TODO Auto-generated method stub	
+	}
+
+	/**
      * @param x
      * @param y
      * @return true si se generó una explosión en la posición x y     
      * */
-    public static boolean generaExplosion(Tablero t, int x, int y){ 	
-    	return explotaHorizontal(t, x, y) || explotaVertical(t, x, y);
-    }
     
 	private static boolean explotaVertical(Tablero t, int x, int y) {
 		List<Movimiento> arriba1 = new ArrayList<Movimiento>();
