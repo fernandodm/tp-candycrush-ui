@@ -67,13 +67,20 @@ public class Tablero {
 	
 	public void swapCaramelos(Caramelo ca, Caramelo cb){
 		Caramelo aux = this.getCaramelos()[ca.getX()][ca.getY()];
+		int xAux = ca.getX();
+		int yAux = ca.getY();
+		
 		this.getCaramelos()[ca.getX()][ca.getY()] = cb;
 		this.getCaramelos()[cb.getX()][cb.getY()] = aux;
+		
+		this.getCaramelos()[ca.getX()][ca.getY()].setX(cb.getX());
+		this.getCaramelos()[ca.getX()][ca.getY()].setY(cb.getY());
+		
+		this.getCaramelos()[cb.getX()][cb.getY()].setX(xAux);
+		this.getCaramelos()[cb.getX()][cb.getY()].setX(yAux);
 	}
 	
-	public Caramelo carameloVecinoDe(Movimiento mov, int x, int y){
-		
-	}
+
 	
 	/**
 	 * mueve el caramelo si es valido el movimeinto
@@ -110,7 +117,7 @@ public class Tablero {
 	}
 		
 	/**
-	 * Busca explosiones en todo el tablero y si encuentra una propaga la explosión,
+	 * Busca explosiones en todo el tablero y si encuentra una propaga la explosiï¿½n,
 	 * baja los caramelos y hace una llamada recursiva
 	 */
     public void explosionesEnCadena(){

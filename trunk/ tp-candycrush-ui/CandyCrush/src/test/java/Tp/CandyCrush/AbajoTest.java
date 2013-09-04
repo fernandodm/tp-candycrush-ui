@@ -15,9 +15,14 @@ public class AbajoTest extends TestCase {
 	
 	public void setUp(){
 		
+		Caramelo[][] caramelos = new Caramelo[5][5];
+		caramelos[2][4] = caramelo1;
+		caramelos[2][5] = caramelo2;
+		
 		tablero = mock(Tablero.class);
-		when(tablero.getAlto()).thenReturn(5);
-		when(tablero.getAncho()).thenReturn(5);
+		when(tablero.getAlto()).thenReturn(6);
+		when(tablero.getAncho()).thenReturn(6);
+		when(tablero.getCaramelos()).thenReturn(caramelos);
 		
 		abajo = new Abajo();
 		abajo.setTablero(tablero);
