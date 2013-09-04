@@ -27,8 +27,9 @@ public class Arriba extends Movimiento {
 			}
 	}
 	
-	public static void main(String[] args) {
-	
+	@Override
+	public void coordenadaMovimiento(int x, int y){
+		x--;
 	}
 
 }

@@ -27,4 +27,9 @@ public class Abajo extends Movimiento {
 			}
 	}
 
+	@Override
+	public void coordenadaMovimiento(int x, int y){
+		x++;
+	}
+
 }
