@@ -3,9 +3,10 @@ package Tp.CandyCrush;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.commons.utils.Observable;
+import Tp.CandyCrush.Caramelo;
+import Tp.CandyCrush.Movimiento;
+import Tp.CandyCrush.Nivel;
 
-@Observable
 public class Tablero {
 	private int alto;
 	private int ancho;
@@ -44,8 +45,6 @@ public class Tablero {
 		for(int x = 0; x < filas; x++){
 			for(int y = 0; y < columnas; y++){
 				Caramelo caramelo = carameloAleatorio(unNivel);
-				caramelo.setX(x);
-				caramelo.setY(y);
 				caramelos[x][y] = caramelo;
 			}
 		}
@@ -102,12 +101,34 @@ public class Tablero {
 	}
 
 	/**
+	 * Busca explosiones en todo el tablero y si encuentra una propaga la explosi�n,
+	 * baja los caramelos y hace una llamada recursiva
 	 * @param x
 	 * @param y
 	 * @param vecino1
 	 * @return devuelve el color del caramelo en la posición a la que se llega siguiendo
 	 * la lista de movimientos. Si la posición se sale del tablero devuelve "error".
+
 	 */
+    public void explosionesEnCadena(){
+    	Caramelo[][] actual= this[1][1];
+		for(int x1 = 0; x1 < alto; x++){
+			for(int y1 = 0; y1 < ancho; y++){
+				if(generaExplosion(x1, y1)){
+					this.propagarExplosion(x1, y1);
+					this.bajarCaramelos();
+					this.explosionesEnCadena();
+				}
+			}
+    	 
+         }
+    }
+    
+    public boolean puedeMover(int x, int y, Movimiento mov){
+    	
+    	return mov.esValido(x,y);
+    }
+		
 	public String colorCarameloEn(Tablero t, int x, int y, List<Movimiento> vecino1) {
 		String res= "error";
 		int x1= x;
@@ -125,7 +146,6 @@ public class Tablero {
 		return (x >= 0 && x <= this.getAlto()) && (y >= 0 && y <= this.getAncho());
 	}
 
-	
 	/**
 	 * @param args
 	 */

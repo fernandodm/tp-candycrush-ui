@@ -20,7 +20,20 @@ public class Caramelo {
 		this.color = color;
 	}
 	
+<<<<<<< .mine
+	//estaria de mas
+	public void swapPosicionesCon(Caramelo c){
+		int xAux = this.getX();
+		int yAux = this.getY();
+		this.setX(c.getX());
+		this.setY(c.getY());
+		c.setX(xAux);
+		c.setY(yAux);
+	}
+	
+=======
 
+>>>>>>> .r26
 	public void mover(Movimiento mov) throws ExcepcionNoSePuedeMover{
 		
 		//mov.realizar(); QUE PONEMOS ACA?
