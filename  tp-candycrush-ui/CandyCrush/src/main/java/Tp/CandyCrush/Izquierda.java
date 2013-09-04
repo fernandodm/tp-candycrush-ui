@@ -28,4 +28,9 @@ public class Izquierda extends Movimiento {
 			}
 	}
 
+	@Override
+	public void coordenadaMovimiento(int x, int y){
+		y--;
+	}
+
 }

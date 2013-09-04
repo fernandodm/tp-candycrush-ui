@@ -12,6 +12,7 @@ public abstract class Movimiento {
 		this.tablero = tablero;
 	}
 	public abstract boolean esValido(Caramelo caramelo);
+	public abstract void coordenadaMovimiento(int x, int y);
 	public abstract void realizar(Caramelo caramelo) throws ExcepcionNoSePuedeMover;
 
 }
