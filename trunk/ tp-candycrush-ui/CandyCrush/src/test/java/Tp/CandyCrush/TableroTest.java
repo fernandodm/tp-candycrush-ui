@@ -3,6 +3,10 @@ package Tp.CandyCrush;
 import java.util.ArrayList;
 import java.util.List;
 
+import Tp.CandyCrush.Caramelo;
+import Tp.CandyCrush.Nivel;
+import Tp.CandyCrush.Tablero;
+
 import junit.framework.Assert;
 import junit.framework.TestCase;
 import static org.mockito.Mockito.*;

@@ -3,6 +3,9 @@ package Tp.CandyCrush;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import Tp.CandyCrush.Caramelo;
+import Tp.CandyCrush.Izquierda;
+import Tp.CandyCrush.Tablero;
 import excepciones.ExcepcionNoSePuedeMover;
 import junit.framework.TestCase;
 

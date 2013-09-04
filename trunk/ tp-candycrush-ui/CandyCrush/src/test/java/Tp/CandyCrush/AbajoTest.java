@@ -1,5 +1,8 @@
 package Tp.CandyCrush;
 
+import Tp.CandyCrush.Abajo;
+import Tp.CandyCrush.Caramelo;
+import Tp.CandyCrush.Tablero;
 import excepciones.ExcepcionNoSePuedeMover;
 import junit.framework.TestCase;
 import junit.framework.Assert;
