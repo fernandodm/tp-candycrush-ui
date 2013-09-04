@@ -15,6 +15,5 @@ public abstract class Movimiento {
 	public abstract void coordenadaMovimiento(int x, int y);
 	public abstract void realizar(int x, int y) throws ExcepcionNoSePuedeMover;
 	public abstract boolean esValido(int x, int y);
-	public abstract boolean esValido(int x, int y);
 
 }
