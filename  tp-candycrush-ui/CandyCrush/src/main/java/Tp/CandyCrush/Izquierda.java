@@ -1,5 +1,7 @@
 package Tp.CandyCrush;
 
+import excepciones.ExcepcionNoSePuedeMover;
+
 public class Izquierda extends Movimiento {
 
 
@@ -14,13 +16,16 @@ public class Izquierda extends Movimiento {
 
 	/**
 	 * realiza el movimiento
+	 * @throws ExcepcionNoSePuedeMover 
 	 * 
 	 */
 	@Override
-	public void realizar(Caramelo caramelo) {
+	public void realizar(Caramelo caramelo) throws ExcepcionNoSePuedeMover {
 		if(this.esValido(caramelo)){
 			this.getTablero().swapCaramelos(caramelo.getX(), caramelo.getY(), caramelo.getX() - 1, caramelo.getY());
 			caramelo.swapPosicionesCon(getTablero().getCaramelos()[caramelo.getX() - 1][caramelo.getY()]);
+			} else {
+				throw new ExcepcionNoSePuedeMover();
 			}
 	}
 
