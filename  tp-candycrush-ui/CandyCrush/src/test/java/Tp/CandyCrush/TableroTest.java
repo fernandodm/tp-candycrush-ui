@@ -25,6 +25,8 @@ public class TableroTest extends TestCase {
 		nivel = mock(Nivel.class);
 		tablero = new Tablero();
 		tablero.setCaramelos(caramelos);
+		tablero.setAlto(2);
+		tablero.setAncho(3);
 		tablero.setUnNivel(nivel);
 		
 		List<String> colores = new ArrayList<String>();
@@ -48,12 +50,12 @@ public class TableroTest extends TestCase {
 	
 	public void testIniciar(){
 		
-		tablero.iniciar(2, 3);
+		tablero.iniciar();
 		Caramelo[][] caramelo = tablero.getCaramelos();
 		int cantidad = 0;
 		
-		for(int x = 0; x < 2; x++){
-			for(int y = 0; y < 3; y++){
+		for(int x = 0; x < tablero.getAlto(); x++){
+			for(int y = 0; y < tablero.getAncho(); y++){
 				if(caramelo[x][y] != null){
 					cantidad = cantidad + 1;
 				}else{
