@@ -6,12 +6,21 @@ import java.util.List;
 import Tp.CandyCrush.Caramelo;
 import Tp.CandyCrush.Movimiento;
 import Tp.CandyCrush.Nivel;
+import org.uqbar.commons.utils.Observable;
 
+@Observable
 public class Tablero {
 	private int alto;
 	private int ancho;
 	private Caramelo[][] caramelos;
+	private Nivel unNivel;
 	
+	public Nivel getUnNivel() {
+		return unNivel;
+	}
+	public void setUnNivel(Nivel unNivel) {
+		this.unNivel = unNivel;
+	}
 	public Caramelo[][] getCaramelos() {
 		return caramelos;
 	}
@@ -37,7 +46,7 @@ public class Tablero {
 	 * @param columnas
 	 * @param unNivel
 	 */
-	public void iniciar(int filas,int columnas, Nivel unNivel){
+	public void iniciar(int filas,int columnas){
 		
 		caramelos = new Caramelo[filas][columnas];
 		alto = filas;
@@ -117,8 +126,23 @@ public class Tablero {
 	 * la lista de movimientos. Si la posición se sale del tablero devuelve "".
 
 	 */
+
+    public void explosionesEnCadena(){
+    	Caramelo[][] actual= this[1][1];
+		for(int x1 = 0; x1 < alto; x++){
+			for(int y1 = 0; y1 < ancho; y++){
+				if(generaExplosion(x1, y1)){
+					this.propagarExplosion(x1, y1);
+					this.bajarCaramelos();
+					this.explosionesEnCadena();
+				}
+			}
+    	 
+         }
+    }
+  
     public String colorCarameloEn(Tablero t, int x, int y, List<Movimiento> vecino1) {
-		String res= "error";
+		String res = "";
 		int x1= x;
 		int y1= y;
 		for(Movimiento each: vecino1){
@@ -139,7 +163,7 @@ public class Tablero {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(4);
+	
 	}
 
 }

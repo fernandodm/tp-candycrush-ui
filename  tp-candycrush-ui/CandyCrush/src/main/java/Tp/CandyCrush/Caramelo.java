@@ -19,23 +19,5 @@ public class Caramelo {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	//estaria de mas
-	public void swapPosicionesCon(Caramelo c){
-		int xAux = this.getX();
-		int yAux = this.getY();
-		this.setX(c.getX());
-		this.setY(c.getY());
-		c.setX(xAux);
-		c.setY(yAux);
-	}
-	
 
-	public void mover(Movimiento mov) throws ExcepcionNoSePuedeMover{
-		
-		//mov.realizar(); QUE PONEMOS ACA?
-		
-	}
-	
-	
 }

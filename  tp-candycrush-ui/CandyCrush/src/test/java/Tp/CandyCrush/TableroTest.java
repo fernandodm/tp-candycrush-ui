@@ -22,9 +22,10 @@ public class TableroTest extends TestCase {
 		caramelos[2][2] = caramelo1;
 		caramelos[1][3] = caramelo2;
 		
+		nivel = mock(Nivel.class);
 		tablero = new Tablero();
 		tablero.setCaramelos(caramelos);
-		nivel = mock(Nivel.class);
+		tablero.setUnNivel(nivel);
 		
 		List<String> colores = new ArrayList<String>();
 		colores.add("Amarillo");
@@ -47,7 +48,7 @@ public class TableroTest extends TestCase {
 	
 	public void testIniciar(){
 		
-		tablero.iniciar(2, 3, nivel);
+		tablero.iniciar(2, 3);
 		Caramelo[][] caramelo = tablero.getCaramelos();
 		int cantidad = 0;
 		
