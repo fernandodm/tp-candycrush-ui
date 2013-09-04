@@ -21,8 +21,7 @@ public class Abajo extends Movimiento {
 	@Override
 	public void realizar(Caramelo caramelo) throws ExcepcionNoSePuedeMover {
 		if(this.esValido(caramelo)){
-			this.getTablero().swapCaramelos(caramelo.getX(), caramelo.getY(), caramelo.getX(), caramelo.getY() + 1);
-			caramelo.swapPosicionesCon(getTablero().getCaramelos()[caramelo.getX()][caramelo.getY() + 1]);
+			this.getTablero().swapCaramelos(caramelo,this.getTablero().getCaramelos()[caramelo.getX()][caramelo.getY() + 1]);
 			} else {
 				throw new ExcepcionNoSePuedeMover();
 			}
