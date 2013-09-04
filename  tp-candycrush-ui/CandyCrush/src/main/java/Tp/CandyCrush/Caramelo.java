@@ -1,5 +1,7 @@
 package Tp.CandyCrush;
 
+import excepciones.ExcepcionNoSePuedeMover;
+
 public class Caramelo {
 	private String color;
 	int x;
@@ -52,7 +54,7 @@ public class Caramelo {
 		c.setY(yAux);
 	}
 	
-	public void mover(Movimiento mov){
+	public void mover(Movimiento mov) throws ExcepcionNoSePuedeMover{
 		
 		mov.realizar(this);
 		

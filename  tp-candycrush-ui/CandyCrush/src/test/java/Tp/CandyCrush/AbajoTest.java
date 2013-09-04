@@ -34,7 +34,7 @@ public class AbajoTest extends TestCase {
 	public void testMoverPudiendoMover() throws ExcepcionNoSePuedeMover{
 		
 		abajo.realizar(caramelo1);
-		verify(caramelo1).swapPosicionesCon(caramelo2);
+		verify(tablero).swapCaramelos(caramelo1, caramelo2);
 	}
 	
 	public void testMoverNOPudiendoMover() throws ExcepcionNoSePuedeMover{

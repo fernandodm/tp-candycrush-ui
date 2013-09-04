@@ -65,10 +65,10 @@ public class Tablero {
 		return caramelo;
 	}
 	
-	public void swapCaramelos(int x1, int y1, int x2, int y2){
-		Caramelo aux = this.getCaramelos()[x1][y1];
-		this.getCaramelos()[x1][y1] = this.getCaramelos()[x2][y2]; 
-		this.getCaramelos()[x2][y2] = aux;
+	public void swapCaramelos(Caramelo ca, Caramelo cb){
+		Caramelo aux = this.getCaramelos()[ca.getX()][ca.getY()];
+		this.getCaramelos()[ca.getX()][ca.getY()] = cb;
+		this.getCaramelos()[cb.getX()][cb.getY()] = aux;
 	}
 	
 	public Caramelo carameloVecinoDe(Movimiento mov, int x, int y){
