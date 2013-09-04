@@ -8,9 +8,10 @@ public class Abajo extends Movimiento {
 	 * verifica si es valido el movimiento hacia abajo
 	 */
 	@Override
-	public boolean esValido(Caramelo caramelo) {
+	public boolean esValido(int x, int y) {
 				
-		return (caramelo.getY() + 1 <= this.getTablero().getAlto());
+		return(x + 1 < this.getTablero().getAlto());
+		
 	}
 
 	/**
@@ -19,9 +20,9 @@ public class Abajo extends Movimiento {
 	 * 
 	 */
 	@Override
-	public void realizar(Caramelo caramelo) throws ExcepcionNoSePuedeMover {
-		if(this.esValido(caramelo)){
-			this.getTablero().swapCaramelos(caramelo,this.getTablero().getCaramelos()[caramelo.getX()][caramelo.getY() + 1]);
+	public void realizar(int x, int y) throws ExcepcionNoSePuedeMover {
+		if(this.esValido(x,y)){
+			this.getTablero().swapCaramelos(x, y, x+1, y);
 			} else {
 				throw new ExcepcionNoSePuedeMover();
 			}

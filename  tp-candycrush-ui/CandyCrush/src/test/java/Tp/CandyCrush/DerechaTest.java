@@ -15,37 +15,35 @@ public class DerechaTest extends TestCase {
 	
 	public void setUp(){
 		
+		caramelo1 = mock(Caramelo.class);
+		caramelo2 = mock(Caramelo.class);
+		
+		Caramelo[][] caramelos = new Caramelo[5][5];
+		caramelos[0][3] = caramelo1;
+		caramelos[0][4] = caramelo2;
+		
 		tablero = mock(Tablero.class);
 		when(tablero.getAlto()).thenReturn(5);
 		when(tablero.getAncho()).thenReturn(5);
+		when(tablero.getCaramelos()).thenReturn(caramelos);
 		
 		derecha = new Derecha();
 		derecha.setTablero(tablero);
-		
-		caramelo1 = mock(Caramelo.class);
-		when(caramelo1.getX()).thenReturn(4);
-		when(caramelo1.getY()).thenReturn(0);
-		
-		caramelo2 = mock(Caramelo.class);
-		when(caramelo2.getX()).thenReturn(5);
-		when(caramelo1.getY()).thenReturn(0);
 	}
 	
 	public void testMoverPudiendoMover() throws ExcepcionNoSePuedeMover{
 		
-		derecha.realizar(caramelo1);
-		verify(tablero).swapCaramelos(caramelo1, caramelo2);
+		derecha.realizar(0,3);
+		verify(tablero).swapCaramelos(0,3,0,4);
 	}
 	
-	public void testMoverNOPudiendoMover() throws ExcepcionNoSePuedeMover{
+	public void testMoverNOPudiendoMover(){
 		
 		try{
-			derecha.realizar(caramelo2);
+			derecha.realizar(0,4);
 			fail();
 		} catch (ExcepcionNoSePuedeMover e){
 			
 		}
 	}
-	
-	
 }

@@ -9,9 +9,10 @@ public class Izquierda extends Movimiento {
 	 * verifica si es valido el movimiento hacia la izquierda
 	 */
 	@Override
-	public boolean esValido(Caramelo caramelo) {
+	public boolean esValido(int x, int y) {
 				
-		return (caramelo.getX() - 1 < 0);
+		return(y - 1 >= 0);
+		
 	}
 
 	/**
@@ -20,9 +21,9 @@ public class Izquierda extends Movimiento {
 	 * 
 	 */
 	@Override
-	public void realizar(Caramelo caramelo) throws ExcepcionNoSePuedeMover {
-		if(this.esValido(caramelo)){
-			this.getTablero().swapCaramelos(caramelo,this.getTablero().getCaramelos()[caramelo.getX() - 1][caramelo.getY()]);
+	public void realizar(int x, int y) throws ExcepcionNoSePuedeMover {
+		if(this.esValido(x,y)){
+			this.getTablero().swapCaramelos(x, y, x, y - 1);
 			} else {
 				throw new ExcepcionNoSePuedeMover();
 			}
@@ -30,7 +31,7 @@ public class Izquierda extends Movimiento {
 
 	@Override
 	public void coordenadaMovimiento(int x, int y){
-		y--;
+		x++;
 	}
 
 }
