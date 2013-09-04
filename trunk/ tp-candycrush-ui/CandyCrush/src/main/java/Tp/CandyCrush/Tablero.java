@@ -46,13 +46,11 @@ public class Tablero {
 	 * @param columnas
 	 * @param unNivel
 	 */
-	public void iniciar(int filas,int columnas){
+	public void iniciar(){
 		
-		caramelos = new Caramelo[filas][columnas];
-		alto = filas;
-		ancho = columnas;
-		for(int x = 0; x < filas; x++){
-			for(int y = 0; y < columnas; y++){
+		caramelos = new Caramelo[alto][ancho];
+		for(int x = 0; x < alto; x++){
+			for(int y = 0; y < ancho; y++){
 				Caramelo caramelo = carameloAleatorio(unNivel);
 				caramelos[x][y] = caramelo;
 			}
