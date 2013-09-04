@@ -109,6 +109,25 @@ public class Tablero {
 		
 	}
 		
+	/**
+	 * Busca explosiones en todo el tablero y si encuentra una propaga la explosión,
+	 * baja los caramelos y hace una llamada recursiva
+	 */
+    public void explosionesEnCadena(){
+    	Caramelo[][] actual= this[1][1];
+		for(int x1 = 0; x1 < alto; x++){
+			for(int y1 = 0; y1 < ancho; y++){
+				if(generaExplosion(x1, y1)){
+					this.propagarExplosion(x1, y1);
+					this.bajarCaramelos();
+					this.explosionesEnCadena();
+				}
+			}
+    	 
+         }
+    }
+    
+    
 		
 	/**
 	 * @param args
