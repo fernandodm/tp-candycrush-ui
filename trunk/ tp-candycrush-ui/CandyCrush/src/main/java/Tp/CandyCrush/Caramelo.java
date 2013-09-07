@@ -8,7 +8,7 @@ public class Caramelo {
 
 	
 	public Caramelo(String color){
-		
+		//
 
 		this.color = color;
 	}

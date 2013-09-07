@@ -118,7 +118,7 @@ public class Tablero {
 
 	/**
 	 * @param x
-	 * @param y
+	 * @param y//
 	 * @param vecino1
 	 * @return devuelve el color del caramelo en la posición a la que se llega siguiendo
 	 * la lista de movimientos. Si la posición se sale del tablero devuelve "".
