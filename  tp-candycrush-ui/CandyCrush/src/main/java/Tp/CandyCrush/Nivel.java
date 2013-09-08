@@ -23,22 +23,12 @@ public class Nivel {
 		this.dificultad = dificultad;
 	}
 
-	/**
-	 * Retorna la cantidad de caramelos que pueden aparecer
-	 * @return
-	 */
-	public int cantidadDeCaramelos() {
+	public Caramelo carameloAleatorio() {
 		
-		return dificultad.getColores().size();
-	}
-	
-	/**
-	 * Retorna los colores de los caramelos que pueden aparecer en el nivel
-	 * @return
-	 */
-	public List<String> caramelosDelNivel() {
+		String colorCaramelo = dificultad.colorCaramelo();
 		
-		return dificultad.getColores();
+		return new Caramelo(colorCaramelo);
+		
 	}
 
 }

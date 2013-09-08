@@ -51,25 +51,10 @@ public class Tablero {
 		caramelos = new Caramelo[alto][ancho];
 		for(int x = 0; x < alto; x++){
 			for(int y = 0; y < ancho; y++){
-				Caramelo caramelo = carameloAleatorio(unNivel);
+				Caramelo caramelo = unNivel.carameloAleatorio();
 				caramelos[x][y] = caramelo;
 			}
 		}
-	}
-	
-	/**
-	 * Retorna un caramelo aleatorio de losposibles caramelos que
-	 * puede haber en el nivel
-	 * @param unNivel
-	 * @return
-	 */
-	public Caramelo carameloAleatorio(Nivel unNivel){
-		
-		int num = (int) (Math.random() * (unNivel.cantidadDeCaramelos())); 
-		String colorCaramelo = unNivel.caramelosDelNivel().get(num);
-		Caramelo caramelo = new Caramelo(colorCaramelo);
-		
-		return caramelo;
 	}
 	
 	public void swapCaramelos(int x1, int y1, int x2, int y2){
