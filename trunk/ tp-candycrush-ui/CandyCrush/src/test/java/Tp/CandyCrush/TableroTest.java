@@ -32,15 +32,8 @@ public class TableroTest extends TestCase {
 		tablero.setAlto(2);
 		tablero.setAncho(3);
 		tablero.setUnNivel(nivel);
-		
-		List<String> colores = new ArrayList<String>();
-		colores.add("Amarillo");
-		colores.add("Celeste");
-		colores.add("Verde");
-		colores.add("Rojo");
-		
-		when(nivel.cantidadDeCaramelos()).thenReturn(4);
-		when(nivel.caramelosDelNivel()).thenReturn(colores);// Nivel Facil
+
+		when(nivel.carameloAleatorio()).thenReturn(caramelo1);
 		
 	}
 

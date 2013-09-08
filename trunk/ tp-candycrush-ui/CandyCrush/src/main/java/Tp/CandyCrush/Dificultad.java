@@ -14,4 +14,11 @@ public abstract class Dificultad {
 		this.colores = colores;
 	}
 
+	public String colorCaramelo() {
+		
+		int num = (int) (Math.random() * (getColores().size())); 
+		
+		return getColores().get(num);
+	}
+	
 }
