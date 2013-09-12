@@ -11,7 +11,7 @@ public class NivelTest extends TestCase {
 	public void setUp(){
 		
 		nivel = new Nivel();
-		dificultad = mock(Facil.class);
+		dificultad = mock(Dificultad.class);
 		nivel.setDificultad(dificultad);
 		
 		when(dificultad.colorCaramelo()).thenReturn("Azul");
