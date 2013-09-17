@@ -61,14 +61,19 @@ public class Explosion {
 			Movimiento mov1, Movimiento mov2) {
 		// TODO Auto-generated method stub	
 	}
+	
+	public void explotarCaramelo(Tablero t, Coordenada c){
+		t.getCaramelos()[c.getFila()][c.getColumna()] = null;
+	}
 
 	/**
      * @param x
      * @param y
      * @return true si se generó una explosión en la posición x y     
      * */
-    
-	public static boolean explotaVertical(Tablero t, int x, int y) {
+	
+	
+	public static boolean explotaVertical(Tablero t, Coordenada c) {
 		List<Movimiento> arriba1 = new ArrayList<Movimiento>();
 		arriba1.add(new Arriba());
 		List<Movimiento> arriba2 = new ArrayList<Movimiento>();
@@ -80,12 +85,12 @@ public class Explosion {
 		abajo2.add(new Abajo());
 		abajo2.add(new Abajo());
 		
-		return  explosionHacia(t, x, y, arriba1, arriba2) ||
-				explosionHacia(t, x, y, abajo1, abajo2) ||
-				explosionHacia(t, x, y, arriba1, abajo1) ;
+		return  explosionHacia(t, c, arriba1, arriba2) ||
+				explosionHacia(t, c, abajo1, abajo2) ||
+				explosionHacia(t, c, arriba1, abajo1) ;
 	}
 	
-	public static boolean explotaHorizontal(Tablero t, int x, int y) {
+	public static boolean explotaHorizontal(Tablero t, Coordenada c) {
 		List<Movimiento> izq1 = new ArrayList<Movimiento>();
 		izq1.add(new Izquierda());
 		List<Movimiento> izq2 = new ArrayList<Movimiento>();
@@ -97,15 +102,15 @@ public class Explosion {
 		der2.add(new Derecha());
 		der2.add(new Derecha());
 		
-		return  explosionHacia(t, x, y, izq1, izq2) ||
-				explosionHacia(t, x, y, der1, der2) ||
-				explosionHacia(t, x, y, izq1, der1) ;
+		return  explosionHacia(t, c, izq1, izq2) ||
+				explosionHacia(t, c, der1, der2) ||
+				explosionHacia(t, c, izq1, der1) ;
 	}
 	
-	public static boolean explosionHacia(Tablero t, int x, int y, List<Movimiento> vecino1, List<Movimiento> vecino2){
-		String colorOriginal= t.getCaramelos()[x][y].getColor();
-		String colorVecino1= t.colorCarameloEn(t, x, y, vecino1);
-		String colorVecino2= t.colorCarameloEn(t, x, y, vecino2);
+	public static boolean explosionHacia(Tablero t, Coordenada c, List<Movimiento> vecino1, List<Movimiento> vecino2){
+		String colorOriginal= t.getCaramelos()[c.getFila()][c.getColumna()].getColor();
+		String colorVecino1= t.colorCarameloEn(t, c, vecino1);
+		String colorVecino2= t.colorCarameloEn(t, c, vecino2);
 		return (colorOriginal == colorVecino1) && (colorOriginal == colorVecino2);
 	}
 	
