@@ -52,11 +52,36 @@ public class Explosion {
          }
     }
     
+    /**
+     * Baja los caramelos en todo el tablero
+     * @param t
+     */
     public static void bajarCaramelos(Tablero t) {
-		// TODO Auto-generated method stub
-		
+		for(int i=0; i < t.getAncho(); i++){
+			Explosion.bajarCaramelosEnColumna(t, i);
+		}
 	}
+    
+    /**
+     * Baja los caramelos en la columna dada
+     * @param t
+     * @param columna
+     */
+    public static void bajarCaramelosEnColumna(Tablero t, int columna){
+    	Coordenada c = new Coordenada(0, columna);
+    	Movimiento arriba= new Arriba();
+    	for(int i= t.getAlto()-1; i < 0; i--){
+    		Explosion.bajarCarameloEnCoordenada(t, c);
+    		c= arriba.coordenadaMovimiento(c);
+    	}
+    }
 
+    public static void bajarCarameloEnCoordenada(Tablero t, Coordenada c){
+    	if(t.getCaramelos()[c.getFila()][c.getColumna()] == null){
+    		
+    	}
+    }
+    
 	public static void propagarExplosion(Tablero t, int x1, int y1,
 			Movimiento mov1, Movimiento mov2) {
 		// TODO Auto-generated method stub	

@@ -4,8 +4,6 @@ import excepciones.ExcepcionNoSePuedeMover;
 
 public class Caramelo {
 	private String color;
-
-
 	
 	public Caramelo(String color){
 		//
@@ -20,4 +18,10 @@ public class Caramelo {
 		this.color = color;
 	}
 
+	public void swapCaramelos(Tablero t, Coordenada c1, Coordenada c2){
+		Caramelo aux = t.getCaramelos()[c1.getFila()][c1.getColumna()];
+		t.getCaramelos()[c1.getFila()][c1.getColumna()] = t.getCaramelos()[c2.getFila()][c2.getColumna()];
+		t.getCaramelos()[c2.getFila()][c2.getColumna()] = aux;
+	}
+	
 }
