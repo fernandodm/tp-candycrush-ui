@@ -77,9 +77,13 @@ public class Explosion {
     }
 
     public static void bajarCarameloEnCoordenada(Tablero t, Coordenada c){
-    	if(t.getCaramelos()[c.getFila()][c.getColumna()] == null){
-    		
+    	if(t.getCaramelos()[c.getFila()][c.getColumna()].getColor() == "vacio"){
+    		Explosion.intercambiarConVecinoMasProximo(t, c);
     	}
+    }
+    
+    public static void intercambiarConVecinoMasProximo(Tablero t, Coordenada c){
+    	
     }
     
 	public static void propagarExplosion(Tablero t, int x1, int y1,
@@ -88,7 +92,7 @@ public class Explosion {
 	}
 	
 	public void explotarCaramelo(Tablero t, Coordenada c){
-		t.getCaramelos()[c.getFila()][c.getColumna()] = null;
+		t.getCaramelos()[c.getFila()][c.getColumna()].setColor("vacio");
 	}
 
 	/**
