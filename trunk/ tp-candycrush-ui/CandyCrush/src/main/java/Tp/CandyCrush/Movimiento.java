@@ -13,7 +13,6 @@ public abstract class Movimiento {
 	}
 	
 	public abstract Coordenada coordenadaMovimiento(Coordenada c);
-	public abstract void realizar(int x, int y) throws ExcepcionNoSePuedeMover;
-	public abstract boolean esValido(int x, int y);
+	//public abstract void realizar(Coordenada c) throws ExcepcionNoSePuedeMover;
 
 }
