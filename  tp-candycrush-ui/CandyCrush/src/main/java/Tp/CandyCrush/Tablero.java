@@ -106,24 +106,9 @@ public class Tablero {
 	 * @param y//
 	 * @param vecino1
 	 * @return devuelve el color del caramelo en la posición a la que se llega siguiendo
-	 * la lista de movimientos. Si la posición se sale del tablero devuelve "".
+	 * la lista de movimientos. Si la posición se sale del tablero devuelve " ".
 
 	 */
-
-    public void explosionesEnCadena(){
-    	Caramelo[][] actual= this[1][1];
-		for(int x1 = 0; x1 < alto; x++){
-			for(int y1 = 0; y1 < ancho; y++){
-				if(generaExplosion(x1, y1)){
-					this.propagarExplosion(x1, y1);
-					this.bajarCaramelos();
-					this.explosionesEnCadena();
-				}
-			}
-    	 
-         }
-    }
-  
     public String colorCarameloEn(Tablero t, Coordenada c, List<Movimiento> mov) {
 		Coordenada aux= Coordenada.coordenadaResultante(c, mov); 
 		return (this.incluidoEnTablero(aux))? 
