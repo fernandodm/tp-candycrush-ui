@@ -124,21 +124,14 @@ public class Tablero {
          }
     }
   
-    public String colorCarameloEn(Tablero t, int x, int y, List<Movimiento> vecino1) {
-		String res = "";
-		int x1= x;
-		int y1= y;
-		for(Movimiento each: vecino1){
-			each.coordenadaMovimiento(x1, y1);
-		}
-		if(this.incluidoEnTablero(x1, y1)){
-			res= t.getCaramelos()[x1][y1].getColor();
-		}
-		return res;
+    public String colorCarameloEn(Tablero t, Coordenada c, List<Movimiento> mov) {
+		Coordenada aux= Coordenada.coordenadaResultante(c, mov); 
+		return (this.incluidoEnTablero(aux))? 
+				t.getCaramelos()[aux.getColumna()][aux.getFila()].getColor(): " ";
 	}
 	
-	public boolean incluidoEnTablero(int x, int y){
-		return (x >= 0 && x <= this.getAlto()) && (y >= 0 && y <= this.getAncho());
+	public boolean incluidoEnTablero(Coordenada c){
+		return (c.getFila() >= 0 && c.getFila() <= this.getAlto()) && (c.getColumna() >= 0 && c.getColumna() <= this.getAncho());
 	}
 
 	/**

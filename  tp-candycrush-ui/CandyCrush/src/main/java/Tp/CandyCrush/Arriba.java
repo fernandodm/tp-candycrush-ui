@@ -29,8 +29,8 @@ public class Arriba extends Movimiento {
 	}
 
 	@Override
-	public void coordenadaMovimiento(int x, int y){
-		x++;
+	public Coordenada coordenadaMovimiento(Coordenada c){
+		return new Coordenada(c.getFila()-1, c.getColumna());
 	}
 
 }
