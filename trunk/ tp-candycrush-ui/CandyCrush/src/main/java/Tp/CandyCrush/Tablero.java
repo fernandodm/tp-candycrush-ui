@@ -57,13 +57,6 @@ public class Tablero {
 		}
 	}
 	
-	public void swapCaramelos(int x1, int y1, int x2, int y2){
-		Caramelo aux = this.getCaramelos()[x1][y1];
-		this.getCaramelos()[x1][y1] = this.getCaramelos()[x2][y2];
-		this.getCaramelos()[x2][y2] = aux;
-	}
-	
-
 	
 	/**
 	 * mueve el caramelo si es valido el movimeinto
