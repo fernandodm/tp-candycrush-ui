@@ -3,6 +3,7 @@ package Tp.CandyCrush;
 public abstract class Objetivo {
 
 	private boolean seCumplio;
+	
 
 	public boolean isSeCumplio() {
 		return seCumplio;
