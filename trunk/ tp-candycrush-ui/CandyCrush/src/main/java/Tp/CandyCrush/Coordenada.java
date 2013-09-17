@@ -1,25 +1,37 @@
 package Tp.CandyCrush;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coordenada {
 	
-	private int x;
-	private int y;
-	public int getX() {
-		return x;
+	private int fila ;
+	private int columna;
+	
+	public int getFila() {
+		return fila;
 	}
-	public void setX(int x) {
-		this.x = x;
+	public void setFila(int fila) {
+		this.fila = fila;
 	}
-	public int getY() {
-		return y;
+	public int getColumna() {
+		return columna;
 	}
-	public void setY(int y) {
-		this.y = y;
+	public void setColumna(int columna) {
+		this.columna = columna;
+	}
+
+	public Coordenada(int fila, int columna){
+		this.setFila(fila);
+		this.setColumna(columna);
 	}
 	
-	public Coordenada(int x, int y){
-		this.setX(x);
-		this.setY(y);
+	public static Coordenada coordenadaResultante(Coordenada c, List<Movimiento> mov){
+		Coordenada aux= c;
+		for(Movimiento each: mov){
+			aux= each.coordenadaMovimiento(aux);
+		}
+		return aux;
 	}
 	
 	
