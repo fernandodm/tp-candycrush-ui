@@ -4,6 +4,29 @@ import java.util.*;
 
 public class Explosion {
 
+	private int cantidad;
+	private String color;
+	
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public Explosion(int cant, String color){
+		this.setCantidad(cant);
+		this.setColor(color);
+	}
 	/**
 	 * Busca explosiones en todo el tablero y si encuentra una propaga la explosi�n,
 	 * baja los caramelos y hace una llamada recursiva
