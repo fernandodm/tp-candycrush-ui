@@ -21,6 +21,12 @@ public class GrandesExplosiones extends Objetivo {
 		this.color = color;
 	}
 	
+	public GrandesExplosiones(String color, int cant){
+		this.setColor(color);
+		this.setCantidadGrandesExplosiones(cant);
+		this.setSeCumplio(false);
+	}
+	
 	public void complete(){
 		if(this.getCantidadGrandesExplosiones() == 0){
 			this.setSeCumplio(true);
