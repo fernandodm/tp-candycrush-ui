@@ -68,7 +68,7 @@ public class Explosion {
      * @param columna
      */
     public static void bajarCaramelosEnColumna(Tablero t, int columna){
-    	Coordenada c = new Coordenada(0, columna);
+    	Coordenada c = new Coordenada(t.getAlto(), columna);
     	Movimiento arriba= new Arriba();
     	for(int i= t.getAlto()-1; i < 0; i--){
     		Explosion.bajarCarameloEnCoordenada(t, c);
@@ -76,17 +76,63 @@ public class Explosion {
     	}
     }
 
+    /**
+     * Baja el caramelo o genera uno nuevo en una coordenada dada 
+     * solo si esta estaba "vacia"
+     * @param t
+     * @param c
+     */
     public static void bajarCarameloEnCoordenada(Tablero t, Coordenada c){
     	if(t.getCaramelos()[c.getFila()][c.getColumna()].getColor() == "vacio"){
-    		Explosion.intercambiarConVecinoMasProximo(t, c);
+    		Explosion.bajarCarameloODameUnoNuevo(t, c);
     	}
     }
     
-    public static void intercambiarConVecinoMasProximo(Tablero t, Coordenada c){
+    /**
+     * Hace un swap con en vecino mas proximo con caramelo o genera
+     * uno aleatorio
+     * @param t
+     * @param c
+     */
+    private static void bajarCarameloODameUnoNuevo(Tablero t, Coordenada c) {
+    	if(! Explosion.intercambioConVecino(t, c)){
+    		Explosion.dameUnCarameloNuevo(t, c);
+    	}
+	}
+
+    /**
+     * Busca el vecino con caramelo que tenga mas cerca y realiza el 
+     * swap con la coordenada dada
+     * @param t
+     * @param c
+     * @return dice si encontro un caramelo vecino con caramelo
+     */
+	public static boolean intercambioConVecino(Tablero t, Coordenada c){
     	
+    	Coordenada vecino= new Arriba().coordenadaMovimiento(c);
+    	boolean loEncontre= false;
+    	while(t.incluidoEnTablero(vecino) && !loEncontre){
+    		if(t.getCaramelos()[vecino.getFila()][vecino.getColumna()].getColor() != "vacio"){
+    			Caramelo.swapCaramelos(t, c, vecino);
+    			loEncontre=true;
+    		}
+    		else{
+    			new Arriba().coordenadaMovimiento(vecino);
+    		}
+    	}
+    	return loEncontre;
     }
     
-	public static void propagarExplosion(Tablero t, int x1, int y1,
+	/**
+	 * Genera un caramelo aleatorio en la coordenada dada
+	 * @param t
+	 * @param c
+	 */
+    public static void dameUnCarameloNuevo(Tablero t, Coordenada c){
+    	t.getCaramelos()[c.getFila()][c.getColumna()] = t.getUnNivel().carameloAleatorio();
+    }
+    
+	public static void propagarExplosion(Tablero t, Coordenada c,
 			Movimiento mov1, Movimiento mov2) {
 		// TODO Auto-generated method stub	
 	}
@@ -96,12 +142,9 @@ public class Explosion {
 	}
 
 	/**
-     * @param x
-     * @param y
-     * @return true si se generó una explosión en la posición x y     
+     * @param c
+     * @return true si se generó una explosión en la coordenada c     
      * */
-	
-	
 	public static boolean explotaVertical(Tablero t, Coordenada c) {
 		List<Movimiento> arriba1 = new ArrayList<Movimiento>();
 		arriba1.add(new Arriba());
