@@ -17,6 +17,10 @@ public abstract class TipoDeExplosion {
 		}
 	}
 	
+	/**
+	 * Propaga la explosión hacia mov y actualiza los caramelos explotados y el
+	 * objeto explosión
+	 */
 	public void propagarHacia(Tablero t, Coordenada c, Explosion exp, 
 			List<Coordenada> car, Movimiento mov){
 		Coordenada vecino = mov.coordenadaMovimiento(c);
