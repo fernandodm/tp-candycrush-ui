@@ -124,7 +124,7 @@ public class Explosion {
     }
     
 	/**
-	 * Genera un caramelo aleatorio en la coordenada dada
+	 * Genera un caramelo aleatorio en la coordenada c
 	 * @param t
 	 * @param c
 	 */
