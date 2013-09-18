@@ -59,39 +59,45 @@ public class Tablero {
 	
 	
 	/**
-	 * mueve el caramelo si es valido el movimeinto
+	 * mueve el caramelo y si es valido el movimiento llama al metodo para 
+	 * generar la explosion, caso contrario manda un mensaje de error
 	 * @param x
 	 * @param y
 	 * @param mov
 	 */
-	public void moverCaramelo(int x, int y, Movimiento movimiento){
-		int x1=x;
-		int y1=y;
-		movimiento.coordenadaMovimiento(x1, y1);
-		if(this.incluidoEnTablero(x1, y1)) //chequear posibles explosiones
+	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento){
+		Coordenada vecino= movimiento.coordenadaMovimiento(c);
+		if(this.incluidoEnTablero(vecino) && !Caramelo.sonDelMismoColor(this, c, vecino))
 		{
-			//swapear x y con x1 y1
-			// REFACTORING!!!
-			if(Explosion.explotaHorizontal(this, x, y))
-			Explosion.propagarExplosion(this, x, y, new Arriba(), new Abajo());
-			if(Explosion.explotaVertical(this, x, y))
-			Explosion.propagarExplosion(this, x, y, new Izquierda(), new Derecha());
-			
-			if(Explosion.explotaHorizontal(this, x1, y1))
-			Explosion.propagarExplosion(this, x1, y1, new Arriba(), new Abajo());
-			if(Explosion.explotaVertical(this, x1, y1))
-			Explosion.propagarExplosion(this, x1, y1, new Izquierda(), new Derecha());
-			
-			Explosion.bajarCaramelos(this);
-			Explosion.explosionesEnCadena(this);
+			Caramelo.swapCaramelos(this, c, vecino);
+			this.chequearYExplotar(c, vecino);
+		}
+		else
+		{	
+			//TODO SystemOut mensajeMoviemientoInvalido
+		}
+	}
+
+	/**
+	 * si los caramelos en las coordenadas generan explosion se llama a los
+	 * metodos que propagan las explosiones, bajan los caramelos y recursionan
+	 * buscando mas explosiones; caso contrario los caramelos vuelven a su
+	 * posición original y se manda un mensaje de error
+	 * @param c
+	 * @param vecino
+	 */
+	private void chequearYExplotar(Coordenada c, Coordenada vecino) {
+		boolean huboExplosionEnC = Explosion.generoExplosion(this, c); 
+		boolean huboExplosionEnVecino = Explosion.generoExplosion(this, vecino);
+		if(huboExplosionEnC || huboExplosionEnVecino){
+		Explosion.bajarCaramelos(this);
+		Explosion.explosionesEnCadena(this);
 		}
 		else{
-		// aca se manda mje de erro tanto si eran caramelos iguales, si se salian de los 
-		// o si no genero explosion el moviemiento	
-			
-			//SystemOut mensajeMoviemientoInvalido
+			Caramelo.swapCaramelos(this, c, vecino);
+			//TODO SystemOut mensajeMovimiento sinExplosiones
 		}
-		
+	
 	}
 
 	/**
@@ -108,8 +114,13 @@ public class Tablero {
 				t.getCaramelos()[aux.getColumna()][aux.getFila()].getColor(): " ";
 	}
 	
+    /**
+     * @param c
+     * @return devuelve true si la coordenada c esta contenida en el tablero
+     */
 	public boolean incluidoEnTablero(Coordenada c){
-		return (c.getFila() >= 0 && c.getFila() <= this.getAlto()) && (c.getColumna() >= 0 && c.getColumna() <= this.getAncho());
+		return (c.getFila() >= 0 && c.getFila() <= this.getAlto()) && 
+			   (c.getColumna() >= 0 && c.getColumna() <= this.getAncho());
 	}
 
 	/**

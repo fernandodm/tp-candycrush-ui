@@ -22,4 +22,9 @@ public class Caramelo {
 		t.getCaramelos()[c2.getFila()][c2.getColumna()].setColor(aux);
 	}
 	
+	public static boolean sonDelMismoColor(Tablero t, Coordenada c1, Coordenada c2){
+		return t.getCaramelos()[c1.getColumna()][c1.getFila()].getColor() == 
+			   t.getCaramelos()[c2.getColumna()][c2.getFila()].getColor() ;
+	}
+	
 }

@@ -137,8 +137,15 @@ public class Explosion {
 		// TODO Auto-generated method stub	
 	}
 	
-	public void explotarCaramelo(Tablero t, Coordenada c){
-		t.getCaramelos()[c.getFila()][c.getColumna()].setColor("vacio");
+	/**
+	 * "explota" los caramelos de la lista es decir pone su color en "vacio"
+	 * @param t
+	 * @param cor
+	 */
+	public void explotarCaramelos(Tablero t, List<Coordenada> cor){
+		for(Coordenada each : cor){
+		t.getCaramelos()[each.getFila()][each.getColumna()].setColor("vacio");
+		}
 	}
 
 	/**
@@ -184,6 +191,11 @@ public class Explosion {
 		String colorVecino1= t.colorCarameloEn(t, c, vecino1);
 		String colorVecino2= t.colorCarameloEn(t, c, vecino2);
 		return (colorOriginal == colorVecino1) && (colorOriginal == colorVecino2);
+	}
+
+	public static boolean generoExplosion(Tablero t, Coordenada c) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	
