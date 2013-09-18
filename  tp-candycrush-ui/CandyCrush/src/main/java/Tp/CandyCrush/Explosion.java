@@ -10,19 +10,22 @@ public class Explosion {
 	public int getCantidad() {
 		return cantidad;
 	}
-
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-
 	public String getColor() {
 		return color;
 	}
-
 	public void setColor(String color) {
 		this.color = color;
 	}
 
+	/**
+	 * constructor de la clase, dicho objeto es el que se manda al nivel
+	 * para que actualize los objetivos
+	 * @param cant
+	 * @param color
+	 */
 	public Explosion(int cant, String color){
 		this.setCantidad(cant);
 		this.setColor(color);
@@ -124,17 +127,6 @@ public class Explosion {
     	t.getCaramelos()[c.getFila()][c.getColumna()] = t.getUnNivel().carameloAleatorio();
     }
     
-	/**
-	 * "explota" los caramelos de la lista es decir pone su color en "vacio"
-	 * @param t
-	 * @param cor
-	 */
-	public void explotarCaramelos(Tablero t, List<Coordenada> cor){
-		for(Coordenada each : cor){
-		t.getCaramelos()[each.getFila()][each.getColumna()].setColor("vacio");
-		}
-	}
-
 	/**
 	 * @param t
 	 * @param c

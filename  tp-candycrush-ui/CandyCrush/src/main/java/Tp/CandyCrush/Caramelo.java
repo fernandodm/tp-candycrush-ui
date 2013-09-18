@@ -23,8 +23,10 @@ public class Caramelo {
 	}
 	
 	public static boolean sonDelMismoColor(Tablero t, Coordenada c1, Coordenada c2){
-		return t.getCaramelos()[c1.getColumna()][c1.getFila()].getColor() == 
-			   t.getCaramelos()[c2.getColumna()][c2.getFila()].getColor() ;
+		return Caramelo.colorCaramelo(t, c1) == Caramelo.colorCaramelo(t, c2);
 	}
 	
+	public static String colorCaramelo(Tablero t, Coordenada c){
+		return t.getCaramelos()[c.getColumna()][c.getFila()].getColor();
+	}
 }
