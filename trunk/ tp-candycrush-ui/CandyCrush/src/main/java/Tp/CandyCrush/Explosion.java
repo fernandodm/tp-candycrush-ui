@@ -27,24 +27,16 @@ public class Explosion {
 		this.setCantidad(cant);
 		this.setColor(color);
 	}
+	
 	/**
 	 * Busca explosiones en todo el tablero y si encuentra una propaga la explosi�n,
 	 * baja los caramelos y hace una llamada recursiva
 	 */
     public static void explosionesEnCadena(Tablero t){
-    	boolean ver;
-    	boolean hor;
 		for(int x1 = 0; x1 < t.getAlto(); x1++){
 			for(int y1 = 0; y1 < t.getAncho(); y1++){
-				ver= explotaVertical(t, x1, y1);
-				hor= explotaHorizontal(t, x1, y1);
-				if(ver){
-					propagarExplosion(t, x1, y1, new Arriba(), new Abajo());
-				}
-				if(hor){
-					propagarExplosion(t, x1, y1, new Izquierda(), new Derecha());		
-				}
-				if(ver || hor){
+				Coordenada c= new Coordenada(x1, y1);
+				if(Explosion.generoExplosion(t, c)){
 					bajarCaramelos(t);
 					explosionesEnCadena(t);
 				}
@@ -132,11 +124,6 @@ public class Explosion {
     	t.getCaramelos()[c.getFila()][c.getColumna()] = t.getUnNivel().carameloAleatorio();
     }
     
-	public static void propagarExplosion(Tablero t, Coordenada c,
-			Movimiento mov1, Movimiento mov2) {
-		// TODO Auto-generated method stub	
-	}
-	
 	/**
 	 * "explota" los caramelos de la lista es decir pone su color en "vacio"
 	 * @param t
@@ -149,9 +136,11 @@ public class Explosion {
 	}
 
 	/**
-     * @param c
-     * @return true si se generó una explosión en la coordenada c     
-     * */
+	 * @param t
+	 * @param c
+	 * @return devuelve si se genero una explosión en sentido vertical
+	 * u horizontal dependiendo de los parametros
+	 */
 	public static boolean explotaVertical(Tablero t, Coordenada c) {
 		List<Movimiento> arriba1 = new ArrayList<Movimiento>();
 		arriba1.add(new Arriba());
@@ -169,6 +158,12 @@ public class Explosion {
 				explosionHacia(t, c, arriba1, abajo1) ;
 	}
 	
+	/**
+	 * 
+	 * @param t
+	 * @param c
+	 * @return
+	 */
 	public static boolean explotaHorizontal(Tablero t, Coordenada c) {
 		List<Movimiento> izq1 = new ArrayList<Movimiento>();
 		izq1.add(new Izquierda());
@@ -186,6 +181,14 @@ public class Explosion {
 				explosionHacia(t, c, izq1, der1) ;
 	}
 	
+	/**
+	 * @param t
+	 * @param c
+	 * @param vecino1
+	 * @param vecino2
+	 * @return true si el color del caramelo en c es el mismo que el de
+	 * sus vecinos
+	 */
 	public static boolean explosionHacia(Tablero t, Coordenada c, List<Movimiento> vecino1, List<Movimiento> vecino2){
 		String colorOriginal= t.getCaramelos()[c.getFila()][c.getColumna()].getColor();
 		String colorVecino1= t.colorCarameloEn(t, c, vecino1);
@@ -193,10 +196,37 @@ public class Explosion {
 		return (colorOriginal == colorVecino1) && (colorOriginal == colorVecino2);
 	}
 
+	/**
+     * @param c
+     * @return true si se generó una explosión en la coordenada c, si esto 
+     * ocurro previamente se crea el tipo de explosión a propagar
+     * y se llama al método que propaga dicha explosión     
+     * */
 	public static boolean generoExplosion(Tablero t, Coordenada c) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean explotaVertical = Explosion.explotaVertical(t, c);
+		boolean explotaHorizontal = Explosion.explotaHorizontal(t, c);
+		if(explotaVertical || explotaHorizontal){
+			TipoDeExplosion exp= tipoDeExplosion(explotaVertical, explotaHorizontal);
+			exp.propagarExplosion(t, c);
+		}
+		return explotaVertical || explotaHorizontal;
 	}
 	
-	
+	/**
+	 * @param v1
+	 * @param v2
+	 * @return el tipoDeExplosion correspondiente
+	 */
+	private static TipoDeExplosion tipoDeExplosion(boolean v1, boolean v2) {
+		TipoDeExplosion exp= new ExplosionHorizontal();
+		if(v1&&v2){
+			exp = new ExplosionEnCruz(); 
+		}
+		else{
+			if(v2){
+				exp = new ExplosionVertical();
+			}
+		}
+		return exp;
+	}
 }
