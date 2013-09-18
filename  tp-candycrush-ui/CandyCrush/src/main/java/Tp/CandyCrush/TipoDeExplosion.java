@@ -19,8 +19,15 @@ public abstract class TipoDeExplosion {
 	
 	public void propagarHacia(Tablero t, Coordenada c, Explosion exp, 
 			List<Coordenada> car, Movimiento mov){
-		
+		Coordenada vecino = mov.coordenadaMovimiento(c);
+		String color = Caramelo.colorCaramelo(t, c);
+		while(t.incluidoEnTablero(vecino) && Caramelo.colorCaramelo(t, vecino) == color){
+			exp.setCantidad(exp.getCantidad() + 1);
+			car.add(vecino);
+			vecino = mov.coordenadaMovimiento(vecino);
+		}
 	}
+	
 	public void notificarExplosion(Explosion exp){
 		//TODO este metodo manda a los objetivos una nueva explosion
 	}

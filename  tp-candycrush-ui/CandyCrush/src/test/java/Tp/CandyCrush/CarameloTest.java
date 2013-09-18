@@ -4,4 +4,8 @@ import junit.framework.TestCase;
 
 public class CarameloTest extends TestCase {
 
+	public void setUp(){
+		
+	}
+	
 }
