@@ -16,10 +16,10 @@ public class Caramelo {
 		this.setColor(color);
 	}
 
-	public void swapCaramelos(Tablero t, Coordenada c1, Coordenada c2){
-		Caramelo aux = t.getCaramelos()[c1.getFila()][c1.getColumna()];
-		t.getCaramelos()[c1.getFila()][c1.getColumna()] = t.getCaramelos()[c2.getFila()][c2.getColumna()];
-		t.getCaramelos()[c2.getFila()][c2.getColumna()] = aux;
+	public static void swapCaramelos(Tablero t, Coordenada c1, Coordenada c2){
+		String aux = t.getCaramelos()[c1.getFila()][c1.getColumna()].getColor();
+		t.getCaramelos()[c1.getFila()][c1.getColumna()].setColor(t.getCaramelos()[c2.getFila()][c2.getColumna()].getColor());
+		t.getCaramelos()[c2.getFila()][c2.getColumna()].setColor(aux);
 	}
 	
 }
