@@ -1,5 +1,6 @@
 package Tp.CandyCrush;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +16,20 @@ public class Dificultad {
 	}
 	
 	public Dificultad(){
-		
 	}
-	
+
+	public static Dificultad getDificil() {
+		return DIFICIL;
+	}
+
+	public static Dificultad getNormal() {
+		return NORMAL;
+	}
+
+	public static Dificultad getFacil() {
+		return FACIL;
+	}
+
 	private Dificultad(List<String> colores) {
 		this.colores = colores;
 	}
@@ -38,7 +50,7 @@ public class Dificultad {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(getDificultades().size());
+	
 	}
 	
 }

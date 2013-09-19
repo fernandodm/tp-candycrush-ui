@@ -1,6 +1,7 @@
 package Tp.CandyCrush;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Tp.CandyCrush.Caramelo;
@@ -8,12 +9,20 @@ import Tp.CandyCrush.Movimiento;
 import Tp.CandyCrush.Nivel;
 import org.uqbar.commons.utils.Observable;
 
+
 @Observable
 public class Tablero {
 	private int alto;
 	private int ancho;
 	private Caramelo[][] caramelos;
 	private Nivel unNivel;
+	
+	//esto esta de prueba
+	public Tablero() {
+		Nivel nivel = new Nivel();
+		nivel.setDificultad(Dificultad.DIFICIL);
+		this.setUnNivel(nivel);
+	}
 	
 	public Nivel getUnNivel() {
 		return unNivel;
@@ -40,11 +49,9 @@ public class Tablero {
 		this.ancho = x;
 	}
 
+	
 	/**
 	 * Inicia el tablero con los caramelos
-	 * @param filas
-	 * @param columnas
-	 * @param unNivel
 	 */
 	public void iniciar(){
 		
@@ -122,13 +129,18 @@ public class Tablero {
 		return (c.getFila() >= 0 && c.getFila() <= this.getAlto()) && 
 			   (c.getColumna() >= 0 && c.getColumna() <= this.getAncho());
 	}
+	
+	public List<Dificultad> getDificultades() {
+		return Dificultad.getDificultades();
+	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-	
+		
+		
 	}
 
 }
