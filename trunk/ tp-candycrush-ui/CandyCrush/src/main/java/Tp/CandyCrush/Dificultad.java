@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Dificultad {
 	public static final Dificultad DIFICIL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo", "Naranja", "Violeta"),"Facil");
 	public static final Dificultad NORMAL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo", "Naranja"),"Normal");

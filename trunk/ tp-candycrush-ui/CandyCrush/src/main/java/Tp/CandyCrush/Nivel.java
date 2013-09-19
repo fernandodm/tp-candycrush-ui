@@ -14,7 +14,25 @@ public class Nivel {
 	private int puntaje;
 	private int puntajeMinimo;
 	private int nroNivel;
+	private Tablero tablero;
+	private String nombre;
 	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Tablero getTablero() {
+		return tablero;
+	}
+
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
+	}
+
 	public int getPuntaje() {
 		return puntaje;
 	}

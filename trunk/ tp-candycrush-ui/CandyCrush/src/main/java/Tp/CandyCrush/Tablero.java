@@ -17,17 +17,18 @@ public class Tablero {
 	private Caramelo[][] caramelos;
 	private Nivel unNivel;
 	
-	//esto esta de prueba
+	
 	public Tablero() {
-		Nivel nivel = new Nivel();
+		//esto esta de prueba
+		/**Nivel nivel = new Nivel();
 		nivel.setDificultad(Dificultad.DIFICIL);
-		this.setUnNivel(nivel);
+		this.setUnNivel(nivel);*/
 	}
 	
-	public Nivel getUnNivel() {
+	public Nivel getNivel() {
 		return unNivel;
 	}
-	public void setUnNivel(Nivel unNivel) {
+	public void setNivel(Nivel unNivel) {
 		this.unNivel = unNivel;
 	}
 	public Caramelo[][] getCaramelos() {
