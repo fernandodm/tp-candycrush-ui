@@ -3,6 +3,9 @@ package Tp.CandyCrush;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Nivel {
 	
 	private Dificultad dificultad;
