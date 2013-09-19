@@ -3,11 +3,21 @@ package Tp.CandyCrush;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Mundo {
 	private List<Nivel> niveles = new ArrayList<Nivel>();
 	private int nivelActual;
 	private int cantidadNiveles;
+	private String nombre;
 	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	public int getNivelActual() {
 		return nivelActual;
 	}
@@ -40,6 +50,10 @@ public class Mundo {
 	
 	public boolean estaEnUltimoNivel(){
 		return (this.nivelActual == this.cantidadNiveles);
+	}
+	
+	public void agregarNivel(Nivel unNivel){
+		niveles.add(unNivel);
 	}
 	
 	
