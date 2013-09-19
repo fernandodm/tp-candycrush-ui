@@ -60,6 +60,10 @@ public class Nivel {
 		this.nroNivel = nroNivel;
 	}
 
+	public Nivel(){
+		
+	}
+	
 	public Caramelo carameloAleatorio() {
 		
 		String colorCaramelo = dificultad.colorCaramelo();
