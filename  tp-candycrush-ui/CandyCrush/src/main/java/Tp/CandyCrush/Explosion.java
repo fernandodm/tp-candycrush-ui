@@ -124,7 +124,7 @@ public class Explosion {
 	 * @param c
 	 */
     public static void dameUnCarameloNuevo(Tablero t, Coordenada c){
-    	t.getCaramelos()[c.getFila()][c.getColumna()] = t.getUnNivel().carameloAleatorio();
+    	t.getCaramelos()[c.getFila()][c.getColumna()] = t.getNivel().carameloAleatorio();
     }
     
 	/**
