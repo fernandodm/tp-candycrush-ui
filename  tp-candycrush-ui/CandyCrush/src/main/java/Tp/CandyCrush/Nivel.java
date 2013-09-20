@@ -16,7 +16,16 @@ public class Nivel {
 	private int nroNivel;
 	private Tablero tablero;
 	private String nombre;
+	private int cantidadMovimientos;
 	
+	public int getCantidadMovimientos() {
+		return cantidadMovimientos;
+	}
+
+	public void setCantidadMovimientos(int cantidadMovimientos) {
+		this.cantidadMovimientos = cantidadMovimientos;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
