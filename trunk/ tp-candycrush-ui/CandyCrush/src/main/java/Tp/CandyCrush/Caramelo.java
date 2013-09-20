@@ -23,7 +23,7 @@ public class Caramelo {
 	}
 	
 	public static boolean sonDelMismoColor(Tablero t, Coordenada c1, Coordenada c2){
-		return Caramelo.colorCaramelo(t, c1) == Caramelo.colorCaramelo(t, c2);
+		return Caramelo.colorCaramelo(t, c1).equals(Caramelo.colorCaramelo(t, c2));
 	}
 	
 	public static String colorCaramelo(Tablero t, Coordenada c){

@@ -1,6 +1,10 @@
 package Tp.CandyCrush;
 
+
 import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Explosion {
 
@@ -53,7 +57,7 @@ public class Explosion {
      */
     public static void bajarCaramelos(Tablero t) {
 		for(int i=0; i < t.getAncho(); i++){
-			Explosion.bajarCaramelosEnColumna(t, i);
+			bajarCaramelosEnColumna(t, i);
 		}
 	}
     
@@ -66,7 +70,7 @@ public class Explosion {
     	Coordenada c = new Coordenada(t.getAlto(), columna);
     	Movimiento arriba= new Arriba();
     	for(int i= t.getAlto()-1; i < 0; i--){
-    		Explosion.bajarCarameloEnCoordenada(t, c);
+    		bajarCarameloEnCoordenada(t, c);
     		c= arriba.coordenadaMovimiento(c);
     	}
     }
@@ -78,8 +82,8 @@ public class Explosion {
      * @param c
      */
     public static void bajarCarameloEnCoordenada(Tablero t, Coordenada c){
-    	if(t.getCaramelos()[c.getFila()][c.getColumna()].getColor() == "vacio"){
-    		Explosion.bajarCarameloODameUnoNuevo(t, c);
+    	if(t.getCaramelos()[c.getFila()][c.getColumna()].getColor().equals("vacio")){
+    		bajarCarameloODameUnoNuevo(t, c);
     	}
     }
     
@@ -91,7 +95,7 @@ public class Explosion {
      */
     private static void bajarCarameloODameUnoNuevo(Tablero t, Coordenada c) {
     	if(! Explosion.intercambioConVecino(t, c)){
-    		Explosion.dameUnCarameloNuevo(t, c);
+    		dameUnCarameloNuevo(t, c);
     	}
 	}
 
@@ -107,7 +111,7 @@ public class Explosion {
     	Coordenada vecino= new Arriba().coordenadaMovimiento(c);
     	boolean loEncontre= false;
     	while(t.incluidoEnTablero(vecino) && !loEncontre){
-    		if(t.getCaramelos()[vecino.getFila()][vecino.getColumna()].getColor() != "vacio"){
+    		if(! t.getCaramelos()[vecino.getFila()][vecino.getColumna()].getColor().equals("vacio")){
     			Caramelo.swapCaramelos(t, c, vecino);
     			loEncontre=true;
     		}
@@ -144,6 +148,8 @@ public class Explosion {
 		List<Movimiento> abajo2 = new ArrayList<Movimiento>();
 		abajo2.add(new Abajo());
 		abajo2.add(new Abajo());
+		
+		List<Movimiento> m = Arrays.asList(new Arriba(),new Abajo());
 		
 		return  explosionHacia(t, c, arriba1, arriba2) ||
 				explosionHacia(t, c, abajo1, abajo2) ||

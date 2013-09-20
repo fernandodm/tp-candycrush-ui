@@ -60,9 +60,9 @@ public class Tablero {
 		for(int x = 0; x < alto; x++){
 			for(int y = 0; y < ancho; y++){
 				Caramelo caramelo = unNivel.carameloAleatorio();
-				caramelos[x][y] = caramelo;
 			}
 		}
+        Explosion.explosionesEnCadena(this);
 	}
 	
 	
