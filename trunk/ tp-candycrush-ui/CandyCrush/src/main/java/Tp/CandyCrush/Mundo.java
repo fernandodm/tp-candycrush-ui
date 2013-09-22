@@ -52,8 +52,15 @@ public class Mundo {
 		return (this.nivelActual == this.cantidadNiveles);
 	}
 	
+	//falta test
 	public void agregarNivel(Nivel unNivel){
 		niveles.add(unNivel);
+	}
+	
+	//falta test
+	public void eliminarNivel(Nivel nivelSeleccionado) {
+		niveles.remove(nivelSeleccionado);
+		
 	}
 	
 	

@@ -91,7 +91,7 @@ public class Nivel {
 	}
 
 	public Nivel(){
-		
+		nroNivel = GeneradorNroNivel.generar();
 	}
 	
 	public Caramelo carameloAleatorio() {
@@ -102,13 +102,13 @@ public class Nivel {
 		
 	}
 	
-	public Nivel(Dificultad dif, int minimo, ArrayList<Objetivo> objetivos, int nroNivel){
+	public Nivel(Dificultad dif, int minimo, ArrayList<Objetivo> objetivos){
 		this.setDificultad(dif);
 		this.setObjetivos(objetivos);
 		this.setPuntaje(0);
 		this.setPuntajeMinimo(minimo);
 		this.setTermino(false);
-		this.setNroNivel(nroNivel);
+		nroNivel = GeneradorNroNivel.generar();
 	}
 	
 	public boolean seCumplieronTodosLosObjetivos(){
@@ -136,6 +136,13 @@ public class Nivel {
 			each.actualizarObjetivo(exp);
 		}
 		this.setPuntaje(this.getPuntaje() + (10 * exp.getCantidad()));
+		
+	}
+
+
+
+	public void agregarObjetivo(Objetivo objetivo) {
+		this.objetivos.add(objetivo);
 		
 	}
 

@@ -2,16 +2,15 @@ package Tp.CandyCrush;
 
 import java.util.ArrayList;
 
+
 public class ExplosionesPorColor extends Objetivo {
 
-	private String color;
 	private int cantidad;
-	public String getColor() {
-		return color;
+	
+	public String getDescripcion(){
+		return "Realizar " + getCantidad() + "esplosion/es de caramelos " + getColor();
 	}
-	public void setColor(String color) {
-		this.color = color;
-	}
+	
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -25,6 +24,9 @@ public class ExplosionesPorColor extends Objetivo {
 		this.setSeCumplio(false);
 	}
 	
+	public ExplosionesPorColor() {
+		
+	}
 	public void complete(){
 		if(this.getCantidad() == 0){
 			this.setSeCumplio(true);
