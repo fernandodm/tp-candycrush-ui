@@ -25,6 +25,13 @@ public class Explosion {
 	}
 
 	/**
+	 * constructor utilizado para llamar a los mensajes de la clase explosion
+	 * en los métodos del tablero
+	 */
+	public Explosion(){
+	}
+	
+	/**
 	 * constructor de la clase, dicho objeto es el que se manda al nivel
 	 * para que actualize los objetivos
 	 * @param cant
@@ -39,13 +46,13 @@ public class Explosion {
 	 * Busca explosiones en todo el tablero y si encuentra una propaga la explosi�n,
 	 * baja los caramelos y hace una llamada recursiva
 	 */
-    public static void explosionesEnCadena(Tablero t){
+    public void explosionesEnCadena(Tablero t){
 		for(int x1 = 0; x1 < t.getAlto(); x1++){
 			for(int y1 = 0; y1 < t.getAncho(); y1++){
 				Coordenada c= new Coordenada(x1, y1);
-				if(Explosion.generoExplosion(t, c)){
-					bajarCaramelos(t);
-					explosionesEnCadena(t);
+				if(this.generoExplosion(t, c)){
+					this.bajarCaramelos(t);
+					this.explosionesEnCadena(t);
 				}
 			}
          }
@@ -55,9 +62,9 @@ public class Explosion {
      * Baja los caramelos en todo el tablero
      * @param t
      */
-    public static void bajarCaramelos(Tablero t) {
+    public void bajarCaramelos(Tablero t) {
 		for(int i=0; i < t.getAncho(); i++){
-			bajarCaramelosEnColumna(t, i);
+			this.bajarCaramelosEnColumna(t, i);
 		}
 	}
     
@@ -66,11 +73,11 @@ public class Explosion {
      * @param t
      * @param columna
      */
-    public static void bajarCaramelosEnColumna(Tablero t, int columna){
+    public void bajarCaramelosEnColumna(Tablero t, int columna){
     	Coordenada c = new Coordenada(t.getAlto(), columna);
     	Movimiento arriba= new Arriba();
     	for(int i= t.getAlto()-1; i < 0; i--){
-    		bajarCarameloEnCoordenada(t, c);
+    		this.bajarCarameloEnCoordenada(t, c);
     		c= arriba.coordenadaMovimiento(c);
     	}
     }
@@ -81,9 +88,9 @@ public class Explosion {
      * @param t
      * @param c
      */
-    public static void bajarCarameloEnCoordenada(Tablero t, Coordenada c){
+    public void bajarCarameloEnCoordenada(Tablero t, Coordenada c){
     	if(t.getCaramelos()[c.getFila()][c.getColumna()].getColor().equals("vacio")){
-    		bajarCarameloODameUnoNuevo(t, c);
+    		this.bajarCarameloODameUnoNuevo(t, c);
     	}
     }
     
@@ -93,9 +100,9 @@ public class Explosion {
      * @param t
      * @param c
      */
-    private static void bajarCarameloODameUnoNuevo(Tablero t, Coordenada c) {
-    	if(! Explosion.intercambioConVecino(t, c)){
-    		dameUnCarameloNuevo(t, c);
+    private void bajarCarameloODameUnoNuevo(Tablero t, Coordenada c) {
+    	if(! this.intercambioConVecino(t, c)){
+    		this.dameUnCarameloNuevo(t, c);
     	}
 	}
 
@@ -106,7 +113,7 @@ public class Explosion {
      * @param c
      * @return dice si encontro un caramelo vecino con caramelo
      */
-	public static boolean intercambioConVecino(Tablero t, Coordenada c){
+	public boolean intercambioConVecino(Tablero t, Coordenada c){
     	
     	Coordenada vecino= new Arriba().coordenadaMovimiento(c);
     	boolean loEncontre= false;
@@ -127,7 +134,7 @@ public class Explosion {
 	 * @param t
 	 * @param c
 	 */
-    public static void dameUnCarameloNuevo(Tablero t, Coordenada c){
+    public void dameUnCarameloNuevo(Tablero t, Coordenada c){
     	t.getCaramelos()[c.getFila()][c.getColumna()] = t.getNivel().carameloAleatorio();
     }
     
@@ -137,7 +144,7 @@ public class Explosion {
 	 * @return devuelve si se genero una explosión en sentido vertical
 	 * u horizontal dependiendo de los parametros
 	 */
-	public static boolean explotaVertical(Tablero t, Coordenada c) {
+	public boolean explotaVertical(Tablero t, Coordenada c) {
 		List<Movimiento> arriba1 = new ArrayList<Movimiento>();
 		arriba1.add(new Arriba());
 		List<Movimiento> arriba2 = new ArrayList<Movimiento>();
@@ -151,9 +158,9 @@ public class Explosion {
 		
 		List<Movimiento> m = Arrays.asList(new Arriba(),new Abajo());
 		
-		return  explosionHacia(t, c, arriba1, arriba2) ||
-				explosionHacia(t, c, abajo1, abajo2) ||
-				explosionHacia(t, c, arriba1, abajo1) ;
+		return  this.explosionHacia(t, c, arriba1, arriba2) ||
+				this.explosionHacia(t, c, abajo1, abajo2) ||
+				this.explosionHacia(t, c, arriba1, abajo1) ;
 	}
 	
 	/**
@@ -162,7 +169,7 @@ public class Explosion {
 	 * @param c
 	 * @return
 	 */
-	public static boolean explotaHorizontal(Tablero t, Coordenada c) {
+	public boolean explotaHorizontal(Tablero t, Coordenada c) {
 		List<Movimiento> izq1 = new ArrayList<Movimiento>();
 		izq1.add(new Izquierda());
 		List<Movimiento> izq2 = new ArrayList<Movimiento>();
@@ -174,9 +181,9 @@ public class Explosion {
 		der2.add(new Derecha());
 		der2.add(new Derecha());
 		
-		return  explosionHacia(t, c, izq1, izq2) ||
-				explosionHacia(t, c, der1, der2) ||
-				explosionHacia(t, c, izq1, der1) ;
+		return  this.explosionHacia(t, c, izq1, izq2) ||
+				this.explosionHacia(t, c, der1, der2) ||
+				this.explosionHacia(t, c, izq1, der1) ;
 	}
 	
 	/**
@@ -187,11 +194,11 @@ public class Explosion {
 	 * @return true si el color del caramelo en c es el mismo que el de
 	 * sus vecinos
 	 */
-	public static boolean explosionHacia(Tablero t, Coordenada c, List<Movimiento> vecino1, List<Movimiento> vecino2){
+	public boolean explosionHacia(Tablero t, Coordenada c, List<Movimiento> vecino1, List<Movimiento> vecino2){
 		String colorOriginal= t.getCaramelos()[c.getFila()][c.getColumna()].getColor();
 		String colorVecino1= t.colorCarameloEn(t, c, vecino1);
 		String colorVecino2= t.colorCarameloEn(t, c, vecino2);
-		return (colorOriginal == colorVecino1) && (colorOriginal == colorVecino2);
+		return (colorOriginal.equals(colorVecino1)) && (colorOriginal.equals(colorVecino2));
 	}
 
 	/**
@@ -200,11 +207,11 @@ public class Explosion {
      * ocurro previamente se crea el tipo de explosión a propagar
      * y se llama al método que propaga dicha explosión     
      * */
-	public static boolean generoExplosion(Tablero t, Coordenada c) {
-		boolean explotaVertical = Explosion.explotaVertical(t, c);
-		boolean explotaHorizontal = Explosion.explotaHorizontal(t, c);
+	public boolean generoExplosion(Tablero t, Coordenada c) {
+		boolean explotaVertical = this.explotaVertical(t, c);
+		boolean explotaHorizontal = this.explotaHorizontal(t, c);
 		if(explotaVertical || explotaHorizontal){
-			TipoDeExplosion exp= tipoDeExplosion(explotaVertical, explotaHorizontal);
+			TipoDeExplosion exp= this.tipoDeExplosion(explotaVertical, explotaHorizontal);
 			exp.propagarExplosion(t, c);
 		}
 		return explotaVertical || explotaHorizontal;
@@ -215,7 +222,7 @@ public class Explosion {
 	 * @param v2
 	 * @return el tipoDeExplosion correspondiente
 	 */
-	private static TipoDeExplosion tipoDeExplosion(boolean v1, boolean v2) {
+	private TipoDeExplosion tipoDeExplosion(boolean v1, boolean v2) {
 		TipoDeExplosion exp= new ExplosionHorizontal();
 		if(v1&&v2){
 			exp = new ExplosionEnCruz(); 

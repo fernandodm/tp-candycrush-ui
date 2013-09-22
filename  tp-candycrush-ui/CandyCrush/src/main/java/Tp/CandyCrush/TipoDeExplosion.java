@@ -25,7 +25,7 @@ public abstract class TipoDeExplosion {
 			List<Coordenada> car, Movimiento mov){
 		Coordenada vecino = mov.coordenadaMovimiento(c);
 		String color = Caramelo.colorCaramelo(t, c);
-		while(t.incluidoEnTablero(vecino) && Caramelo.colorCaramelo(t, vecino) == color){
+		while(t.incluidoEnTablero(vecino) && Caramelo.colorCaramelo(t, vecino).equals(color)){
 			exp.setCantidad(exp.getCantidad() + 1);
 			car.add(vecino);
 			vecino = mov.coordenadaMovimiento(vecino);

@@ -62,7 +62,8 @@ public class Tablero {
 				Caramelo caramelo = unNivel.carameloAleatorio();
 			}
 		}
-        Explosion.explosionesEnCadena(this);
+        Explosion exp = new Explosion();
+        exp.explosionesEnCadena(this);
 	}
 	
 	
@@ -73,12 +74,12 @@ public class Tablero {
 	 * @param y
 	 * @param mov
 	 */
-	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento){
+	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento, Explosion exp){
 		Coordenada vecino= movimiento.coordenadaMovimiento(c);
-		if(this.incluidoEnTablero(vecino) && !Caramelo.sonDelMismoColor(this, c, vecino))
+		if(this.incluidoEnTablero(vecino) && !this.sonDelMismoColor(c, vecino))
 		{
 			Caramelo.swapCaramelos(this, c, vecino);
-			this.chequearYExplotar(c, vecino);
+			this.chequearYExplotar(c, vecino, exp);
 		}
 		else
 		{	
@@ -94,12 +95,12 @@ public class Tablero {
 	 * @param c
 	 * @param vecino
 	 */
-	private void chequearYExplotar(Coordenada c, Coordenada vecino) {
-		boolean huboExplosionEnC = Explosion.generoExplosion(this, c); 
-		boolean huboExplosionEnVecino = Explosion.generoExplosion(this, vecino);
+	private void chequearYExplotar(Coordenada c, Coordenada vecino, Explosion exp) {
+		boolean huboExplosionEnC = exp.generoExplosion(this, c); 
+		boolean huboExplosionEnVecino = exp.generoExplosion(this, vecino);
 		if(huboExplosionEnC || huboExplosionEnVecino){
-		Explosion.bajarCaramelos(this);
-		Explosion.explosionesEnCadena(this);
+			exp.bajarCaramelos(this);
+			exp.explosionesEnCadena(this);
 		}
 		else{
 			Caramelo.swapCaramelos(this, c, vecino);
@@ -133,6 +134,10 @@ public class Tablero {
 	
 	public List<Dificultad> getDificultades() {
 		return Dificultad.getDificultades();
+	}
+	
+	public boolean sonDelMismoColor(Coordenada c1, Coordenada c2){
+		return Caramelo.colorCaramelo(this, c1).equals(Caramelo.colorCaramelo(this, c2));
 	}
 
 	/**
