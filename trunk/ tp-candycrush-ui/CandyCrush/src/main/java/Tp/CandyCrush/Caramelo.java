@@ -22,10 +22,6 @@ public class Caramelo {
 		t.getCaramelos()[c2.getFila()][c2.getColumna()].setColor(aux);
 	}
 	
-	public static boolean sonDelMismoColor(Tablero t, Coordenada c1, Coordenada c2){
-		return Caramelo.colorCaramelo(t, c1).equals(Caramelo.colorCaramelo(t, c2));
-	}
-	
 	public static String colorCaramelo(Tablero t, Coordenada c){
 		return t.getCaramelos()[c.getColumna()][c.getFila()].getColor();
 	}
