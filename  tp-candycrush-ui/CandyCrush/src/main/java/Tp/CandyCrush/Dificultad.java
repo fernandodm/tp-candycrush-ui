@@ -9,14 +9,14 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class Dificultad {
-	public static final Dificultad DIFICIL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo", "Naranja", "Violeta"),"Facil");
+	public static final Dificultad DIFICIL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo", "Naranja", "Violeta"),"Dificil");
 	public static final Dificultad NORMAL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo", "Naranja"),"Normal");
-	public static final Dificultad FACIL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo"),"Dificil");
+	public static final Dificultad FACIL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo"),"Facil");
 	private List<String> colores = new ArrayList<String>();
 	private String nombre;
 	
 	public static List<Dificultad> getDificultades() { 
-		return Arrays.asList(DIFICIL, FACIL, NORMAL);
+		return Arrays.asList(FACIL, NORMAL, DIFICIL);
 	}
 	
 	private Dificultad(List<String> colores, String nombre) {
