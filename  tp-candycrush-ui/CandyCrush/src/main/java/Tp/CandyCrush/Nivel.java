@@ -3,6 +3,7 @@ package Tp.CandyCrush;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
@@ -23,6 +24,12 @@ public class Nivel {
 	}
 
 	public void setCantidadMovimientos(int cantidadMovimientos) {
+		
+		if(cantidadMovimientos < 1){
+			UserException userException = new UserException("La cantidad de movimientos debe ser mayor a 0.");
+		      throw userException;
+		}
+		
 		this.cantidadMovimientos = cantidadMovimientos;
 	}
 
@@ -55,6 +62,12 @@ public class Nivel {
 	}
 
 	public void setPuntajeMinimo(int puntajeMinimo) {
+		
+		if(puntajeMinimo < 1){
+			UserException userException = new UserException("El puntaje debe ser mayor a 0.");
+		      throw userException;
+		}
+		
 		this.puntajeMinimo = puntajeMinimo;
 	}
 
@@ -80,6 +93,7 @@ public class Nivel {
 
 	public void setDificultad(Dificultad dificultad) {
 		this.dificultad = dificultad;
+		
 	}
 	
 	public int getNroNivel() {
@@ -144,6 +158,10 @@ public class Nivel {
 	public void agregarObjetivo(Objetivo objetivo) {
 		this.objetivos.add(objetivo);
 		
+	}
+
+	public void eliminarObjetivo(Objetivo objetivo) {
+		objetivos.remove(objetivo);
 	}
 
 	

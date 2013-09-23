@@ -18,7 +18,7 @@ public class GeneradorNroNivel {
 	}
 
 	public static void restarNroNivel() {
-		nro = nro - 2;
+		nro = nro - 1;
 		
 	}
 
