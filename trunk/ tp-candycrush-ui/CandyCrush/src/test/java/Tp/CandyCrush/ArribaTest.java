@@ -1,52 +1,26 @@
 package Tp.CandyCrush;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import Tp.CandyCrush.Arriba;
-import Tp.CandyCrush.Caramelo;
-import Tp.CandyCrush.Tablero;
-import excepciones.ExcepcionNoSePuedeMover;
 import junit.framework.TestCase;
+import junit.framework.Assert;
+import static org.mockito.Mockito.*;
 
 public class ArribaTest extends TestCase {
-
-	private Tablero tablero;
-	private Caramelo caramelo1;
-	private Caramelo caramelo2;
+	
+	private Coordenada c;
 	private Arriba arriba;
 	
 	public void setUp(){
-		
-		caramelo1 = mock(Caramelo.class);
-		caramelo2 = mock(Caramelo.class);
-		
-		Caramelo[][] caramelos = new Caramelo[5][5];
-		caramelos[1][1] = caramelo1;
-		caramelos[0][1] = caramelo2;
-		
-		tablero = mock(Tablero.class);
-		when(tablero.getAlto()).thenReturn(5);
-		when(tablero.getAncho()).thenReturn(5);
-		when(tablero.getCaramelos()).thenReturn(caramelos);
-		
+		c = mock(Coordenada.class);
 		arriba = new Arriba();
-		arriba.setTablero(tablero);
+		when(c.getFila()).thenReturn(4);
+		when(c.getColumna()).thenReturn(5);
 	}
 	
-	public void testMoverPudiendoMover() throws ExcepcionNoSePuedeMover{
-		
-		arriba.realizar(1,1);
-		verify(tablero).swapCaramelos(1,1,0,1);
+	public void testCoordenadaMovimiento(){
+		c= arriba.coordenadaMovimiento(c);
+		Assert.assertEquals(c.getFila(), 3);
+		Assert.assertEquals(c.getColumna(), 5);
 	}
-	
-	public void testMoverNOPudiendoMover(){
-		
-		try{
-			arriba.realizar(0,1);
-			fail();
-		} catch (ExcepcionNoSePuedeMover e){
-			
-		}
-	}
+
 }

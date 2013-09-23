@@ -1,7 +1,5 @@
 package Tp.CandyCrush;
 
-import excepciones.ExcepcionNoSePuedeMover;
-
 public abstract class Movimiento {
 	private Tablero tablero;
 	
@@ -12,7 +10,11 @@ public abstract class Movimiento {
 		this.tablero = tablero;
 	}
 	
+	/**
+	 * @param c
+	 * @return devuelve la coordenada resultante al hacer el movimiento
+	 */
 	public abstract Coordenada coordenadaMovimiento(Coordenada c);
-	//public abstract void realizar(Coordenada c) throws ExcepcionNoSePuedeMover;
+	
 
 }

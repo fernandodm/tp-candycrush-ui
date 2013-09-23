@@ -1,7 +1,5 @@
 package Tp.CandyCrush;
 
-import excepciones.ExcepcionNoSePuedeMover;
-
 public class Caramelo {
 	private String color;
 		
