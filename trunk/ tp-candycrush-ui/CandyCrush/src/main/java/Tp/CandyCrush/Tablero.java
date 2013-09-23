@@ -7,6 +7,8 @@ import java.util.List;
 import Tp.CandyCrush.Caramelo;
 import Tp.CandyCrush.Movimiento;
 import Tp.CandyCrush.Nivel;
+
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 
@@ -41,12 +43,24 @@ public class Tablero {
 		return alto;
 	}
 	public void setAlto(int x) {
+		
+		if(x < 1){
+			UserException userException = new UserException("El alto del tablero debe ser mayor a 0.");
+		      throw userException;
+		}
+		
 		this.alto = x;
 	}
 	public int getAncho() {
 		return ancho;
 	}
 	public void setAncho(int x) {
+		
+		if(x < 1){
+			UserException userException = new UserException("El ancho del tablero debe ser mayor a 0.");
+		      throw userException;
+		}
+		
 		this.ancho = x;
 	}
 
