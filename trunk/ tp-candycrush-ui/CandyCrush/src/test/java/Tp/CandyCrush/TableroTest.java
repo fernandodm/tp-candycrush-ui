@@ -31,7 +31,7 @@ public class TableroTest extends TestCase {
 		tablero.setCaramelos(caramelos);
 		tablero.setAlto(2);
 		tablero.setAncho(3);
-		tablero.setUnNivel(nivel);
+		tablero.setNivel(nivel);
 
 		when(nivel.carameloAleatorio()).thenReturn(caramelo1);
 		

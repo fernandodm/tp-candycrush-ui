@@ -17,7 +17,7 @@ public class Tablero {
 	private int alto;
 	private int ancho;
 	private Caramelo[][] caramelos;
-	private Nivel unNivel;
+	private Nivel nivel;
 	
 	
 	public Tablero() {
@@ -27,11 +27,11 @@ public class Tablero {
 		this.setUnNivel(nivel);*/
 	}
 	
-	public Nivel getUnNivel() {
-		return unNivel;
+	public Nivel getNivel() {
+		return nivel;
 	}
-	public void setUnNivel(Nivel unNivel) {
-		this.unNivel = unNivel;
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
 	}
 	public Caramelo[][] getCaramelos() {
 		return caramelos;
@@ -73,7 +73,7 @@ public class Tablero {
 		caramelos = new Caramelo[alto][ancho];
 		for(int x = 0; x < alto; x++){
 			for(int y = 0; y < ancho; y++){
-				Caramelo caramelo = unNivel.carameloAleatorio();
+				Caramelo caramelo = nivel.carameloAleatorio();
 			}
 		}
         Explosion exp = new Explosion();
