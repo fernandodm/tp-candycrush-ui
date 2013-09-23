@@ -22,7 +22,7 @@ public abstract class TipoDeExplosion {
 	 * objeto explosión
 	 */
 	public void propagarHacia(Tablero t, Coordenada c, Explosion exp, 
-			List<Coordenada> car, Movimiento mov){
+		List<Coordenada> car, Movimiento mov){
 		Coordenada vecino = mov.coordenadaMovimiento(c);
 		String color = Caramelo.colorCaramelo(t, c);
 		while(t.incluidoEnTablero(vecino) && Caramelo.colorCaramelo(t, vecino).equals(color)){
