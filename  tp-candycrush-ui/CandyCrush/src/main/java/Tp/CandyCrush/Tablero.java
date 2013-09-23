@@ -25,10 +25,10 @@ public class Tablero {
 		this.setUnNivel(nivel);*/
 	}
 	
-	public Nivel getNivel() {
+	public Nivel getUnNivel() {
 		return unNivel;
 	}
-	public void setNivel(Nivel unNivel) {
+	public void setUnNivel(Nivel unNivel) {
 		this.unNivel = unNivel;
 	}
 	public Caramelo[][] getCaramelos() {

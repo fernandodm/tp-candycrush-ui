@@ -1,6 +1,5 @@
 package Tp.CandyCrush;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Coordenada {
@@ -27,7 +26,7 @@ public class Coordenada {
 	}
 	
 	public Coordenada coordenadaResultante(List<Movimiento> mov){
-		Coordenada aux= this;
+		Coordenada aux= new Coordenada(this.getFila(), this.getColumna());
 		for(Movimiento each: mov){
 			aux= each.coordenadaMovimiento(aux);
 		}

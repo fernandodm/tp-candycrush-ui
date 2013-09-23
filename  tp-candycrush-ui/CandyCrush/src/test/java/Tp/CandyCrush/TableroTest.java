@@ -37,14 +37,6 @@ public class TableroTest extends TestCase {
 		
 	}
 
-	
-	public void testSwapCaramelos(){
-		
-		tablero.swapCaramelos(2, 2, 1, 3);
-		Assert.assertEquals(tablero.getCaramelos()[2][2], caramelo2);
-		
-	}
-	
 	public void testIniciar(){
 		
 		tablero.iniciar();
