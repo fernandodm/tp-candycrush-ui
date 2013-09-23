@@ -26,8 +26,8 @@ public class Coordenada {
 		this.setColumna(columna);
 	}
 	
-	public static Coordenada coordenadaResultante(Coordenada c, List<Movimiento> mov){
-		Coordenada aux= c;
+	public Coordenada coordenadaResultante(List<Movimiento> mov){
+		Coordenada aux= this;
 		for(Movimiento each: mov){
 			aux= each.coordenadaMovimiento(aux);
 		}

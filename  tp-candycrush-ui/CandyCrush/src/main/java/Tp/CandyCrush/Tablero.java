@@ -118,7 +118,7 @@ public class Tablero {
 
 	 */
     public String colorCarameloEn(Tablero t, Coordenada c, List<Movimiento> mov) {
-		Coordenada aux= Coordenada.coordenadaResultante(c, mov); 
+		Coordenada aux= c.coordenadaResultante(mov); 
 		return (this.incluidoEnTablero(aux))? 
 				t.getCaramelos()[aux.getColumna()][aux.getFila()].getColor(): " ";
 	}
