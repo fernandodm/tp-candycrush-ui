@@ -156,7 +156,7 @@ public class Explosion {
 		abajo2.add(new Abajo());
 		abajo2.add(new Abajo());
 		
-		List<Movimiento> m = Arrays.asList(new Arriba(),new Abajo());
+		//List<Movimiento> m = Arrays.asList(new Arriba(),new Abajo());
 		
 		return  this.explosionHacia(t, c, arriba1, arriba2) ||
 				this.explosionHacia(t, c, abajo1, abajo2) ||

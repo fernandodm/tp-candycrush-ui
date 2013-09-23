@@ -142,8 +142,8 @@ public class Tablero {
      * @return devuelve true si la coordenada c esta contenida en el tablero
      */
 	public boolean incluidoEnTablero(Coordenada c){
-		return (c.getFila() >= 0 && c.getFila() <= this.getAlto()) && 
-			   (c.getColumna() >= 0 && c.getColumna() <= this.getAncho());
+		return (c.getFila() >= 0 && c.getFila() < this.getAlto()) && 
+			   (c.getColumna() >= 0 && c.getColumna() < this.getAncho());
 	}
 	
 	public List<Dificultad> getDificultades() {
