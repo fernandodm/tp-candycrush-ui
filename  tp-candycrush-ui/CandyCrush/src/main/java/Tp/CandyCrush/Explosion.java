@@ -148,19 +148,20 @@ public class Explosion {
 		List<Movimiento> arriba1 = new ArrayList<Movimiento>();
 		arriba1.add(new Arriba());
 		List<Movimiento> arriba2 = new ArrayList<Movimiento>();
-		arriba2.add(new Arriba());
-		arriba2.add(new Arriba());
+		arriba2.add(new Arriba()); arriba2.add(new Arriba());
 		List<Movimiento> abajo1 = new ArrayList<Movimiento>();
 		abajo1.add(new Abajo());
 		List<Movimiento> abajo2 = new ArrayList<Movimiento>();
-		abajo2.add(new Abajo());
-		abajo2.add(new Abajo());
+		abajo2.add(new Abajo()); abajo2.add(new Abajo());
 		
-		//List<Movimiento> m = Arrays.asList(new Arriba(),new Abajo());
+		Coordenada arr = c.coordenadaResultante(arriba1);
+		Coordenada arrArr = c.coordenadaResultante(arriba2);
+		Coordenada aba = c.coordenadaResultante(abajo1);
+		Coordenada abaAba = c.coordenadaResultante(abajo2);
 		
-		return  this.explosionHacia(t, c, arriba1, arriba2) ||
-				this.explosionHacia(t, c, abajo1, abajo2) ||
-				this.explosionHacia(t, c, arriba1, abajo1) ;
+		return  this.explosionHacia(t, c, arr, arrArr) ||
+				this.explosionHacia(t, c, aba, abaAba) ||
+				this.explosionHacia(t, c, arr, aba) ;
 	}
 	
 	/**
@@ -173,17 +174,20 @@ public class Explosion {
 		List<Movimiento> izq1 = new ArrayList<Movimiento>();
 		izq1.add(new Izquierda());
 		List<Movimiento> izq2 = new ArrayList<Movimiento>();
-		izq2.add(new Izquierda());
-		izq2.add(new Izquierda());
+		izq2.add(new Izquierda()); izq2.add(new Izquierda());
 		List<Movimiento> der1 = new ArrayList<Movimiento>();
 		der1.add(new Derecha());
 		List<Movimiento> der2 = new ArrayList<Movimiento>();
-		der2.add(new Derecha());
-		der2.add(new Derecha());
+		der2.add(new Derecha()); der2.add(new Derecha());
 		
-		return  this.explosionHacia(t, c, izq1, izq2) ||
-				this.explosionHacia(t, c, der1, der2) ||
-				this.explosionHacia(t, c, izq1, der1) ;
+		Coordenada izq = c.coordenadaResultante(izq1);
+		Coordenada izqIzq = c.coordenadaResultante(izq2);
+		Coordenada der = c.coordenadaResultante(der1);
+		Coordenada derDer = c.coordenadaResultante(der2);
+		
+		return  this.explosionHacia(t, c, izq, izqIzq) ||
+				this.explosionHacia(t, c, der, derDer) ||
+				this.explosionHacia(t, c, izq, der) ;
 	}
 	
 	/**
@@ -194,12 +198,10 @@ public class Explosion {
 	 * @return true si el color del caramelo en c es el mismo que el de
 	 * sus vecinos
 	 */
-	public boolean explosionHacia(Tablero t, Coordenada c, List<Movimiento> vecino1, List<Movimiento> vecino2){
-		String colorOriginal= t.getCaramelos()[c.getFila()][c.getColumna()].getColor();
-		Coordenada c1= c.coordenadaResultante(vecino1);
-		Coordenada c2= c.coordenadaResultante(vecino2);
-		String colorVecino1= t.colorCarameloEn(c1);
-		String colorVecino2= t.colorCarameloEn(c2);
+	public boolean explosionHacia(Tablero t, Coordenada c, Coordenada vecino1, Coordenada vecino2){
+		String colorOriginal= t.colorCarameloEn(c);
+		String colorVecino1= t.colorCarameloEn(vecino1);
+		String colorVecino2= t.colorCarameloEn(vecino2);
 		return (colorOriginal.equals(colorVecino1)) && (colorOriginal.equals(colorVecino2));
 	}
 
