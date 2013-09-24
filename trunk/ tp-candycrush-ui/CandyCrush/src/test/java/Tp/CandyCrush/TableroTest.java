@@ -73,4 +73,16 @@ public class TableroTest extends TestCase {
 	public void testIncluidoEnTableroCasoFalse(){
 		Assert.assertFalse(tablero.incluidoEnTablero(cor2));	
 	}
+	
+	public void testColorCarameloEnCasoTrue(){
+		when(caramelo1.getColor()).thenReturn("Verde");
+		tablero.getCaramelos()[1][2] = caramelo1;
+		Assert.assertEquals("Verde", tablero.colorCarameloEn(cor1));
+	}
+	
+	public void testColorCaremeloEnCasoFalse(){
+		when(cor1.getFila()).thenReturn(20);
+		when(cor1.getColumna()).thenReturn(20);
+		Assert.assertEquals(" ", tablero.colorCarameloEn(cor1));
+	}
 }
