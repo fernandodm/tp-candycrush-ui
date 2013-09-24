@@ -18,33 +18,35 @@ public class ExplosionTest extends TestCase {
 	private List<Movimiento> moves = new ArrayList<Movimiento>();
 	private List<Movimiento> vecino1 = new ArrayList<Movimiento>();
 	private List<Movimiento> vecino2 = new ArrayList<Movimiento>();
-	private Derecha mov1;
-	private Izquierda mov2;
+	private Arriba arriba = new Arriba();
+	private Derecha derecha = new Derecha();
 	
 	public void setUp(){
 		explosion = new Explosion(5, "Rojo");
-		//t = mock(Tablero.class);
+
 		car1 = mock(Caramelo.class);
 		car2 = mock(Caramelo.class);
-		cor = mock(Coordenada.class);
-		caramelos [0][0] = car1;
+		cor = new Coordenada(2,1);
+		caramelos [0][0] = car2;
 		caramelos [0][1] = car1;
-		caramelos [0][2] = car1;
-		caramelos [1][0] = car1;
+		caramelos [0][2] = car2;
+		caramelos [1][0] = car2;
 		caramelos [1][1] = car1;
-		caramelos [1][2] = car1;
+		caramelos [1][2] = car2;
 		caramelos [2][0] = car1;
 		caramelos [2][1] = car1;
 		caramelos [2][2] = car1;
+		
+		vecino1.add(arriba);
+		vecino2.add(arriba); 
+		vecino2.add(arriba);
+		
 		t = new Tablero();
 		t.setAlto(3);
 		t.setAncho(3);
 		t.setCaramelos(caramelos);
-		/*when(t.getCaramelos()).thenReturn(caramelos);
-		when(t.getAlto()).thenReturn(3);
-		when(t.getAncho()).thenReturn(3);*/
-		when(cor.getFila()).thenReturn(2);
-		when(cor.getColumna()).thenReturn(1);
+
+		
 		when(car1.getColor()).thenReturn("Verde");
 		when(car2.getColor()).thenReturn("Rojo");
 
@@ -55,16 +57,34 @@ public class ExplosionTest extends TestCase {
 		Assert.assertEquals(explosion.getCantidad(), 5);
 	}
 	
-	public void testExplosionHacia(){
-		mov1 = new Derecha();
-		mov2 = new Izquierda();
-		vecino1.add(mov2);
-		vecino2.add(mov1);
-		Assert.assertTrue(explosion.explosionHacia(t, cor, vecino1, vecino2));
+	public void testExplosionHaciaCasoTrue(){
+		Coordenada vec1 = cor.coordenadaResultante(vecino1);
+		Coordenada vec2 = cor.coordenadaResultante(vecino2);
+		Assert.assertTrue(explosion.explosionHacia(t, cor, vec1, vec2));
 	}
 	
-	public void testExplotaVertical(){
-		Assert.assertFalse(explosion.explotaVertical(t, cor));
+	public void testExplosionHaciaCasoFalse(){
+		Coordenada cor2 = new Coordenada(2,2);
+		Coordenada vec1 = cor2.coordenadaResultante(vecino1);
+		Coordenada vec2 = cor2.coordenadaResultante(vecino2);
+		Assert.assertFalse(explosion.explosionHacia(t, cor2, vec1, vec2));
 	}
 	
+	public void testExplotaVerticalCasoTrue(){
+		Assert.assertTrue(explosion.explotaVertical(t, cor));
+	}
+	
+	public void testExplotaVerticalCasoFalse(){
+		vecino1.add(derecha);
+		Coordenada cor2 = cor.coordenadaResultante(vecino1);
+		Assert.assertFalse(explosion.explotaVertical(t, cor2));
+	}
+	
+	public void testExplotaHorizontalCasoTrue(){
+		Assert.assertTrue(explosion.explotaHorizontal(t, cor));
+	}
+	
+	public void testExplotaHorizontalCasoFalse(){
+		//Assert.assertTrue(explosion.explotaHorizontal(t, cor));1
+	}
 }
