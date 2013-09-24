@@ -196,8 +196,10 @@ public class Explosion {
 	 */
 	public boolean explosionHacia(Tablero t, Coordenada c, List<Movimiento> vecino1, List<Movimiento> vecino2){
 		String colorOriginal= t.getCaramelos()[c.getFila()][c.getColumna()].getColor();
-		String colorVecino1= t.colorCarameloEn(t, c, vecino1);
-		String colorVecino2= t.colorCarameloEn(t, c, vecino2);
+		Coordenada c1= c.coordenadaResultante(vecino1);
+		Coordenada c2= c.coordenadaResultante(vecino2);
+		String colorVecino1= t.colorCarameloEn(c1);
+		String colorVecino2= t.colorCarameloEn(c2);
 		return (colorOriginal.equals(colorVecino1)) && (colorOriginal.equals(colorVecino2));
 	}
 
