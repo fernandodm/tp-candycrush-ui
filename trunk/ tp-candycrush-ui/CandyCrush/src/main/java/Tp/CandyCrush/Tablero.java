@@ -74,10 +74,11 @@ public class Tablero {
 		for(int x = 0; x < alto; x++){
 			for(int y = 0; y < ancho; y++){
 				Caramelo caramelo = nivel.carameloAleatorio();
+				caramelos[x][y] = caramelo;
 			}
 		}
-        Explosion exp = new Explosion();
-        exp.explosionesEnCadena(this);
+      //  Explosion exp = new Explosion();
+      //  exp.explosionesEnCadena(this);
 	}
 	
 	
