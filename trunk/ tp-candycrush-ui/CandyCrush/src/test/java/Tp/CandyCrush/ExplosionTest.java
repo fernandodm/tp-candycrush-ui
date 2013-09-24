@@ -14,19 +14,22 @@ public class ExplosionTest extends TestCase {
 	private Caramelo car1;
 	private Caramelo car2;
 	private Coordenada cor;
+	private Coordenada cor3;
 	private Caramelo[][] caramelos = new Caramelo [3] [3];
-	private List<Movimiento> moves = new ArrayList<Movimiento>();
 	private List<Movimiento> vecino1 = new ArrayList<Movimiento>();
 	private List<Movimiento> vecino2 = new ArrayList<Movimiento>();
 	private Arriba arriba = new Arriba();
-	private Derecha derecha = new Derecha();
+	
 	
 	public void setUp(){
 		explosion = new Explosion(5, "Rojo");
 
+		cor = new Coordenada(2,1);
+		cor3 = new Coordenada(1,0);
+		
 		car1 = mock(Caramelo.class);
 		car2 = mock(Caramelo.class);
-		cor = new Coordenada(2,1);
+	
 		caramelos [0][0] = car2;
 		caramelos [0][1] = car1;
 		caramelos [0][2] = car2;
@@ -75,9 +78,7 @@ public class ExplosionTest extends TestCase {
 	}
 	
 	public void testExplotaVerticalCasoFalse(){
-		vecino1.add(derecha);
-		Coordenada cor2 = cor.coordenadaResultante(vecino1);
-		Assert.assertFalse(explosion.explotaVertical(t, cor2));
+		Assert.assertFalse(explosion.explotaVertical(t, cor3));
 	}
 	
 	public void testExplotaHorizontalCasoTrue(){
@@ -85,6 +86,8 @@ public class ExplosionTest extends TestCase {
 	}
 	
 	public void testExplotaHorizontalCasoFalse(){
-		//Assert.assertTrue(explosion.explotaHorizontal(t, cor));1
+		Assert.assertFalse(explosion.explotaHorizontal(t, cor3));
 	}
+	
+	
 }
