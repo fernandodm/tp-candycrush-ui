@@ -16,6 +16,8 @@ public class TableroTest extends TestCase {
 	private Nivel nivel;
 	private Caramelo caramelo1;
 	private Caramelo caramelo2;
+	private Coordenada cor1;
+	private Coordenada cor2;
 	
 	public void setUp(){
 		
@@ -32,6 +34,14 @@ public class TableroTest extends TestCase {
 		tablero.setAlto(2);
 		tablero.setAncho(3);
 		tablero.setNivel(nivel);
+		
+		cor1 = mock(Coordenada.class);
+		cor2 = mock(Coordenada.class);
+		
+		when(cor1.getFila()).thenReturn(1);
+		when(cor1.getColumna()).thenReturn(2);
+		when(cor2.getFila()).thenReturn(2);
+		when(cor2.getColumna()).thenReturn(3);
 
 		when(nivel.carameloAleatorio()).thenReturn(caramelo1);
 		
@@ -54,5 +64,13 @@ public class TableroTest extends TestCase {
 			}
 		}
 		Assert.assertTrue(cantidad == 6);
+	}
+	
+	public void testIncluidoEnTableroCasoTrue(){
+		Assert.assertTrue(tablero.incluidoEnTablero(cor1));	
+	}
+	
+	public void testIncluidoEnTableroCasoFalse(){
+		Assert.assertFalse(tablero.incluidoEnTablero(cor2));	
 	}
 }
