@@ -125,18 +125,14 @@ public class Tablero {
 	}
 
 	/**
-	 * @param x
-	 * @param y//
-	 * @param vecino1
 	 * @return devuelve el color del caramelo en la posición a la que se llega siguiendo
 	 * la lista de movimientos. Si la posición se sale del tablero devuelve " ".
 
 	 */
-    public String colorCarameloEn(Tablero t, Coordenada c, List<Movimiento> mov) {
-		Coordenada aux= c.coordenadaResultante(mov); 
-		return (this.incluidoEnTablero(aux))? 
-				t.getCaramelos()[aux.getColumna()][aux.getFila()].getColor(): " ";
-	}
+    public String colorCarameloEn(Coordenada c) { 
+		return (this.incluidoEnTablero(c))? 
+				this.getCaramelos()[c.getFila()][c.getColumna()].getColor(): " ";
+    }
 	
     /**
      * @param c
