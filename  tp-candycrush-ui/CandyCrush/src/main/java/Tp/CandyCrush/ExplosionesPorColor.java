@@ -1,21 +1,32 @@
 package Tp.CandyCrush;
 
-import java.util.ArrayList;
+
 
 
 public class ExplosionesPorColor extends Objetivo {
 
-	private int cantidad;
+	private Integer cantidad;
 	
-	public String getDescripcion(){
-		return "Realizar " + getCantidad() + "esplosion/es de caramelos " + getColor();
+	@Override
+	public boolean puedeAgregarObjetivo (){
+		
+		return  this.getColor() != null &&
+				this.getCantidad() != null && 
+				this.getCantidad() > 0;
+		
 	}
 	
-	public int getCantidad() {
+			
+	public String getDescripcion(){
+		return "Realizar " + getCantidad() + " esplosion/es de caramelos " + getColor();
+	}
+	
+	public Integer getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(int cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+		this.setSePuedeAgregar(this.puedeAgregarObjetivo());
 	}
 	
 

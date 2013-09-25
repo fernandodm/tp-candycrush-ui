@@ -25,11 +25,11 @@ public class Partida {
 		this.cantMovimientosFaltantes = mund.getNiveles().get(0).getCantidadMovimientos();
 		this.puntaje = mund.getNiveles().get(0).getPuntajeMinimo();
 		this.nivelActual = mund.getNiveles().get(0);
+		nivelActual.getTablero().setAlto(4);
+		nivelActual.getTablero().setAncho(4);
 		nivelActual.getTablero().iniciar();
 		this.caramelos = mund.getNiveles().get(0).getTablero().getCaramelos();
-
-	}
-	
+	} 	
 	public int getPuntaje() {
 		return puntaje;
 	}

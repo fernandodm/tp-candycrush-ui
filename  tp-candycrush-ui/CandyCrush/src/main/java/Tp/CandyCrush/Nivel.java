@@ -3,7 +3,6 @@ package Tp.CandyCrush;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
@@ -13,23 +12,27 @@ public class Nivel {
 	private List<Objetivo> objetivos = new ArrayList<Objetivo>();
 	private boolean termino;
 	private int puntaje;
-	private int puntajeMinimo;
+	private Integer puntajeMinimo;
 	private int nroNivel;
 	private Tablero tablero;
 	private String nombre;
-	private int cantidadMovimientos;
+	private Integer cantidadMovimientos;
+	private boolean nivPuedeAgregar;
 	
-	public int getCantidadMovimientos() {
+	public void setNivPuedeAgregar(boolean bool){
+		this.nivPuedeAgregar = bool;
+	}
+	
+	public boolean getNivPuedeAgregar(){
+		return this.nivPuedeAgregar;
+	}
+	
+	public Integer getCantidadMovimientos() {
 		return cantidadMovimientos;
 	}
 
-	public void setCantidadMovimientos(int cantidadMovimientos) {
-		
-		if(cantidadMovimientos < 1){
-			UserException userException = new UserException("La cantidad de movimientos debe ser mayor a 0.");
-		      throw userException;
-		}
-		
+	public void setCantidadMovimientos(Integer cantidadMovimientos) {
+				
 		this.cantidadMovimientos = cantidadMovimientos;
 	}
 
@@ -57,7 +60,7 @@ public class Nivel {
 		this.puntaje = puntaje;
 	}
 
-	public int getPuntajeMinimo() {
+	public Integer getPuntajeMinimo() {
 		return puntajeMinimo;
 	}
 	
@@ -65,14 +68,10 @@ public class Nivel {
 		return (this.getCantidadMovimientos() < 0);
 	}
 
-	public void setPuntajeMinimo(int puntajeMinimo) {
-		
-		if(puntajeMinimo < 1){
-			UserException userException = new UserException("El puntaje debe ser mayor a 0.");
-		      throw userException;
-		}
-		
+	public void setPuntajeMinimo(Integer puntajeMinimo) {
+				
 		this.puntajeMinimo = puntajeMinimo;
+
 	}
 
 	public boolean isTermino() {
@@ -97,9 +96,8 @@ public class Nivel {
 
 	public void setDificultad(Dificultad dificultad) {
 		this.dificultad = dificultad;
-		
 	}
-	
+
 	public int getNroNivel() {
 		return nroNivel;
 	}
