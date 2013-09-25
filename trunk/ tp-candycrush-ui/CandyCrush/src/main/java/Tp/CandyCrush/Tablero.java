@@ -1,33 +1,33 @@
 package Tp.CandyCrush;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import Tp.CandyCrush.Caramelo;
 import Tp.CandyCrush.Movimiento;
 import Tp.CandyCrush.Nivel;
 
-import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import excepciones.ExcepcionNoGeneroExplosion;
 
 @Observable
 public class Tablero {
-	private int alto;
-	private int ancho;
-	private Caramelo[][] caramelos;
+	private Integer alto;
+	private Integer ancho;
+	private Caramelo[][] caramelos; 
 	private Nivel nivel;
+	private boolean tabPuedeAgregar = false; 
 	
-	
-	public Tablero() {
-		//esto esta de prueba
-		/**Nivel nivel = new Nivel();
-		nivel.setDificultad(Dificultad.DIFICIL);
-		this.setUnNivel(nivel);*/
+	public Tablero(){
+		
 	}
-	
+		
+	public Tablero(Integer alto2, Integer ancho2, Nivel nivel) {
+		this.alto = alto2;
+		this.ancho = ancho2;
+		this.nivel = nivel;
+
+	}
 	public Nivel getNivel() {
 		return nivel;
 	}
@@ -40,28 +40,31 @@ public class Tablero {
 	public void setCaramelos(Caramelo[][] carameloss) {
 		this.caramelos = carameloss;
 	}
-	public int getAlto() {
+	public Integer getAlto() {
+
 		return alto;
 	}
-	public void setAlto(int x) {
+	
+	public void setAlto(Integer x) {
 		
-		if(x < 1){
-			UserException userException = new UserException("El alto del tablero debe ser mayor a 0.");
-		      throw userException;
-		}
-		
-		this.alto = x;
+		this.alto = x;		
 	}
-	public int getAncho() {
+	
+	public boolean getTabPuedeAgregar() {
+		return tabPuedeAgregar;
+	}
+
+
+	public void setTabPuedeAgregar(boolean tabPuedeAgregar) {
+		this.tabPuedeAgregar = tabPuedeAgregar;
+	}
+
+
+	public Integer getAncho() {
 		return ancho;
 	}
-	public void setAncho(int x) {
-		
-		if(x < 1){
-			UserException userException = new UserException("El ancho del tablero debe ser mayor a 0.");
-		      throw userException;
-		}
-		
+	public void setAncho(Integer x) {
+						
 		this.ancho = x;
 	}
 
@@ -110,7 +113,7 @@ public class Tablero {
 	 * si los caramelos en las coordenadas generan explosion se llama a los
 	 * metodos que propagan las explosiones, bajan los caramelos y recursionan
 	 * buscando mas explosiones; caso contrario los caramelos vuelven a su
-	 * posición original y se manda un mensaje de error
+	 * posiciÃ³n original y se manda un mensaje de error
 	 * @param c
 	 * @param vecino
 	 */
@@ -129,8 +132,8 @@ public class Tablero {
 	}
 
 	/**
-	 * @return devuelve el color del caramelo en la posición a la que se llega siguiendo
-	 * la lista de movimientos. Si la posición se sale del tablero devuelve " ".
+	 * @return devuelve el color del caramelo en la posiciÃ³n a la que se llega siguiendo
+	 * la lista de movimientos. Si la posiciÃ³n se sale del tablero devuelve " ".
 
 	 */
     public String colorCarameloEn(Coordenada c) { 
@@ -176,7 +179,7 @@ public class Tablero {
      */
     public Tablero bajarCaramelos() {
 		Tablero t = this;
-    	for(int j=0; j < this.getAncho()-1; j++){	
+    	for(int j = this.getAncho()-1 ; j <= 0; j--){	
 			t.bajarCaramelosEnColumna(j);
 		}
 		return t;
@@ -290,6 +293,7 @@ public class Tablero {
     public boolean hayCaramelo(Coordenada c){
     	return ! this.colorCarameloEn(c).equals("vacio");
     }
+    
     
 	/**
 	 * @param args

@@ -21,6 +21,7 @@
   </properties>
 
   <dependencies>
+  
    <dependency>
              <groupId>uqbar</groupId>
             <artifactId>arena</artifactId>
@@ -45,6 +46,7 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
   </dependencies>
   <build>
   	<pluginManagement>

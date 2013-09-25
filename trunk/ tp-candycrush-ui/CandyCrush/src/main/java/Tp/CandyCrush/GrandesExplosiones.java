@@ -2,21 +2,22 @@ package Tp.CandyCrush;
 
 public class GrandesExplosiones extends Objetivo {
 
-	private int cantidadGrandesExplosiones;
+	private Integer cantidadGrandesExplosiones;
 	
 	public String getDescripcion(){
-		return "Explotar " + getCantidadGrandesExplosiones() + getColor();
+		return "Explotar " + getCantidadGrandesExplosiones() + " " + getColor();
 	}
 	
-	public int getCantidadGrandesExplosiones() {
+	public Integer getCantidadGrandesExplosiones() {
 		return cantidadGrandesExplosiones;
 	}
 
-	public void setCantidadGrandesExplosiones(int cantidadGrandesExplosiones) {
+	public void setCantidadGrandesExplosiones(Integer cantidadGrandesExplosiones) {
 		this.cantidadGrandesExplosiones = cantidadGrandesExplosiones;
+		this.setSePuedeAgregar(this.puedeAgregarObjetivo());
 	}
 	
-	public GrandesExplosiones(String color, int cant){
+	public GrandesExplosiones(String color, Integer cant){
 		this.setColor(color);
 		this.setCantidadGrandesExplosiones(cant);
 		this.setSeCumplio(false);
@@ -38,6 +39,12 @@ public class GrandesExplosiones extends Objetivo {
 			this.setCantidadGrandesExplosiones(this.getCantidadGrandesExplosiones() - 1);
 		}
 		this.complete();
+	}
+
+	@Override
+	public boolean puedeAgregarObjetivo() {
+		return	this.getCantidadGrandesExplosiones() != null &&
+				this.getColor() != null;
 	}
 	
 	

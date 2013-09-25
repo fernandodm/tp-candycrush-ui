@@ -7,8 +7,17 @@ public abstract class Objetivo {
 
 	private boolean seCumplio;
 	private String color;
+	private boolean sePuedeAgregar;
 
 	
+	public boolean isSePuedeAgregar() {
+		return sePuedeAgregar;
+	}
+
+	public void setSePuedeAgregar(boolean sePuedeAgregar) {
+		this.sePuedeAgregar = sePuedeAgregar;
+	}
+
 	public String getColor() {
 		return color;
 	}
@@ -23,7 +32,10 @@ public abstract class Objetivo {
 
 	public void setSeCumplio(boolean seCumplio) {
 		this.seCumplio = seCumplio;
+		this.setSePuedeAgregar(this.puedeAgregarObjetivo());
 	}
+	
+	public abstract boolean puedeAgregarObjetivo();
 	
 	public String seCumplioDescripcion(){
 		if(this.isSeCumplio()){
