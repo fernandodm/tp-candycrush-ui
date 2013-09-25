@@ -11,6 +11,7 @@ import Tp.CandyCrush.Nivel;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
+import excepciones.ExcepcionNoGeneroExplosion;
 
 @Observable
 public class Tablero {
@@ -89,7 +90,7 @@ public class Tablero {
 	 * @param y
 	 * @param mov
 	 */
-	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento, Explosion exp){
+	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento, Explosion exp) throws ExcepcionNoGeneroExplosion{
 		Coordenada vecino= movimiento.coordenadaMovimiento(c);
 		if(this.incluidoEnTablero(vecino) && !this.sonDelMismoColor(c, vecino))
 		{
@@ -98,7 +99,7 @@ public class Tablero {
 		}
 		else
 		{	
-			//TODO SystemOut mensajeMoviemientoInvalido
+			throw new ExcepcionNoGeneroExplosion();
 		}
 	}
 
