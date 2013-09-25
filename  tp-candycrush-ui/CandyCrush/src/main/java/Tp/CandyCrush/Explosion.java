@@ -76,7 +76,7 @@ public class Explosion {
     public void bajarCaramelosEnColumna(Tablero t, int columna){
     	Coordenada c = new Coordenada(t.getAlto(), columna);
     	Movimiento arriba= new Arriba();
-    	for(int i= t.getAlto()-1; i < 0; i--){
+    	for(int i= t.getAlto()-1; i <= 0; i--){
     		this.bajarCarameloEnCoordenada(t, c);
     		c= arriba.coordenadaMovimiento(c);
     	}
@@ -89,7 +89,7 @@ public class Explosion {
      * @param c
      */
     public void bajarCarameloEnCoordenada(Tablero t, Coordenada c){
-    	if(t.getCaramelos()[c.getFila()][c.getColumna()].getColor().equals("vacio")){
+    	if(t.colorCarameloEn(c).equals("vacio")){
     		this.bajarCarameloODameUnoNuevo(t, c);
     	}
     }
