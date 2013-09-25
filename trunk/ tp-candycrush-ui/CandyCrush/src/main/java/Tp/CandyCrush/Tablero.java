@@ -175,10 +175,11 @@ public class Tablero {
      * @param t
      */
     public Tablero bajarCaramelos() {
-		for(int j=0; j < this.getAncho()-1; j++){	
-			bajarCaramelosEnColumna(j);
+		Tablero t = this;
+    	for(int j=0; j < this.getAncho()-1; j++){	
+			t.bajarCaramelosEnColumna(j);
 		}
-		return this;
+		return t;
 	}
     
     /**
