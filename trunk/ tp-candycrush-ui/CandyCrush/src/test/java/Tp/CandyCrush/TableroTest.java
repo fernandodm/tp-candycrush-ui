@@ -17,11 +17,21 @@ public class TableroTest extends TestCase {
 	private Caramelo caramelo1;
 	private Caramelo caramelo2;
 	private Caramelo caramelo3;
-	private Coordenada cor1;
-	private Coordenada cor2;
-	private Coordenada cor4;
-	private Coordenada cor5;
-	private Coordenada cor6;
+	private Coordenada cor00;
+	private Coordenada cor01;
+	private Coordenada cor02;
+	private Coordenada cor03;
+	private Coordenada cor04;
+	private Coordenada cor10;
+	private Coordenada cor11;
+	private Coordenada cor12;
+	private Coordenada cor13;
+	private Coordenada cor14;
+	private Coordenada cor20;
+	private Coordenada cor21;
+	private Coordenada cor22;
+	private Coordenada cor23;
+	private Coordenada cor24;
 	private Tablero t;
 	private Caramelo[][] caramelos2 = new Caramelo [3] [5];
 	private List<Movimiento> vecino1 = new ArrayList<Movimiento>();
@@ -46,23 +56,54 @@ public class TableroTest extends TestCase {
 		tablero.setAncho(3);
 		tablero.setNivel(nivel);
 		
-		cor1 = mock(Coordenada.class);
-		cor2 = mock(Coordenada.class);
-		cor4 = mock(Coordenada.class);
-		cor5 = mock(Coordenada.class);
-		cor6 = mock(Coordenada.class);
+		cor00 = mock(Coordenada.class);
+		cor01 = mock(Coordenada.class);
+		cor02 = mock(Coordenada.class);
+		cor03 = mock(Coordenada.class);
+		cor04 = mock(Coordenada.class);
+		cor10 = mock(Coordenada.class);
+		cor11 = mock(Coordenada.class);
+		cor12 = mock(Coordenada.class);
+		cor13 = mock(Coordenada.class);
+		cor14 = mock(Coordenada.class);
+		cor20 = mock(Coordenada.class);
+		cor21 = mock(Coordenada.class);
+		cor22 = mock(Coordenada.class);
+		cor23 = mock(Coordenada.class);
+		cor24 = mock(Coordenada.class);
 		
-		when(cor1.getFila()).thenReturn(1);
-		when(cor1.getColumna()).thenReturn(2);
-		when(cor2.getFila()).thenReturn(0);
-		when(cor2.getColumna()).thenReturn(2);
-		when(cor4.getFila()).thenReturn(2);
-		when(cor4.getColumna()).thenReturn(3);
-		when(cor5.getFila()).thenReturn(2);
-		when(cor5.getColumna()).thenReturn(4);
-		when(cor6.getFila()).thenReturn(1);
-		when(cor6.getColumna()).thenReturn(0);
-		
+		when(cor00.getFila()).thenReturn(0);
+		when(cor00.getColumna()).thenReturn(0);
+		when(cor01.getFila()).thenReturn(0);
+		when(cor01.getColumna()).thenReturn(1);
+		when(cor02.getFila()).thenReturn(0);
+		when(cor02.getColumna()).thenReturn(2);
+		when(cor03.getFila()).thenReturn(0);
+		when(cor03.getColumna()).thenReturn(3);
+		when(cor04.getFila()).thenReturn(0);
+		when(cor04.getColumna()).thenReturn(4);
+		when(cor10.getFila()).thenReturn(1);
+		when(cor10.getColumna()).thenReturn(0);
+		when(cor11.getFila()).thenReturn(1);
+		when(cor11.getColumna()).thenReturn(1);
+		when(cor12.getFila()).thenReturn(1);
+		when(cor12.getColumna()).thenReturn(2);
+		when(cor13.getFila()).thenReturn(1);
+		when(cor13.getColumna()).thenReturn(3);
+		when(cor14.getFila()).thenReturn(1);
+		when(cor14.getColumna()).thenReturn(4);
+		when(cor20.getFila()).thenReturn(2);
+		when(cor20.getColumna()).thenReturn(0);
+		when(cor21.getFila()).thenReturn(2);
+		when(cor21.getColumna()).thenReturn(1);
+		when(cor22.getFila()).thenReturn(2);
+		when(cor22.getColumna()).thenReturn(2);
+		when(cor23.getFila()).thenReturn(2);
+		when(cor23.getColumna()).thenReturn(3);
+		when(cor24.getFila()).thenReturn(2);
+		when(cor24.getColumna()).thenReturn(4);
+	
+			
 		when(nivel.carameloAleatorio()).thenReturn(caramelo1);
 		
 		//explosion = new Explosion(5, "Rojo");
@@ -123,7 +164,7 @@ public class TableroTest extends TestCase {
 	}
 	
 	public void testIncluidoEnTableroCasoTrue(){
-		Assert.assertTrue(tablero.incluidoEnTablero(cor1));	
+		Assert.assertTrue(tablero.incluidoEnTablero(cor12));	
 	}
 	
 	public void testIncluidoEnTableroCasoFalse(){
@@ -137,52 +178,120 @@ public class TableroTest extends TestCase {
 	
 	public void testColorCarameloEnCasoTrue(){
 		tablero.getCaramelos()[1][2] = caramelo1;
-		Assert.assertEquals("Verde", tablero.colorCarameloEn(cor1));
+		Assert.assertEquals("Verde", tablero.colorCarameloEn(cor12));
 	}
 	
 	public void testColorCaremeloEnCasoFalse(){
-		when(cor1.getFila()).thenReturn(20);
-		when(cor1.getColumna()).thenReturn(20);
-		Assert.assertEquals(" ", tablero.colorCarameloEn(cor1));
+		when(cor12.getFila()).thenReturn(20);
+		when(cor12.getColumna()).thenReturn(20);
+		Assert.assertEquals(" ", tablero.colorCarameloEn(cor12));
 	}
 	
 	public void testSwapCaramelos(){
-		tablero.swapCaramelos(cor2, cor1);
-		Assert.assertEquals("Verde", tablero.colorCarameloEn(cor2));
-		Assert.assertEquals("Rojo", tablero.colorCarameloEn(cor1));
+		t.swapCaramelos(cor00, cor01);
+		Assert.assertEquals("Verde", t.colorCarameloEn(cor00));
+		Assert.assertEquals("Rojo", t.colorCarameloEn(cor01));
 	}
 	
 	public void testBajarCarameloODameUnoNuevoCasoIntercambio(){
-		t.bajarCarameloODameUnoNuevo(cor4);
-		String col = t.colorCarameloEn(cor4);
+		/*t.bajarCarameloODameUnoNuevo(cor23);
+		String col = t.colorCarameloEn(cor23);
 		Assert.assertEquals("Rojo", col);
 	}
 	
 	public void testBajarCarameloODameUnoNuevoCasoDameUnoAleatorio(){
-		t.bajarCarameloODameUnoNuevo(cor5);
-		String col = t.colorCarameloEn(cor5);
+		t.bajarCarameloODameUnoNuevo(cor24);
+		String col = t.colorCarameloEn(cor24);
 		Assert.assertEquals("Verde", col);
 	}
 	
 	public void testDameUnCarameloAleatorio(){
-		t.dameUnCarameloAleatorio(cor6);
-		String col = t.colorCarameloEn(cor6);
-		Assert.assertEquals("Verde", col);
+		t.dameUnCarameloAleatorio(cor10);
+		String col = t.colorCarameloEn(cor10);
+		Assert.assertEquals("Verde", col);*/
 	}
 	
-	public void testBajarCarameloEnCoordenadaCasoLleno(){
-		t.bajarCarameloEnCoordenada(cor4);
-		String col = t.colorCarameloEn(cor4);
-		Assert.assertEquals("Rojo", col);
+	public void testBajarCaramelosEnColumnaCasoLleno1(){
+		t.bajarCaramelosEnColumna(0);
+		String col0 = t.colorCarameloEn(cor00);
+		String col1 = t.colorCarameloEn(cor10);
+		String col2 = t.colorCarameloEn(cor20);
+		Assert.assertEquals("Rojo", col0);
+		Assert.assertEquals("Rojo", col1);
+		Assert.assertEquals("Verde", col2);
+	}
+	public void testBajarCaramelosEnColumnaCasoLleno2(){
+		t.bajarCaramelosEnColumna(1);
+		String col0 = t.colorCarameloEn(cor01);
+		String col1 = t.colorCarameloEn(cor11);
+		String col2 = t.colorCarameloEn(cor21);
+		Assert.assertEquals("Verde", col0);
+		Assert.assertEquals("Verde", col1);
+		Assert.assertEquals("Verde", col2);
 	}
 	
-	public void testBajarCarameloEnCoordenadaCasoVacio(){
-		t.bajarCarameloEnCoordenada(cor5);
-		String col = t.colorCarameloEn(cor5);
-		Assert.assertEquals("Verde", col);
+	public void testBajarCaramelosEnColumnaCasoLleno3(){
+		t.bajarCaramelosEnColumna(2);
+		String col0 = t.colorCarameloEn(cor02);
+		String col1 = t.colorCarameloEn(cor12);
+		String col2 = t.colorCarameloEn(cor22);
+		Assert.assertEquals("Rojo", col0);
+		Assert.assertEquals("Rojo", col1);
+		Assert.assertEquals("Verde", col2);
 	}
 	
+	public void testBajarCaramelosEnColumnaCasoVacio(){
+		t.bajarCaramelosEnColumna(4);
+		String col0 = t.colorCarameloEn(cor04);
+		String col1 = t.colorCarameloEn(cor14);
+		String col2 = t.colorCarameloEn(cor24);
+		Assert.assertEquals("Verde", col0);
+		Assert.assertEquals("Verde", col1);
+		Assert.assertEquals("Verde", col2);
+	}
 	
+	public void testBajarCaramelosEnColumnaCasoMixto(){
+		t.bajarCaramelosEnColumna(3);
+		String col0 = t.colorCarameloEn(cor03);
+		String col1 = t.colorCarameloEn(cor13);
+		String col2 = t.colorCarameloEn(cor23);
+		Assert.assertEquals("Verde", col0);
+		Assert.assertEquals("Verde", col1);
+		Assert.assertEquals("Rojo", col2);
+	}
 	
-	
+	public void testBajarCaramelos(){
+	/*	t.bajarCaramelos();
+		String col00 = t.colorCarameloEn(cor00);
+		String col01 = t.colorCarameloEn(cor01);
+		String col02 = t.colorCarameloEn(cor02);
+		String col03 = t.colorCarameloEn(cor03);
+		String col04 = t.colorCarameloEn(cor04);
+		String col10 = t.colorCarameloEn(cor10);
+		String col11 = t.colorCarameloEn(cor11);
+		String col12 = t.colorCarameloEn(cor12);
+		String col13 = t.colorCarameloEn(cor13);
+		String col14 = t.colorCarameloEn(cor14);
+		String col20 = t.colorCarameloEn(cor20);
+		String col21 = t.colorCarameloEn(cor21);
+		String col22 = t.colorCarameloEn(cor22);
+		String col23 = t.colorCarameloEn(cor23);
+		String col24 = t.colorCarameloEn(cor24);
+		Assert.assertEquals("Rojo", col00);
+		Assert.assertEquals("Verde", col01);
+		Assert.assertEquals("Rojo", col02);
+		Assert.assertEquals("Verde", col03);
+		Assert.assertEquals("Verde", col04);
+		Assert.assertEquals("Rojo", col10);
+		Assert.assertEquals("Verde", col11);
+		Assert.assertEquals("Rojo", col12);
+		Assert.assertEquals("Verde", col13);
+		Assert.assertEquals("Verde", col14);
+		Assert.assertEquals("Verde", col20);
+		Assert.assertEquals("Verde", col21);
+		Assert.assertEquals("Verde", col22);
+		Assert.assertEquals("Rojo", col23);
+		Assert.assertEquals("Verde", col24);
+	*/
+	}
 }
