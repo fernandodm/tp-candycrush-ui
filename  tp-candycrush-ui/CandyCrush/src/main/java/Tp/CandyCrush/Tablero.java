@@ -93,12 +93,47 @@ public class Tablero {
 	 * @param y
 	 * @param mov
 	 */
+<<<<<<< .mine
+
+public void moverCaramelo(int x, int y, Movimiento movimiento){
+		int x1= movimiento.coordenadaMovimiento(x, y);
+		int y1= movimiento.coordenadaMovimiento(x, y);
+		
+		if(this.incluidoEnTablero(x1, y1)) //chequear posibles explosiones
+=======
+	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento, Explosion exp){
+=======
 	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento, Explosion exp) throws ExcepcionNoGeneroExplosion{
+>>>>>>> .r86
 		Coordenada vecino= movimiento.coordenadaMovimiento(c);
 		if(this.incluidoEnTablero(vecino) && !this.sonDelMismoColor(c, vecino))
+
 		{
+<<<<<<< .mine
+
+			movimiento.realizar(x, y);
+			// REFACTORING!!!
+			if(Explosion.explotaHorizontal(this, x, y))
+			Explosion.propagarExplosion(this, x, y, new Arriba(), new Abajo());
+			
+			if(Explosion.explotaVertical(this, x, y))
+			Explosion.propagarExplosion(this, x, y, new Izquierda(), new Derecha());
+			
+			if(Explosion.explotaHorizontal(this, x1, y1))
+			Explosion.propagarExplosion(this, x1, y1, new Arriba(), new Abajo());
+			if(Explosion.explotaVertical(this, x1, y1))
+			Explosion.propagarExplosion(this, x1, y1, new Izquierda(), new Derecha());
+			
+			Explosion.bajarCaramelos(this);
+			Explosion.explosionesEnCadena(this);
+
+			Caramelo.swapCaramelos(this, c, vecino);
+=======
 			this.swapCaramelos(c, vecino);
+>>>>>>> .r86
 			this.chequearYExplotar(c, vecino, exp);
+
+			this.getUnNivel().actualizarObjetivos();
 		}
 		else
 		{	
@@ -133,11 +168,34 @@ public class Tablero {
 	 * la lista de movimientos. Si la posición se sale del tablero devuelve " ".
 
 	 */
+
+
+
+    //public void explosionesEnCadena(){
+    	//Caramelo[][] actual= this[1][1];
+		//for(int x1 = 0; x1 < alto; x++){
+			//for(int y1 = 0; y1 < ancho; y++){
+				//if(generaExplosion(x1, y1)){
+					//this.propagarExplosion(x1, y1);
+					//this.bajarCaramelos();
+					//this.explosionesEnCadena();
+				//}
+			//}
+    	 //}
+    //}
+  
+
+    //public String colorCarameloEn(Tablero t, Coordenada c, List<Movimiento> mov) {
+		//Coordenada aux= Coordenada.coordenadaResultante(c, mov); 
+		//return (this.incluidoEnTablero(aux))? 
+			//	t.getCaramelos()[aux.getColumna()][aux.getFila()].getColor(): " ";
+//	}
+
     public String colorCarameloEn(Coordenada c) { 
 		return (this.incluidoEnTablero(c))? 
 				this.getCaramelos()[c.getFila()][c.getColumna()].getColor(): " ";
     }
-	
+
     /**
      * @param c
      * @return devuelve true si la coordenada c esta contenida en el tablero

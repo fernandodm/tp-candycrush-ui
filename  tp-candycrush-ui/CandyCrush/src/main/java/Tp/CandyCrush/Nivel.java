@@ -60,6 +60,10 @@ public class Nivel {
 	public int getPuntajeMinimo() {
 		return puntajeMinimo;
 	}
+	
+	public boolean perdio(){
+		return (this.getCantidadMovimientos() < 0);
+	}
 
 	public void setPuntajeMinimo(int puntajeMinimo) {
 		
@@ -150,6 +154,7 @@ public class Nivel {
 			each.actualizarObjetivo(exp);
 		}
 		this.setPuntaje(this.getPuntaje() + (10 * exp.getCantidad()));
+		this.complete();
 		
 	}
 
