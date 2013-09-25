@@ -32,7 +32,9 @@ public abstract class TipoDeExplosion {
 		}
 	}
 	
-	public void notificarExplosion(Explosion exp){
-		//TODO este metodo manda a los objetivos una nueva explosion
+	public void notificarExplosion(Explosion exp, Tablero t){
+		for(Objetivo each : t.getNivel().getObjetivos()){
+			each.actualizarObjetivo(exp);
+		}
 	}
 }

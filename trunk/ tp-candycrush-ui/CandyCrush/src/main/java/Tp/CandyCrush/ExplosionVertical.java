@@ -13,7 +13,7 @@ public class ExplosionVertical extends TipoDeExplosion {
 		car.add(c);
 		this.propagarHacia(t, c, exp, car, new Arriba());
 		this.propagarHacia(t, c, exp, car, new Abajo());
-        this.notificarExplosion(exp);
+        this.notificarExplosion(exp, t);
         this.explotarCaramelos(t, car);
 	}
 
