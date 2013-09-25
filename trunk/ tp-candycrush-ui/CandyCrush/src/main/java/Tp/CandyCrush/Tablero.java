@@ -94,7 +94,7 @@ public class Tablero {
 		Coordenada vecino= movimiento.coordenadaMovimiento(c);
 		if(this.incluidoEnTablero(vecino) && !this.sonDelMismoColor(c, vecino))
 		{
-			Caramelo.swapCaramelos(this, c, vecino);
+			this.swapCaramelos(c, vecino);
 			this.chequearYExplotar(c, vecino, exp);
 		}
 		else
@@ -111,16 +111,16 @@ public class Tablero {
 	 * @param c
 	 * @param vecino
 	 */
-	private void chequearYExplotar(Coordenada c, Coordenada vecino, Explosion exp) {
+	private void chequearYExplotar(Coordenada c, Coordenada vecino, Explosion exp) throws ExcepcionNoGeneroExplosion{
 		boolean huboExplosionEnC = exp.generoExplosion(this, c); 
 		boolean huboExplosionEnVecino = exp.generoExplosion(this, vecino);
 		if(huboExplosionEnC || huboExplosionEnVecino){
-			exp.bajarCaramelos(this);
+			this.bajarCaramelos();
 			exp.explosionesEnCadena(this);
 		}
 		else{
-			Caramelo.swapCaramelos(this, c, vecino);
-			//TODO SystemOut mensajeMovimiento sinExplosiones
+			this.swapCaramelos(c, vecino);
+			throw new ExcepcionNoGeneroExplosion();
 		}
 	
 	}
@@ -152,6 +152,88 @@ public class Tablero {
 		return Caramelo.colorCaramelo(this, c1).equals(Caramelo.colorCaramelo(this, c2));
 	}
 
+	public Tablero swapCaramelos(Coordenada c1, Coordenada c2){
+		String col1 = this.colorCarameloEn(c1);
+		String col2 = this.colorCarameloEn(c2);
+		this.getCaramelos()[c1.getFila()][c1.getColumna()].setColor(col2);
+		this.getCaramelos()[c2.getFila()][c2.getColumna()].setColor(col1);
+		return this;
+	}
+	
+    /**
+     * Baja los caramelos en todo el tablero
+     * @param t
+     */
+    public Tablero bajarCaramelos() {
+		for(int i=0; i < this.getAncho(); i++){
+			this.bajarCaramelosEnColumna(i);
+		}
+		return this;
+	}
+    
+    /**
+     * Baja los caramelos en la columna dada
+     * @param t
+     * @param columna
+     */
+    public Tablero bajarCaramelosEnColumna(int columna){
+    	Coordenada c = new Coordenada(this.getAlto(), columna);
+    	Movimiento arriba= new Arriba();
+    	for(int i= this.getAlto()-1; i <= 0; i--){
+    		this.bajarCarameloEnCoordenada(c);
+    		c= arriba.coordenadaMovimiento(c);
+    	}
+    	return this;
+    }
+
+    /**
+     * Baja el caramelo o genera uno nuevo en una coordenada dada 
+     * solo si esta estaba "vacia"
+     * @param c
+     * @return un tablero en donde en la coordenada c hay un caramel
+     */
+    public Tablero bajarCarameloEnCoordenada(Coordenada c){
+    	if(this.colorCarameloEn(c).equals("vacio")){
+    		return this.bajarCarameloODameUnoNuevo(c);
+    	}
+    	return this;
+    }
+    
+    /**
+     * Busca el vecino con caramelo que tenga mas cerca y realiza el 
+     * swap con la coordenada dada si no habia ninguno llama al metodo que genera
+     * un caramelo aleatorio en la coordenada c
+     * @param t
+     * @param c
+     * @return un tablero en donde la coordenada c tiene un caramelo nuevo,
+     * ya sea porque bajo un caramelo de arriba o se genero uno nuevo
+     */
+   public Tablero bajarCarameloODameUnoNuevo(Coordenada c){	
+		Movimiento arriba = new Arriba();
+    	Coordenada vecino= arriba.coordenadaMovimiento(c);
+    	while(this.incluidoEnTablero(vecino))
+    	{
+    		if(this.colorCarameloEn(vecino).equals("vacio")){
+    			vecino = arriba.coordenadaMovimiento(vecino);
+    		}
+    		else{
+    			return this.swapCaramelos(c, vecino);		
+    		}
+    	}
+    	return dameUnCarameloAleatorio(c);
+    }
+	
+	/**
+	 * @param t
+	 * @param c
+	 * @return un tablero en donde se genero un caramelo nuevo donde estaba vacio
+	 */
+	public Tablero dameUnCarameloAleatorio(Coordenada c){
+		Caramelo car = this.getNivel().carameloAleatorio();
+		this.getCaramelos()[c.getFila()][c.getColumna()] = car;
+		return this;
+	}
+	
 	/**
 	 * @param args
 	 */

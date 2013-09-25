@@ -43,91 +43,19 @@ public class Explosion {
 	 * Busca explosiones en todo el tablero y si encuentra una propaga la explosi�n,
 	 * baja los caramelos y hace una llamada recursiva
 	 */
-    public void explosionesEnCadena(Tablero t){
+    public Tablero explosionesEnCadena(Tablero t){
 		for(int x1 = 0; x1 < t.getAlto(); x1++){
 			for(int y1 = 0; y1 < t.getAncho(); y1++){
 				Coordenada c= new Coordenada(x1, y1);
 				if(this.generoExplosion(t, c)){
-					this.bajarCaramelos(t);
-					this.explosionesEnCadena(t);
+					t = t.bajarCaramelos();
+					t = this.explosionesEnCadena(t);
 				}
 			}
          }
+		return t;
     }
-    
-    /**
-     * Baja los caramelos en todo el tablero
-     * @param t
-     */
-    public void bajarCaramelos(Tablero t) {
-		for(int i=0; i < t.getAncho(); i++){
-			this.bajarCaramelosEnColumna(t, i);
-		}
-	}
-    
-    /**
-     * Baja los caramelos en la columna dada
-     * @param t
-     * @param columna
-     */
-    public void bajarCaramelosEnColumna(Tablero t, int columna){
-    	Coordenada c = new Coordenada(t.getAlto(), columna);
-    	Movimiento arriba= new Arriba();
-    	for(int i= t.getAlto()-1; i <= 0; i--){
-    		this.bajarCarameloEnCoordenada(t, c);
-    		c= arriba.coordenadaMovimiento(c);
-    	}
-    }
-
-    /**
-     * Baja el caramelo o genera uno nuevo en una coordenada dada 
-     * solo si esta estaba "vacia"
-     * @param t
-     * @param c
-     */
-    public void bajarCarameloEnCoordenada(Tablero t, Coordenada c){
-    	if(t.colorCarameloEn(c).equals("vacio")){
-    		this.bajarCarameloODameUnoNuevo(t, c);
-    	}
-    }
-    
-    /**
-     * Hace un swap con en vecino mas proximo con caramelo o genera
-     * uno aleatorio
-     * @param t
-     * @param c
-     */
-    private void bajarCarameloODameUnoNuevo(Tablero t, Coordenada c) {
-    	Caramelo car = t.getCaramelos()[c.getFila()][c.getColumna()];
-    	if(! this.intercambioConVecino(t, c)){
-    		car = t.getNivel().carameloAleatorio();
-    	}
-	}
-
-    /**
-     * Busca el vecino con caramelo que tenga mas cerca y realiza el 
-     * swap con la coordenada dada
-     * @param t
-     * @param c
-     * @return dice si encontro un caramelo vecino con caramelo
-     */
-	public boolean intercambioConVecino(Tablero t, Coordenada c){
-    	
-		Movimiento arriba = new Arriba();
-    	Coordenada vecino= arriba.coordenadaMovimiento(c);
-    	while(t.incluidoEnTablero(vecino))
-    	{
-    		if(t.colorCarameloEn(vecino).equals("vacio")){
-    			vecino = arriba.coordenadaMovimiento(vecino);
-    		}
-    		else{
-    			Caramelo.swapCaramelos(t, c, vecino);		
-    			return true;
-    		}
-    	}
-    	return false;
-    }
-    
+	
 	/**
 	 * @param t
 	 * @param c
