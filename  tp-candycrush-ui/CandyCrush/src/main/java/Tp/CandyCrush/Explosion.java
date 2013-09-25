@@ -123,7 +123,7 @@ public class Explosion {
     			loEncontre=true;
     		}
     		else{
-    			new Arriba().coordenadaMovimiento(vecino);
+    			vecino = new Arriba().coordenadaMovimiento(vecino);
     		}
     	}
     	return loEncontre;
