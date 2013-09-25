@@ -96,8 +96,9 @@ public class Tablero {
 	 * @param y
 	 * @param mov
 	 */
-	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento, Explosion exp) throws ExcepcionNoGeneroExplosion{
+	public void moverCarameloSiEsValido(Coordenada c, Movimiento movimiento) throws ExcepcionNoGeneroExplosion{
 		Coordenada vecino= movimiento.coordenadaMovimiento(c);
+		Explosion exp = new Explosion();
 		if(this.incluidoEnTablero(vecino) && !this.sonDelMismoColor(c, vecino))
 		{
 			this.swapCaramelos(c, vecino);
