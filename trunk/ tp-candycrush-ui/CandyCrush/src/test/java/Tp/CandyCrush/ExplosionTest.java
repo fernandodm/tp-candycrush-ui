@@ -89,5 +89,13 @@ public class ExplosionTest extends TestCase {
 		Assert.assertFalse(explosion.explotaHorizontal(t, cor3));
 	}
 	
+	public void testGeneroExplosionCasoTrue(){
+		Assert.assertTrue(explosion.generoExplosion(t, cor));
+	}
+	
+	public void testGeneroExplesionCasoFalse(){
+		Assert.assertFalse(explosion.generoExplosion(t, cor3));
+	}
+	
 	
 }
