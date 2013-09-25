@@ -21,7 +21,6 @@ public class ExplosionTest extends TestCase {
 	private List<Movimiento> vecino2 = new ArrayList<Movimiento>();
 	private Arriba arriba = new Arriba();
 	
-	
 	public void setUp(){
 		explosion = new Explosion(5, "Rojo");
 
@@ -56,8 +55,7 @@ public class ExplosionTest extends TestCase {
 		t.setAlto(3);
 		t.setAncho(5);
 		t.setCaramelos(caramelos);
-
-		
+	
 		when(car1.getColor()).thenReturn("Verde");
 		when(car2.getColor()).thenReturn("Rojo");
 		when(car3.getColor()).thenReturn("vacio");
@@ -105,21 +103,4 @@ public class ExplosionTest extends TestCase {
 		Assert.assertFalse(explosion.generoExplosion(t, cor3));
 	}
 	
-	public void testIntercambioConVecinoCasoTrue(){
-		Coordenada cor4 = new Coordenada(2,3);
-		Assert.assertTrue(explosion.intercambioConVecino(t, cor4));
-	}
-	
-	public void testIntercambioConVecinoCasoFalse(){
-		Coordenada cor5 = new Coordenada(2,4);
-		Assert.assertFalse(explosion.intercambioConVecino(t, cor5));		
-	}
-	
-	public void testBajarCarameloEnCoordenadaCasoIntercambio(){
-		
-	}
-	
-	public void testBajarCarameloEnCoordenadaCasoDameUnoAleatorio(){
-		
-	}
 }
