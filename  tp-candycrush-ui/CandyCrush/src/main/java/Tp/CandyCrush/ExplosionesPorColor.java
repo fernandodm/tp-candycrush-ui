@@ -18,6 +18,7 @@ public class ExplosionesPorColor extends Objetivo {
 		this.cantidad = cantidad;
 	}
 	
+
 	public ExplosionesPorColor(String color, int cantidad){
 		this.setColor(color);
 		this.setCantidad(cantidad);
