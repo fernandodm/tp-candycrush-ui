@@ -193,22 +193,26 @@ public class TableroTest extends TestCase {
 		Assert.assertEquals("Rojo", t.colorCarameloEn(cor01));
 	}
 	
-	public void testBajarCarameloODameUnoNuevoCasoIntercambio(){
-		/*t.bajarCarameloODameUnoNuevo(cor23);
+	public void testBajarLosDeArriba(){
+		t.bajarLosDeArriba(cor23);
 		String col = t.colorCarameloEn(cor23);
 		Assert.assertEquals("Rojo", col);
 	}
 	
-	public void testBajarCarameloODameUnoNuevoCasoDameUnoAleatorio(){
-		t.bajarCarameloODameUnoNuevo(cor24);
+	public void testLLenarConAleatorios(){
+		t.llenarConAleatorios(cor24);
 		String col = t.colorCarameloEn(cor24);
+		String col1 = t.colorCarameloEn(cor14);
+		String col2 = t.colorCarameloEn(cor04);
 		Assert.assertEquals("Verde", col);
+		Assert.assertEquals("Verde", col1);
+		Assert.assertEquals("Verde", col2);
 	}
 	
 	public void testDameUnCarameloAleatorio(){
 		t.dameUnCarameloAleatorio(cor10);
 		String col = t.colorCarameloEn(cor10);
-		Assert.assertEquals("Verde", col);*/
+		Assert.assertEquals("Verde", col);
 	}
 	
 	public void testBajarCaramelosEnColumnaCasoLleno1(){
@@ -261,7 +265,7 @@ public class TableroTest extends TestCase {
 	}
 	
 	public void testBajarCaramelos(){
-	/*	t.bajarCaramelos();
+		t.bajarCaramelos();
 		String col00 = t.colorCarameloEn(cor00);
 		String col01 = t.colorCarameloEn(cor01);
 		String col02 = t.colorCarameloEn(cor02);
@@ -286,12 +290,13 @@ public class TableroTest extends TestCase {
 		Assert.assertEquals("Verde", col11);
 		Assert.assertEquals("Rojo", col12);
 		Assert.assertEquals("Verde", col13);
-		Assert.assertEquals("Verde", col14);
+		Assert.assertEquals("Verde", col14);	
 		Assert.assertEquals("Verde", col20);
 		Assert.assertEquals("Verde", col21);
 		Assert.assertEquals("Verde", col22);
 		Assert.assertEquals("Rojo", col23);
 		Assert.assertEquals("Verde", col24);
-	*/
+		
+	
 	}
 }
