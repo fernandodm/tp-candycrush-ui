@@ -25,6 +25,14 @@ public abstract class Objetivo {
 		this.seCumplio = seCumplio;
 	}
 	
+	public String seCumplioDescripcion(){
+		if(this.isSeCumplio()){
+			return "OK";
+		} else {
+			return " ";
+		}
+	}
+	
 	public abstract void actualizarObjetivo(Explosion exp);
 
 	public abstract String getDescripcion();
