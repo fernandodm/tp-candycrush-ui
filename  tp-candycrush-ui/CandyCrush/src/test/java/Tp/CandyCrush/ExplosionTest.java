@@ -13,9 +13,10 @@ public class ExplosionTest extends TestCase {
 	private Tablero t;
 	private Caramelo car1;
 	private Caramelo car2;
+	private Caramelo car3;
 	private Coordenada cor;
 	private Coordenada cor3;
-	private Caramelo[][] caramelos = new Caramelo [3] [3];
+	private Caramelo[][] caramelos = new Caramelo [3] [5];
 	private List<Movimiento> vecino1 = new ArrayList<Movimiento>();
 	private List<Movimiento> vecino2 = new ArrayList<Movimiento>();
 	private Arriba arriba = new Arriba();
@@ -29,6 +30,7 @@ public class ExplosionTest extends TestCase {
 		
 		car1 = mock(Caramelo.class);
 		car2 = mock(Caramelo.class);
+		car3= mock(Caramelo.class);
 	
 		caramelos [0][0] = car2;
 		caramelos [0][1] = car1;
@@ -39,6 +41,12 @@ public class ExplosionTest extends TestCase {
 		caramelos [2][0] = car1;
 		caramelos [2][1] = car1;
 		caramelos [2][2] = car1;
+		caramelos [0][3] = car2;
+		caramelos [1][3] = car3;
+		caramelos [2][3] = car3;
+		caramelos [0][4] = car3;
+		caramelos [1][4] = car3;
+		caramelos [2][4] = car3;
 		
 		vecino1.add(arriba);
 		vecino2.add(arriba); 
@@ -46,13 +54,13 @@ public class ExplosionTest extends TestCase {
 		
 		t = new Tablero();
 		t.setAlto(3);
-		t.setAncho(3);
+		t.setAncho(5);
 		t.setCaramelos(caramelos);
 
 		
 		when(car1.getColor()).thenReturn("Verde");
 		when(car2.getColor()).thenReturn("Rojo");
-
+		when(car3.getColor()).thenReturn("vacio");
 	}
 	
 	public void testConstructor(){
@@ -97,5 +105,21 @@ public class ExplosionTest extends TestCase {
 		Assert.assertFalse(explosion.generoExplosion(t, cor3));
 	}
 	
+	public void testIntercambioConVecinoCasoTrue(){
+		Coordenada cor4 = new Coordenada(2,3);
+		Assert.assertTrue(explosion.intercambioConVecino(t, cor4));
+	}
 	
+	public void testIntercambioConVecinoCasoFalse(){
+		Coordenada cor5 = new Coordenada(2,4);
+		Assert.assertFalse(explosion.intercambioConVecino(t, cor5));		
+	}
+	
+	public void testBajarCarameloEnCoordenadaCasoIntercambio(){
+		
+	}
+	
+	public void testBajarCarameloEnCoordenadaCasoDameUnoAleatorio(){
+		
+	}
 }
