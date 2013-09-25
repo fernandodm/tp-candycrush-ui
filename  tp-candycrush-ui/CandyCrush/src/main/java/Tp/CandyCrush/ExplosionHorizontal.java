@@ -7,7 +7,7 @@ public class ExplosionHorizontal extends TipoDeExplosion {
 
 	@Override
 	public void propagarExplosion(Tablero t, Coordenada c) {
-		String color = Caramelo.colorCaramelo(t, c);
+		String color = t.colorCarameloEn(c);
 		Explosion exp = new Explosion(1, color); 
 		List<Coordenada> car= new ArrayList<Coordenada>();
 		car.add(c);
