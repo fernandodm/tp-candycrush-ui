@@ -175,11 +175,10 @@ public class Tablero {
      * @param t
      */
     public Tablero bajarCaramelos() {
-    	Tablero t = this;
-		for(int i=0; i < t.getAncho(); i++){
-			t.bajarCaramelosEnColumna(1);
+		for(int j=0; j < this.getAncho()-1; j++){	
+			bajarCaramelosEnColumna(j);
 		}
-		return t;
+		return this;
 	}
     
     /**
@@ -192,55 +191,53 @@ public class Tablero {
         	Tablero tab = this;
         	Coordenada c = new Coordenada(tab.getAlto()-1, columna);
         	Movimiento arriba= new Arriba();
-        	while(tab.hayQueBajarCaramelos(columna)){
-     		   if(! tab.hayCaramelo(c)){
-     			   tab.bajarCarameloODameUnoNuevo(c);
-     		   }
-     		   c= arriba.coordenadaMovimiento(c);
+        	if(tab.hayVecinoParaIntercambiar(c)){
+        		while(tab.hayVecinoParaIntercambiar(c)){
+        			tab.bajarLosDeArriba(c);
+        			c= arriba.coordenadaMovimiento(c);
+        		}
+        		return tab.llenarConAleatorios(c);
         	}
-    	return tab;
-    	}
+        	else{
+        		return tab.llenarConAleatorios(c);
+        	}
+        	}
     	return this;
     }
     
     /**
-     * Busca el vecino con caramelo que tenga mas cerca y realiza el 
-     * swap con la coordenada dada si no habia ninguno llama al metodo que genera
-     * un caramelo aleatorio en la coordenada c
-     * @param t
      * @param c
-     * @return un tablero en donde la coordenada c tiene un caramelo nuevo,
-     * ya sea porque bajo un caramelo de arriba o se genero uno nuevo
+     * @return un tablero en donde se bajaron todos los caramelos arriba de c
      */
-   public Tablero bajarCarameloODameUnoNuevo(Coordenada c){	
-       Movimiento arriba = new Arriba();
- 	   Coordenada cor= arriba.coordenadaMovimiento(c);
- 	   Tablero t = this;
- 	   while(t.incluidoEnTablero(cor)){
- 		   if(t.hayCaramelo(cor)){
- 			   return t.swapCaramelos(c, cor);
- 		   }
-		   cor = arriba.coordenadaMovimiento(cor);
- 	   }
-	   return t.dameUnCarameloAleatorio(c);
-	  
-   	}
-	
-   	/**
-   	 * @param c
-   	 * @return un tablero en donde se intercambiaron los caramelos de c y el 
-   	 * vecino no vacio mas cercano
-   	 */
-  /* 	public Tablero intercambiarConVecino(Coordenada c){
- 	   Movimiento arriba = new Arriba();
- 	   Coordenada cor= arriba.coordenadaMovimiento(c);
- 	   Tablero t = this;
- 	   while(t.incluidoEnTablero(cor) && !t.hayCaramelo(cor)){
- 			   cor = arriba.coordenadaMovimiento(cor);
- 	   }
- 	   return t.swapCaramelos(c, cor);
-   	}*/
-   	
+    public Tablero bajarLosDeArriba(Coordenada c){
+    	Movimiento arriba = new Arriba();
+   	    Coordenada cor= arriba.coordenadaMovimiento(c);
+   	    Tablero t = this;
+   	    while(t.incluidoEnTablero(cor)){
+   		   if(t.hayCaramelo(cor)){
+   			   return t.swapCaramelos(c, cor);
+   		   }
+  		   cor = arriba.coordenadaMovimiento(cor);
+   	   }
+  	   return t;
+    }
+    
+    /**
+     * @param c
+     * @return un tablero en donde se completo con caramelos aleatorios a partir 
+     * de la coordenada c
+     */
+    public Tablero llenarConAleatorios(Coordenada c){
+    	Tablero tab = this;
+    	Coordenada cor = c;
+    	Movimiento arriba= new Arriba();
+    	while(tab.incluidoEnTablero(cor)){
+    		tab.dameUnCarameloAleatorio(cor);
+    		 cor= arriba.coordenadaMovimiento(cor);
+    	}
+    	return tab;
+    }
+    
 	/**
 	 * @param t
 	 * @param c
@@ -280,7 +277,7 @@ public class Tablero {
     		if(this.hayCaramelo(c1)){
     			return true;
     		}
-    		c= arriba.coordenadaMovimiento(c);
+    		c1= arriba.coordenadaMovimiento(c1);
     	}
     	return false;
     }
