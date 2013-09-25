@@ -20,6 +20,8 @@ public class ExplosionTest extends TestCase {
 	private List<Movimiento> vecino1 = new ArrayList<Movimiento>();
 	private List<Movimiento> vecino2 = new ArrayList<Movimiento>();
 	private Arriba arriba = new Arriba();
+	private List<Objetivo> objetivos = new ArrayList<Objetivo>();
+	private Nivel nivel;
 	
 	public void setUp(){
 		explosion = new Explosion(5, "Rojo");
@@ -51,11 +53,15 @@ public class ExplosionTest extends TestCase {
 		vecino2.add(arriba); 
 		vecino2.add(arriba);
 		
+		nivel = mock(Nivel.class);
+		
 		t = new Tablero();
 		t.setAlto(3);
 		t.setAncho(5);
 		t.setCaramelos(caramelos);
-	
+		t.setNivel(nivel);
+		
+		when(nivel.getObjetivos()).thenReturn(objetivos);
 		when(car1.getColor()).thenReturn("Verde");
 		when(car2.getColor()).thenReturn("Rojo");
 		when(car3.getColor()).thenReturn("vacio");
