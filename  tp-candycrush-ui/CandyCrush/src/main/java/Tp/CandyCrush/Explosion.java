@@ -2,9 +2,6 @@ package Tp.CandyCrush;
 
 
 import java.util.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Explosion {
 
@@ -101,8 +98,9 @@ public class Explosion {
      * @param c
      */
     private void bajarCarameloODameUnoNuevo(Tablero t, Coordenada c) {
+    	Caramelo car = t.getCaramelos()[c.getFila()][c.getColumna()];
     	if(! this.intercambioConVecino(t, c)){
-    		this.dameUnCarameloNuevo(t, c);
+    		car = t.getNivel().carameloAleatorio();
     	}
 	}
 
@@ -115,27 +113,19 @@ public class Explosion {
      */
 	public boolean intercambioConVecino(Tablero t, Coordenada c){
     	
-    	Coordenada vecino= new Arriba().coordenadaMovimiento(c);
-    	boolean loEncontre= false;
-    	while(t.incluidoEnTablero(vecino) && !loEncontre){
-    		if(! t.getCaramelos()[vecino.getFila()][vecino.getColumna()].getColor().equals("vacio")){
-    			Caramelo.swapCaramelos(t, c, vecino);
-    			loEncontre=true;
+		Movimiento arriba = new Arriba();
+    	Coordenada vecino= arriba.coordenadaMovimiento(c);
+    	while(t.incluidoEnTablero(vecino))
+    	{
+    		if(t.colorCarameloEn(vecino).equals("vacio")){
+    			vecino = arriba.coordenadaMovimiento(vecino);
     		}
     		else{
-    			vecino = new Arriba().coordenadaMovimiento(vecino);
+    			Caramelo.swapCaramelos(t, c, vecino);		
+    			return true;
     		}
     	}
-    	return loEncontre;
-    }
-    
-	/**
-	 * Genera un caramelo aleatorio en la coordenada c
-	 * @param t
-	 * @param c
-	 */
-    public void dameUnCarameloNuevo(Tablero t, Coordenada c){
-    	t.getCaramelos()[c.getFila()][c.getColumna()] = t.getNivel().carameloAleatorio();
+    	return false;
     }
     
 	/**
@@ -238,4 +228,14 @@ public class Explosion {
 		}
 		return exp;
 	}
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
 }
