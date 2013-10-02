@@ -193,98 +193,93 @@ public class TableroTest extends TestCase {
 		Assert.assertEquals("Rojo", t.colorCarameloEn(cor01));
 	}
 	
-	public void testBajarLosDeArriba(){
-		t.bajarLosDeArriba(cor23);
-		String col = t.colorCarameloEn(cor23);
-		Assert.assertEquals("Rojo", col);
+	public void testTraerVecinoA(){
+		String [] cols = new String[3]; 
+		cols[0] = "Rojo";
+		cols[1] = "vacio";
+		cols[2] = "vacio";
+		String esperado = t.traerVecinoA(cols, 2);
+		Assert.assertEquals(esperado, cols[2]);
 	}
 	
-	public void testLLenarConAleatorios(){
-		t.llenarConAleatorios(cor24);
-		String col = t.colorCarameloEn(cor24);
-		String col1 = t.colorCarameloEn(cor14);
-		String col2 = t.colorCarameloEn(cor04);
-		Assert.assertEquals("Verde", col);
-		Assert.assertEquals("Verde", col1);
-		Assert.assertEquals("Verde", col2);
+	public void testDejarVacioArriba(){
+		String [] cols = new String[3]; 
+		cols[0] = "Rojo";
+		cols[1] = "vacio";
+		cols[2] = "vacio";
+		cols = t.dejarVaciosArriba(cols);
+		Assert.assertEquals("Rojo", cols[2]);
+		Assert.assertEquals("vacio", cols[1]);
+		Assert.assertEquals("vacio", cols[0]);
 	}
 	
-	public void testDameUnCarameloAleatorio(){
-		t.dameUnCarameloAleatorio(cor10);
-		String col = t.colorCarameloEn(cor10);
-		Assert.assertEquals("Verde", col);
+	/*public void testHayVecinoParaIntercambiarCasoTrue(){
+		Assert.assertTrue(t.hayVecinoParaIntercambiar(cor23) && t.hayVecinoParaIntercambiar(cor11));
 	}
 	
-	public void testBajarCaramelosEnColumnaCasoLleno1(){
-		t.bajarCaramelosEnColumna(0);
-		String col0 = t.colorCarameloEn(cor00);
-		String col1 = t.colorCarameloEn(cor10);
-		String col2 = t.colorCarameloEn(cor20);
-		Assert.assertEquals("Rojo", col0);
-		Assert.assertEquals("Rojo", col1);
-		Assert.assertEquals("Verde", col2);
-	}
-	public void testBajarCaramelosEnColumnaCasoLleno2(){
-		t.bajarCaramelosEnColumna(1);
-		String col0 = t.colorCarameloEn(cor01);
-		String col1 = t.colorCarameloEn(cor11);
-		String col2 = t.colorCarameloEn(cor21);
-		Assert.assertEquals("Verde", col0);
-		Assert.assertEquals("Verde", col1);
-		Assert.assertEquals("Verde", col2);
+	public void testHayVecinoParaIntercambiarCasoFalse(){
+		Assert.assertFalse(t.hayVecinoParaIntercambiar(cor13) && t.hayVecinoParaIntercambiar(cor24));
+	}*/
+	
+	public void testLlenarConAleatorios(){
+		String [] cols = new String[3]; 
+		cols[0] = "vacio";
+		cols[1] = "vacio";
+		cols[2] = "vacio";
+		cols = t.llenarConAleatorios(cols);
+		Assert.assertEquals("Verde", cols[2]);
+		Assert.assertEquals("Verde", cols[1]);
+		Assert.assertEquals("Verde", cols[0]);
 	}
 	
-	public void testBajarCaramelosEnColumnaCasoLleno3(){
-		t.bajarCaramelosEnColumna(2);
-		String col0 = t.colorCarameloEn(cor02);
-		String col1 = t.colorCarameloEn(cor12);
-		String col2 = t.colorCarameloEn(cor22);
-		Assert.assertEquals("Rojo", col0);
-		Assert.assertEquals("Rojo", col1);
-		Assert.assertEquals("Verde", col2);
-	}
-	
-	public void testBajarCaramelosEnColumnaCasoVacio(){
-		t.bajarCaramelosEnColumna(4);
-		String col0 = t.colorCarameloEn(cor04);
-		String col1 = t.colorCarameloEn(cor14);
-		String col2 = t.colorCarameloEn(cor24);
-		Assert.assertEquals("Verde", col0);
-		Assert.assertEquals("Verde", col1);
-		Assert.assertEquals("Verde", col2);
-	}
-	
-	public void testBajarCaramelosEnColumnaCasoMixto(){
+	public void testBajarCaramelosEnColumnaCol3(){
 		t.bajarCaramelosEnColumna(3);
-		String col0 = t.colorCarameloEn(cor03);
-		String col1 = t.colorCarameloEn(cor13);
-		String col2 = t.colorCarameloEn(cor23);
-		Assert.assertEquals("Verde", col0);
-		Assert.assertEquals("Verde", col1);
-		Assert.assertEquals("Rojo", col2);
+		String col03 = t.colorCarameloEn(cor03);
+		String col13 = t.colorCarameloEn(cor13);
+		String col23 = t.colorCarameloEn(cor23);
+		Assert.assertEquals("Verde", col03);
+		Assert.assertEquals("Verde", col13);
+		Assert.assertEquals("Rojo", col23);
 	}
+	
+	public void testBajarCaramelosEnColumnaCol4(){
+		t.bajarCaramelosEnColumna(4);
+		String col04 = t.colorCarameloEn(cor04);
+		String col14 = t.colorCarameloEn(cor14);
+		String col24 = t.colorCarameloEn(cor24);
+		Assert.assertEquals("Verde", col04);
+		Assert.assertEquals("Verde", col14);
+		Assert.assertEquals("Verde", col24);
+	}
+	
 	
 	public void testBajarCaramelos(){
-	/*	t.bajarCaramelos();
-		String col00 = t.colorCarameloEn(cor00);
-		String col01 = t.colorCarameloEn(cor01);
-		String col02 = t.colorCarameloEn(cor02);
-		String col03 = t.colorCarameloEn(cor03);
-		String col04 = t.colorCarameloEn(cor04);
-		String col10 = t.colorCarameloEn(cor10);
-		String col11 = t.colorCarameloEn(cor11);
-		String col12 = t.colorCarameloEn(cor12);
-		String col13 = t.colorCarameloEn(cor13);
-		String col14 = t.colorCarameloEn(cor14);
-		String col20 = t.colorCarameloEn(cor20);
-		String col21 = t.colorCarameloEn(cor21);
-		String col22 = t.colorCarameloEn(cor22);
-		String col23 = t.colorCarameloEn(cor23);
-		String col24 = t.colorCarameloEn(cor24);
+	/*	List<Coordenada> coors = new ArrayList<Coordenada>();
+		coors.add(cor04); coors.add(cor13); 
+		coors.add(cor14);
+		coors.add(cor23); 
+		coors.add(cor24);;
+		Tablero t1 = t.bajarCaramelos(coors);
+		String col00 = t1.colorCarameloEn(cor00);
+		String col01 = t1.colorCarameloEn(cor01);
+		String col02 = t1.colorCarameloEn(cor02);
+		String col03 = t1.colorCarameloEn(cor03);
+		String col04 = t1.colorCarameloEn(cor04);
+		String col10 = t1.colorCarameloEn(cor10);
+		String col11 = t1.colorCarameloEn(cor11);
+		String col12 = t1.colorCarameloEn(cor12);
+		String col13 = t1.colorCarameloEn(cor13);
+		String col14 = t1.colorCarameloEn(cor14);
+		String col20 = t1.colorCarameloEn(cor20);
+		String col21 = t1.colorCarameloEn(cor21);
+		String col22 = t1.colorCarameloEn(cor22);
+		String col23 = t1.colorCarameloEn(cor23);
+		String col24 = t1.colorCarameloEn(cor24);
 		Assert.assertEquals("Rojo", col00);
 		Assert.assertEquals("Verde", col01);
 		Assert.assertEquals("Rojo", col02);
 		Assert.assertEquals("Verde", col03);
+	//	Assert.assertEquals("Rojo", col03); //
 		Assert.assertEquals("Verde", col04);
 		Assert.assertEquals("Rojo", col10);
 		Assert.assertEquals("Verde", col11);
@@ -293,8 +288,8 @@ public class TableroTest extends TestCase {
 		Assert.assertEquals("Verde", col14);	
 		Assert.assertEquals("Verde", col20);
 		Assert.assertEquals("Verde", col21);
-		Assert.assertEquals("Verde", col22);
 		Assert.assertEquals("Rojo", col23);
+	//	Assert.assertEquals("Verde", col23); //
 		Assert.assertEquals("Verde", col24);*/
 		
 	
