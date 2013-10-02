@@ -122,7 +122,7 @@ public class Tablero {
 		boolean huboExplosionEnC = exp.generoExplosion(this, c); 
 		boolean huboExplosionEnVecino = exp.generoExplosion(this, vecino);
 		if(huboExplosionEnC || huboExplosionEnVecino){
-			this.bajarCaramelos();
+			//this.bajarCaramelos();
 			exp.explosionesEnCadena(this);
 		}
 		else{
@@ -166,25 +166,35 @@ public class Tablero {
 	 * @return un tablero en donde se intercambiarion los caramelos de c1 y c2
 	 */
 	public Tablero swapCaramelos(Coordenada c1, Coordenada c2){
-		Tablero t = this;
-		String col1 = t.colorCarameloEn(c1);
-		String col2 = t.colorCarameloEn(c2);
-		t.getCaramelos()[c1.getFila()][c1.getColumna()].setColor(col2);
-		t.getCaramelos()[c2.getFila()][c2.getColumna()].setColor(col1);
-		return t;
+		String col1 = this.colorCarameloEn(c1);
+		String col2 = this.colorCarameloEn(c2);
+		this.getCaramelos()[c1.getFila()][c1.getColumna()].setColor(col2);
+		this.getCaramelos()[c2.getFila()][c2.getColumna()].setColor(col1);
+		return this;
 	}
 	
     /**
      * Baja los caramelos en todo el tablero
      * @param t
      */
-    public Tablero bajarCaramelos() {
-		Tablero t = this;
-    	for(int j = this.getAncho()-1 ; j <= 0; j--){	
-			t.bajarCaramelosEnColumna(j);
+    public Tablero bajarCaramelos(List<Coordenada> cs) {
+		List<Coordenada> ord = Coordenada.ordenarParaRellenar(cs);
+    	Tablero t = this;
+		for(Coordenada each : ord){
+				t = t.bajarDeArribaOAleatorio(each);
 		}
 		return t;
 	}
+    
+    /**
+     * @param c
+     * @return si hay un vecino con caramelo arriba de c lo baja hasta c, caso contrario pone un
+     * caramelo aleatorio en c
+     */
+    public Tablero bajarDeArribaOAleatorio(Coordenada c){
+    	Tablero t = this;
+    	return (t.hayVecinoParaIntercambiar(c)) ? t.bajarLosDeArriba(c) : t.dameUnCarameloAleatorio(c);
+    }
     
     /**
      * Baja los caramelos en la columna dada
@@ -237,8 +247,8 @@ public class Tablero {
     	Coordenada cor = c;
     	Movimiento arriba= new Arriba();
     	while(tab.incluidoEnTablero(cor)){
-    		tab.dameUnCarameloAleatorio(cor);
-    		 cor= arriba.coordenadaMovimiento(cor);
+    		tab = tab.dameUnCarameloAleatorio(cor);
+    		cor= arriba.coordenadaMovimiento(cor);
     	}
     	return tab;
     }
