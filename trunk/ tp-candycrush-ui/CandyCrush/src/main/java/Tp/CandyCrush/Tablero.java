@@ -284,7 +284,7 @@ public class Tablero {
     	int i = col.length - 1;
     	while(i>-1){
     		if(col[i] == "vacio"){
-    			String color = "Verde";//this.getNivel().carameloAleatorio().getColor();
+    			String color = this.getNivel().carameloAleatorio().getColor();
     			col[i] = color;
     		}
     		i--;
