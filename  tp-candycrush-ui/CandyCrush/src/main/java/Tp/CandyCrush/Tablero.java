@@ -178,10 +178,10 @@ public class Tablero {
      * @param t
      */
     public Tablero bajarCaramelos(List<Coordenada> cs) {
-		List<Coordenada> ord = Coordenada.ordenarParaRellenar(cs);
+		int[] col = Coordenada.columnasARevisar(cs);
     	Tablero t = this;
-		for(Coordenada each : ord){
-				t = t.bajarDeArribaOAleatorio(each);
+		for(int i=0; i < col.length-1; i++){	
+			t = t.bajarCaramelosEnColumna(col[i]);
 		}
 		return t;
 	}
@@ -191,9 +191,10 @@ public class Tablero {
      * @return si hay un vecino con caramelo arriba de c lo baja hasta c, caso contrario pone un
      * caramelo aleatorio en c
      */
-    public Tablero bajarDeArribaOAleatorio(Coordenada c){
+ /*   public Tablero bajarDeArribaOAleatorio(Coordenada c){
     	Tablero t = this;
-    	return (t.hayVecinoParaIntercambiar(c)) ? t.bajarLosDeArriba(c) : t.dameUnCarameloAleatorio(c);
+    	return	t.dameUnCarameloAleatorio(c);
+    			//(t.hayVecinoParaIntercambiar(c)) ? t.bajarLosDeArriba(c) : t.dameUnCarameloAleatorio(c);
     }
     
     /**
@@ -201,7 +202,7 @@ public class Tablero {
      * @param t
      * @param columna
      */
-    public Tablero bajarCaramelosEnColumna(int columna){
+  /*  public Tablero bajarCaramelosEnColumna(int columna){
     	if(this.hayQueBajarCaramelos(columna)){
         	Tablero tab = this;
         	Coordenada c = new Coordenada(tab.getAlto()-1, columna);
@@ -218,58 +219,131 @@ public class Tablero {
         	}
         	}
     	return this;
-    }
+    }*/
     
     /**
      * @param c
      * @return un tablero en donde se bajaron todos los caramelos arriba de c
      */
-    public Tablero bajarLosDeArriba(Coordenada c){
+   /* public Tablero bajarLosDeArriba(Coordenada c){
     	Movimiento arriba = new Arriba();
    	    Coordenada cor= arriba.coordenadaMovimiento(c);
-   	    Tablero t = this;
-   	    while(t.incluidoEnTablero(cor)){
-   		   if(t.hayCaramelo(cor)){
-   			   return t.swapCaramelos(c, cor);
+   	    while(this.incluidoEnTablero(cor)){
+   		   if(this.hayCaramelo(cor)){
+   			   this.swapCaramelos(c, cor);
+   			   return this;
    		   }
   		   cor = arriba.coordenadaMovimiento(cor);
    	   }
-  	   return t;
+  	   return this;
+    }*/
+    
+    /**
+     * @param columna
+     * @return un tablero en donde se bajaron los caramelos en la columna 
+     */
+    public Tablero bajarCaramelosEnColumna(int columna){
+    	Tablero t = this;
+    	String[] col = t.arrayDeColumna(columna);
+    	col = this.dejarVaciosArriba(col);
+    	col = this.llenarConAleatorios(col);
+    	t = t.reinsertarColumna(col, columna);
+    	return t;
+    }
+    
+    /** 
+     * @param col
+     * @param columna
+     * @return baja los caramelos en la columna
+     */
+    public Tablero reinsertarColumna(String[] col, int columna){
+    	Tablero t = this;
+    	for(int i=0; i < col.length-1; i++){
+    		t.getCaramelos()[i][columna].setColor(col[i]);
+    	} 	
+    	return t;
     }
     
     /**
-     * @param c
-     * @return un tablero en donde se completo con caramelos aleatorios a partir 
-     * de la coordenada c
+     * @param columna
+     * @return un array con los colores de los caramelos en la columna
      */
-    public Tablero llenarConAleatorios(Coordenada c){
-    	Tablero tab = this;
-    	Coordenada cor = c;
-    	Movimiento arriba= new Arriba();
-    	while(tab.incluidoEnTablero(cor)){
-    		tab = tab.dameUnCarameloAleatorio(cor);
-    		cor= arriba.coordenadaMovimiento(cor);
+    public String[] arrayDeColumna(int columna){
+    	String[] col = new String[this.getAlto()];
+    	for(int i=0; i < col.length-1; i++){
+    		col[i] = this.getCaramelos()[i][columna].getColor();
     	}
-    	return tab;
+    	return col;
     }
+    
+    /**
+     * @param col
+     * @return un array de colores donde se "llenaron" los espacios vacios
+     */
+    public String[] llenarConAleatorios(String[] col){
+    	int i = col.length - 1;
+    	while(i>-1){
+    		if(col[i] == "vacio"){
+    			String color = "Verde";//this.getNivel().carameloAleatorio().getColor();
+    			col[i] = color;
+    		}
+    		i--;
+    	}
+    	return col;
+    }
+    
+    /**
+     * @param col
+     * @return un array donde los vacios quedaron arriba
+     */
+    public String[] dejarVaciosArriba(String[] col){
+    	int i = col.length - 1;
+    	while(i>-1){
+    		if(col[i] == "vacio"){
+    			col[i] = this.traerVecinoA(col, i);
+    		}
+    		i--;
+    	}
+    	return col;
+    }
+    
+    /**
+     * @param col
+     * @param celda
+     * @return baja el vecino mas cercano no vacio a la posicion celda del array
+     */
+    public String traerVecinoA(String[] col, int celda) {
+    	boolean noCambio = true;
+    	int vecino = celda-1;
+    	while(noCambio && vecino>-1)
+    	{
+			if(col[vecino] != "vacio"){
+				col[celda] = col[vecino];
+				col[vecino] = "vacio";
+				noCambio = false;
+			}
+			vecino--;
+		}
+		return col[celda];
+	}
     
 	/**
 	 * @param t
 	 * @param c
 	 * @return un tablero en donde se genero un caramelo nuevo donde estaba vacio
 	 */
-	public Tablero dameUnCarameloAleatorio(Coordenada c){
+	/*public Tablero dameUnCarameloAleatorio(Coordenada c){
 		Tablero t = this;
 		Caramelo car = t.getNivel().carameloAleatorio();
 		t.getCaramelos()[c.getFila()][c.getColumna()] = car;
 		return t;
-	}
+	}*/
 	
     /**
      * @param columna
      * @return devuelve true si hay que bajar caramelos en la columna
      */
-    public boolean hayQueBajarCaramelos(int columna){
+  /*  public boolean hayQueBajarCaramelos(int columna){
        	Movimiento arriba= new Arriba();	
        	Coordenada c = new Coordenada(this.getAlto()-1, columna);
     	while(this.incluidoEnTablero(c)){
@@ -279,13 +353,13 @@ public class Tablero {
     		c= arriba.coordenadaMovimiento(c);
     	}
     	return false;
-    }
+    }*/
     
     /**
      * @param c
      * @return devuelve true si hay alguna casilla arriba de c para bajar caramelos
      */
-    public boolean hayVecinoParaIntercambiar(Coordenada c){
+  /*  public boolean hayVecinoParaIntercambiar(Coordenada c){
        	Movimiento arriba= new Arriba();	
        	Coordenada c1 = arriba.coordenadaMovimiento(c);
     	while(this.incluidoEnTablero(c1)){
@@ -295,9 +369,10 @@ public class Tablero {
     		c1= arriba.coordenadaMovimiento(c1);
     	}
     	return false;
-    }
+    }*/
     
-    /**
+
+	/**
      * @param c
      * @return devuelve true si hay un caramelo en c
      */

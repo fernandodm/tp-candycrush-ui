@@ -2,6 +2,7 @@ package Tp.CandyCrush;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Coordenada {
@@ -62,6 +63,24 @@ public class Coordenada {
 		        cs.set(j, tmp);
 		    }	
 		return cs;
+	}
+	
+	/**
+	 * @param cs
+	 * @return un arreglo con las columnas que hay en cs sin repetidos
+	 */
+	public static int[] columnasARevisar(List<Coordenada> cs) {
+		HashSet<Integer> coors = new HashSet<Integer>();
+		for(int i= 0; i< cs.size(); i++){
+			coors.add(cs.get(i).getColumna());
+		}
+		int tam = coors.size();
+		Object[] columnas = coors.toArray();
+		int[] res = new int[tam];
+		for(int i= 0; i< tam; i++){
+			res[i] = (Integer)columnas[i];
+		}
+		return res;
 	}
  	
 }
