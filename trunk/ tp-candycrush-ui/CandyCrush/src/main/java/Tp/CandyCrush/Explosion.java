@@ -48,7 +48,7 @@ public class Explosion {
 			for(int y1 = 0; y1 < t.getAncho(); y1++){
 				Coordenada c= new Coordenada(x1, y1);
 				if(this.generoExplosion(t, c)){
-					t = t.bajarCaramelos();
+				//	t = t.bajarCaramelos();
 					t = this.explosionesEnCadena(t);
 				}
 			}
