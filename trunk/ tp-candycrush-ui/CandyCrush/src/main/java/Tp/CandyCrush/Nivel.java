@@ -14,7 +14,7 @@ public class Nivel {
 	private int puntaje;
 	private Integer puntajeMinimo;
 	private int nroNivel;
-	private Tablero tablero;
+	private Tablero tablero = new Tablero();
 	private String nombre;
 	private Integer cantidadMovimientos;
 	private boolean nivPuedeAgregar;
