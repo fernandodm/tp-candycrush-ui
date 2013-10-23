@@ -8,8 +8,16 @@ public abstract class Objetivo {
 	private boolean seCumplio;
 	private String color;
 	private boolean sePuedeAgregar;
-
+	private Integer id;
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public boolean isSePuedeAgregar() {
 		return sePuedeAgregar;
 	}
@@ -44,6 +52,9 @@ public abstract class Objetivo {
 			return " ";
 		}
 	}
+	
+	public abstract boolean esGrandesExplosiones();
+	public abstract boolean esExplosionesPorColor();	
 	
 	public abstract void actualizarObjetivo(Explosion exp);
 
