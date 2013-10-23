@@ -5,6 +5,7 @@ public class GrandesExplosiones extends Objetivo {
 	private Integer cantidadGrandesExplosiones;
 	
 	public String getDescripcion(){
+		
 		return "Explotar " + getCantidadGrandesExplosiones() + " " + getColor();
 	}
 	
@@ -45,6 +46,18 @@ public class GrandesExplosiones extends Objetivo {
 	public boolean puedeAgregarObjetivo() {
 		return	this.getCantidadGrandesExplosiones() != null &&
 				this.getColor() != null;
+	}
+
+	@Override
+	public boolean esGrandesExplosiones() {
+		
+		return true;
+	}
+
+	@Override
+	public boolean esExplosionesPorColor() {
+		
+		return false;
 	}
 	
 	
