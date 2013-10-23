@@ -52,6 +52,18 @@ public class ExplosionesPorColor extends Objetivo {
 		}
 		this.complete();
 	}
+
+
+	@Override
+	public boolean esGrandesExplosiones() {
+		return false;
+	}
+
+
+	@Override
+	public boolean esExplosionesPorColor() {
+		return true;
+	}
 	
 	
 	
