@@ -58,12 +58,6 @@ public class CoordenadaTest extends TestCase {
 		boolean esperado = ord.get(0) == c3 && ord.get(1) == c2 && ord.get(2) == c5 && ord.get(3) == c4;
 		Assert.assertTrue(esperado);				
 	}
-	
-	public void testJPTuEclipseApesta(){
-		double a = 6.7;
-		double b = 6.7;
-		Assert.assertEquals(a, b);
-	}
-	
+
 }
 
