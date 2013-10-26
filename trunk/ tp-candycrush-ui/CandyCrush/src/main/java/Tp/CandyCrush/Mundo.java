@@ -36,7 +36,7 @@ public class Mundo {
 	public void setCantidadNiveles(int cantidadNiveles) {
 		this.cantidadNiveles = cantidadNiveles;
 	}
-	
+		
 	public void pasarDeNivel(){
 		if (this.estaEnUltimoNivel())
 			this.felicitaciones();
@@ -62,6 +62,5 @@ public class Mundo {
 		niveles.remove(nivelSeleccionado);
 		
 	}
-	
-	
+
 }

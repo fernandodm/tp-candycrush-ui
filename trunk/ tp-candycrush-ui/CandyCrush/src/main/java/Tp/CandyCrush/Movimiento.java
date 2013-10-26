@@ -1,8 +1,20 @@
 package Tp.CandyCrush;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public abstract class Movimiento {
 	private Tablero tablero;
+	private String nombre;
 	
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	public Tablero getTablero() {
 		return tablero;
 	}
