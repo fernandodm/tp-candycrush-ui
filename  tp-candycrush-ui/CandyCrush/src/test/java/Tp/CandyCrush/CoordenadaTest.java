@@ -59,5 +59,11 @@ public class CoordenadaTest extends TestCase {
 		Assert.assertTrue(esperado);				
 	}
 	
+	public void testJPTuEclipseApesta(){
+		double a = 6.7;
+		double b = 6.7;
+		Assert.assertEquals(a, b);
+	}
+	
 }
 
