@@ -9,7 +9,6 @@ public class Partida {
 	private int cantMovimientosFaltantes;
 	private Mundo mundo;
 	private Nivel nivelActual;
-	private Caramelo[][] caramelos; // para la ventana
 	
 	public Nivel getNivelActual() {
 		return nivelActual;
@@ -22,13 +21,6 @@ public class Partida {
 	public Partida(Mundo mund){
 		
 		this.mundo = mund;
-		this.cantMovimientosFaltantes = mund.getNiveles().get(0).getCantidadMovimientos();
-		this.puntaje = mund.getNiveles().get(0).getPuntajeMinimo();
-		this.nivelActual = mund.getNiveles().get(0);
-		nivelActual.getTablero().setAlto(4);
-		nivelActual.getTablero().setAncho(4);
-		nivelActual.getTablero().iniciar();
-		this.caramelos = mund.getNiveles().get(0).getTablero().getCaramelos();
 	} 	
 	public int getPuntaje() {
 		return puntaje;
@@ -47,15 +39,10 @@ public class Partida {
 	}
 	public void setMundo(Mundo mundo) {
 		this.mundo = mundo;
-	}
+	}	
 
-	public Caramelo[][] getCaramelos() {
-		return caramelos;
+	public void pasarNivel(){
+		int index = this.getMundo().getNiveles().indexOf(this.getNivelActual());
+		this.setNivelActual(this.getMundo().getNiveles().get(index + 1));
 	}
-
-	public void setCaramelos(Caramelo[][] caramelos) {
-		this.caramelos = caramelos;
-	}
-	
-	
 }
