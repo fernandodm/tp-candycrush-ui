@@ -13,7 +13,7 @@ public class ExplosionHorizontal extends TipoDeExplosion {
 		car.add(c);
 		this.propagarHacia(t, c, exp, car, new Izquierda());
 		this.propagarHacia(t, c, exp, car, new Derecha());
-        this.notificarExplosion(exp, t);
+        this.notificarExplosion(exp, car, t);
         this.explotarCaramelos(t, car);
 
 	}

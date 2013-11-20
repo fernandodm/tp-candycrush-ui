@@ -1,9 +1,11 @@
 package Tp.CandyCrush;
 
+import java.io.Serializable;
 
 
 
-public class ExplosionesPorColor extends Objetivo {
+
+public class ExplosionesPorColor extends Objetivo implements Serializable{
 
 	private Integer cantidad;
 	

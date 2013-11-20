@@ -15,7 +15,7 @@ public class ExplosionEnCruz extends TipoDeExplosion {
 		this.propagarHacia(t, c, exp, car, new Abajo());
 		this.propagarHacia(t, c, exp, car, new Izquierda());
 		this.propagarHacia(t, c, exp, car, new Derecha());
-        this.notificarExplosion(exp, t);
+        this.notificarExplosion(exp, car, t);
         this.explotarCaramelos(t, car);
 
 	}

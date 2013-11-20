@@ -32,9 +32,10 @@ public abstract class TipoDeExplosion {
 		}
 	}
 	
-	public void notificarExplosion(Explosion exp, Tablero t){
+	public void notificarExplosion(Explosion exp, List<Coordenada> car, Tablero t){
 		for(Objetivo each : t.getNivel().getObjetivos()){
 			each.actualizarObjetivo(exp);
 		}
+		t.getExplosionesARevisar().add(car);
 	}
 }
