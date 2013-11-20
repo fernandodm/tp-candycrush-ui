@@ -1,9 +1,11 @@
 package Tp.CandyCrush;
 
+import java.io.Serializable;
+
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public abstract class Objetivo {
+public abstract class Objetivo implements Serializable{
 
 	private boolean seCumplio;
 	private String color;

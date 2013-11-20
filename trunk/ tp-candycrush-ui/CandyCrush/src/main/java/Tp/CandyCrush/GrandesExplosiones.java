@@ -1,6 +1,8 @@
 package Tp.CandyCrush;
 
-public class GrandesExplosiones extends Objetivo {
+import java.io.Serializable;
+
+public class GrandesExplosiones extends Objetivo implements Serializable{
 
 	private Integer cantidadGrandesExplosiones;
 	

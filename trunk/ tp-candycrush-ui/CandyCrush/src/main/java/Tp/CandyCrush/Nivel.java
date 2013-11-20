@@ -1,12 +1,15 @@
 package Tp.CandyCrush;
 
+import org.uqbar.commons.model.UserException;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Nivel {
+public class Nivel implements Serializable{
 	
 	private Dificultad dificultad;
 	private List<Objetivo> objetivos = new ArrayList<Objetivo>();
@@ -32,7 +35,7 @@ public class Nivel {
 	}
 
 	public void setCantidadMovimientos(Integer cantidadMovimientos) {
-				
+		this.validarCantidadMovimientos(cantidadMovimientos);		
 		this.cantidadMovimientos = cantidadMovimientos;
 	}
 
@@ -69,7 +72,7 @@ public class Nivel {
 	}
 
 	public void setPuntajeMinimo(Integer puntajeMinimo) {
-				
+		this.validarPuntajeMinimo(puntajeMinimo);		
 		this.puntajeMinimo = puntajeMinimo;
 
 	}
@@ -105,7 +108,17 @@ public class Nivel {
 	public void setNroNivel(int nroNivel) {
 		this.nroNivel = nroNivel;
 	}
-
+	
+	public void validarPuntajeMinimo(Integer unPuntaje) {
+		if (unPuntaje < 1) 
+			throw new UserException("El puntaje mínimo debe ser mayor a 0");
+	}
+	
+	public void validarCantidadMovimientos(Integer movimientos){
+		if (movimientos < 1) 
+			throw new UserException("La cantidad de movimientos debe ser mayor a 0");
+	}
+		
 	public Nivel(){
 		nroNivel = GeneradorNroNivel.generar();
 	}

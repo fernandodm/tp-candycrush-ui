@@ -1,5 +1,9 @@
 package Tp.CandyCrush;
 
+import org.uqbar.commons.model.UserException;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import Tp.CandyCrush.Caramelo;
@@ -11,12 +15,13 @@ import org.uqbar.commons.utils.Observable;
 import excepciones.ExcepcionNoGeneroExplosion;
 
 @Observable
-public class Tablero {
+public class Tablero implements Serializable{
 	private Integer alto;
 	private Integer ancho;
 	private Caramelo[][] caramelos; 
 	private Nivel nivel;
 	private boolean tabPuedeAgregar = false; 
+	private List<List<Coordenada>> explosionesARevisar = new ArrayList<List<Coordenada>>();
 	
 	public Tablero(){
 		
@@ -46,9 +51,17 @@ public class Tablero {
 	}
 	
 	public void setAlto(Integer x) {
-		
+		this.validarAlto(x);
 		this.alto = x;		
 	}
+	public List<List<Coordenada>> getExplosionesARevisar() {
+		return explosionesARevisar;
+	}
+
+	public void setExplosionesARevisar(List<List<Coordenada>> explosionesARevisar) {
+		this.explosionesARevisar = explosionesARevisar;
+	}
+
 	
 	public boolean getTabPuedeAgregar() {
 		return tabPuedeAgregar;
@@ -64,13 +77,26 @@ public class Tablero {
 		return ancho;
 	}
 	public void setAncho(Integer x) {
-						
+		this.validarAncho(x);
 		this.ancho = x;
 	}
 
 	public List<Dificultad> getDificultades() {
 		return Dificultad.getDificultades();
 	}
+
+	public void validarAlto(Integer unAlto) {
+		if (unAlto < 3) {
+			throw new UserException("Altura mínima: 3");
+		}
+	}
+	
+	public void validarAncho(Integer unAncho) {
+		if (unAncho < 3) {
+			throw new UserException("Ancho mínimo: 3");
+		}
+	}
+	
 	
 	/**
 	 * Inicia el tablero con los caramelos
@@ -122,7 +148,7 @@ public class Tablero {
 		boolean huboExplosionEnC = exp.generoExplosion(this, c); 
 		boolean huboExplosionEnVecino = exp.generoExplosion(this, vecino);
 		if(huboExplosionEnC || huboExplosionEnVecino){
-			//this.bajarCaramelos();
+			this.llenarHuecos();
 			//exp.explosionesEnCadena(this);
 		}
 		else{
@@ -130,6 +156,21 @@ public class Tablero {
 			throw new ExcepcionNoGeneroExplosion();
 		}
 	
+	}
+
+	public void llenarHuecos() {
+		List<List<Coordenada>> huecos = this.getExplosionesARevisar();
+		for(List<Coordenada> each: huecos){
+			this.llenarEstaExplosion(each);
+		}
+		huecos.removeAll(huecos);
+	}
+
+	private void llenarEstaExplosion(List<Coordenada> explotadas) {
+		for(Coordenada each: explotadas){
+			String color = this.getNivel().carameloAleatorio().getColor();
+			this.cambiarColorCaramelo(each, color);
+		}
 	}
 
 	/**
@@ -140,7 +181,6 @@ public class Tablero {
     public String colorCarameloEn(Coordenada c) { 
 		return (this.incluidoEnTablero(c))? 
 				this.getCaramelos()[c.getFila()][c.getColumna()].getColor(): " ";
-    	//return this.getCaramelos()[c.getFila()][c.getColumna()].getColor();
     }
 	
     /**
@@ -173,23 +213,7 @@ public class Tablero {
 		this.getCaramelos()[c2.getFila()][c2.getColumna()].setColor(col1);
 		return this;
 	}
-	
-    /**
-     * Baja los caramelos en todo el tablero
-     * @param t
-     */
-   /* public Tablero bajarCaramelos() {
-		Tablero t = this;
-    	for(int j = this.getAncho()-1 ; j <= 0; j--){	
-			t.bajarCaramelosEnColumna(j);
-    public Tablero bajarCaramelos(List<Coordenada> cs) {
-		int[] col = Coordenada.columnasARevisar(cs);
-    	Tablero t = this;
-		for(int i=0; i < col.length-1; i++){	
-			t = t.bajarCaramelosEnColumna(col[i]);
-		}
-		return t;
-	}*/
+
 	public Tablero bajarCaramelos(){
 		Tablero t = this;
 		for(int x = t.getAlto()-1 ; x <= 0; x--){
@@ -204,58 +228,7 @@ public class Tablero {
 	}
 	
     
-    /**
-     * @param c
-     * @return si hay un vecino con caramelo arriba de c lo baja hasta c, caso contrario pone un
-     * caramelo aleatorio en c
-     */
- /*   public Tablero bajarDeArribaOAleatorio(Coordenada c){
-    	Tablero t = this;
-    	return	t.dameUnCarameloAleatorio(c);
-    			//(t.hayVecinoParaIntercambiar(c)) ? t.bajarLosDeArriba(c) : t.dameUnCarameloAleatorio(c);
-    }
-    
-    /**
-     * Baja los caramelos en la columna dada
-     * @param t
-     * @param columna
-     */
-  /*  public Tablero bajarCaramelosEnColumna(int columna){
-    	if(this.hayQueBajarCaramelos(columna)){
-        	Tablero tab = this;
-        	Coordenada c = new Coordenada(tab.getAlto()-1, columna);
-        	Movimiento arriba= new Arriba();
-        	if(tab.hayVecinoParaIntercambiar(c)){
-        		while(tab.hayVecinoParaIntercambiar(c)){
-        			tab.bajarLosDeArriba(c);
-        			c= arriba.coordenadaMovimiento(c);
-        		}
-        		return tab.llenarConAleatorios(c);
-        	}
-        	else{
-        		return tab.llenarConAleatorios(c);
-        	}
-        	}
-    	return this;
-    }*/
-    
-    /**
-     * @param c
-     * @return un tablero en donde se bajaron todos los caramelos arriba de c
-     */
-   /* public Tablero bajarLosDeArriba(Coordenada c){
-    	Movimiento arriba = new Arriba();
-   	    Coordenada cor= arriba.coordenadaMovimiento(c);
-   	    while(this.incluidoEnTablero(cor)){
-   		   if(this.hayCaramelo(cor)){
-   			   this.swapCaramelos(c, cor);
-   			   return this;
-   		   }
-  		   cor = arriba.coordenadaMovimiento(cor);
-   	   }
-  	   return t.dameUnCarameloAleatorio(c);
-  	   return this;
-    }*/
+   
     
     /**
      * @param columna
@@ -284,9 +257,9 @@ public class Tablero {
     		Coordenada c = new Coordenada(i, columna);
     		String color = each;
     	//	System.out.println(this.colorCarameloEn(c));
-    		System.out.println(each);
+    	//	System.out.println(each);
     		this.cambiarColorCaramelo(c, color);
-    		System.out.println(this.colorCarameloEn(c));
+    	//	System.out.println(this.colorCarameloEn(c));
     		i++;
     	} 	
     	return cars;
@@ -364,51 +337,6 @@ public class Tablero {
 	}
     
 	/**
-	 * @param t
-	 * @param c
-	 * @return un tablero en donde se genero un caramelo nuevo donde estaba vacio
-	 */
-	/*public Tablero dameUnCarameloAleatorio(Coordenada c){
-		Tablero t = this;
-		Caramelo car = t.getNivel().carameloAleatorio();
-		t.getCaramelos()[c.getFila()][c.getColumna()] = car;
-		return t;
-	}*/
-	
-    /**
-     * @param columna
-     * @return devuelve true si hay que bajar caramelos en la columna
-     */
-  /*  public boolean hayQueBajarCaramelos(int columna){
-       	Movimiento arriba= new Arriba();	
-       	Coordenada c = new Coordenada(this.getAlto()-1, columna);
-    	while(this.incluidoEnTablero(c)){
-    		if(! this.hayCaramelo(c)){
-    			return true;
-    		}
-    		c= arriba.coordenadaMovimiento(c);
-    	}
-    	return false;
-    }*/
-    
-    /**
-     * @param c
-     * @return devuelve true si hay alguna casilla arriba de c para bajar caramelos
-     */
-  /*  public boolean hayVecinoParaIntercambiar(Coordenada c){
-       	Movimiento arriba= new Arriba();	
-       	Coordenada c1 = arriba.coordenadaMovimiento(c);
-    	while(this.incluidoEnTablero(c1)){
-    		if(this.hayCaramelo(c1)){
-    			return true;
-    		}
-    		c1= arriba.coordenadaMovimiento(c1);
-    	}
-    	return false;
-    }*/
-    
-
-	/**
      * @param c
      * @return devuelve true si hay un caramelo en c
      */
@@ -423,6 +351,8 @@ public class Tablero {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }
 

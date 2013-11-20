@@ -1,9 +1,10 @@
 package Tp.CandyCrush;
 
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Explosion {
+public class Explosion implements Serializable{
 
 	private int cantidad;
 	private String color;
@@ -48,7 +49,7 @@ public class Explosion {
 			for(int y1 = 0; y1 < t.getAncho(); y1++){
 				Coordenada c= new Coordenada(x1, y1);
 				if(this.generoExplosion(t, c)){
-				//	t = t.bajarCaramelos();
+					t.llenarHuecos();
 					t = this.explosionesEnCadena(t);
 				}
 			}
