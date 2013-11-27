@@ -5,7 +5,10 @@ import java.io.Serializable;
 
 
 
+
+
 public class ExplosionesPorColor extends Objetivo implements Serializable{
+
 
 	private Integer cantidad;
 	

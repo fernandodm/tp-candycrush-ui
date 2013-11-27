@@ -1,8 +1,9 @@
 package Tp.CandyCrush;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class TipoDeExplosion {
+public abstract class TipoDeExplosion implements Serializable{
 	
 	public abstract void propagarExplosion(Tablero t, Coordenada c);
 	

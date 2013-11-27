@@ -49,9 +49,9 @@ public abstract class Objetivo implements Serializable{
 	
 	public String seCumplioDescripcion(){
 		if(this.isSeCumplio()){
-			return "OK";
+			return "OK!";
 		} else {
-			return " ";
+			return "No cumplido";
 		}
 	}
 	

@@ -1,17 +1,16 @@
 package Tp.CandyCrush;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Coordenada {
+public class Coordenada implements Serializable{
 	
-	private int fila ;
-	private int columna;
+	private Integer fila ;
+	private Integer columna;
 	
 	public int getFila() {
 		return fila;

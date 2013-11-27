@@ -1,9 +1,11 @@
 package Tp.CandyCrush;
 
+import java.io.Serializable;
+
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Izquierda extends Movimiento {
+public class Izquierda extends Movimiento implements Serializable{
 
 	public Izquierda(){
 		this.setNombre("Izquierda");

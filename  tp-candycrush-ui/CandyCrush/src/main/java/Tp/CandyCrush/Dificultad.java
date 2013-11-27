@@ -8,7 +8,7 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Dificultad {
+public class Dificultad implements Serializable{
 	public static final Dificultad DIFICIL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo", "Naranja", "Violeta"),"Dificil");
 	public static final Dificultad NORMAL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo", "Naranja"),"Normal");
 	public static final Dificultad FACIL = new Dificultad(Arrays.asList("Amarillo", "Celeste", "Verde", "Rojo"),"Facil");
