@@ -54,7 +54,6 @@ public class Tablero implements Serializable{
 	}
 	
 	public void setAlto(Integer x) {
-		this.validarAlto(x);
 		this.alto = x;		
 	}
 	public List<List<Coordenada>> getExplosionesARevisar() {
@@ -80,7 +79,6 @@ public class Tablero implements Serializable{
 		return ancho;
 	}
 	public void setAncho(Integer x) {
-		this.validarAncho(x);
 		this.ancho = x;
 	}
 
@@ -88,19 +86,6 @@ public class Tablero implements Serializable{
 		return Dificultad.getDificultades();
 	}
 
-	public void validarAlto(Integer unAlto) {
-		if (unAlto < 3) {
-			throw new UserException("Altura mínima: 3");
-		}
-	}
-	
-	public void validarAncho(Integer unAncho) {
-		if (unAncho < 3) {
-			throw new UserException("Ancho mínimo: 3");
-		}
-	}
-	
-	
 	/**
 	 * Inicia el tablero con los caramelos
 	 */
