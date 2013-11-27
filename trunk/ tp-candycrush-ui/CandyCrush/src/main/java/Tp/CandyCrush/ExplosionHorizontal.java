@@ -1,9 +1,10 @@
 package Tp.CandyCrush;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExplosionHorizontal extends TipoDeExplosion {
+public class ExplosionHorizontal extends TipoDeExplosion implements Serializable{
 
 	@Override
 	public void propagarExplosion(Tablero t, Coordenada c) {

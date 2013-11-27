@@ -1,11 +1,15 @@
 package Tp.CandyCrush;
 
-public class Caramelo {
+import java.io.Serializable;
+
+public class Caramelo implements Serializable {
+	
 	private String color;
-		
+
 	public String getColor() {
 		return color;
 	}
+
 	public void setColor(String color) {
 		this.color = color;
 	}
@@ -17,4 +21,6 @@ public class Caramelo {
 	public static String colorCaramelo(Tablero t, Coordenada c){
 		return t.getCaramelos()[c.getColumna()][c.getFila()].getColor();
 	}
+	
+
 }

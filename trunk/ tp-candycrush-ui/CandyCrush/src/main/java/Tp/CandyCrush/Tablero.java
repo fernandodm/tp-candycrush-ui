@@ -1,21 +1,24 @@
 package Tp.CandyCrush;
 
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import org.uqbar.commons.model.UserException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-import Tp.CandyCrush.Caramelo;
-import Tp.CandyCrush.Movimiento;
-import Tp.CandyCrush.Nivel;
+import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
 
 import excepciones.ExcepcionNoGeneroExplosion;
 
 @Observable
+
 public class Tablero implements Serializable{
+
 	private Integer alto;
 	private Integer ancho;
 	private Caramelo[][] caramelos; 
@@ -214,6 +217,66 @@ public class Tablero implements Serializable{
 		return this;
 	}
 
+	
+    /**
+     * Baja los caramelos en todo el tablero
+     * @param t
+//     */
+//<<<<<<< .mine
+//
+//   /* public Tablero bajarCaramelos() {
+//		Tablero t = this;
+//    	for(int j = this.getAncho()-1 ; j <= 0; j--){	
+//			t.bajarCaramelosEnColumna(j);
+//=======
+//=======
+//   /* public Tablero bajarCaramelos() {
+//		Tablero t = this;
+//    	for(int j = this.getAncho()-1 ; j <= 0; j--){	
+//			t.bajarCaramelosEnColumna(j);
+//>>>>>>> .r107
+//    public Tablero bajarCaramelos(List<Coordenada> cs) {
+//		int[] col = Coordenada.columnasARevisar(cs);
+//    	Tablero t = this;
+//		for(int i=0; i < col.length-1; i++){	
+//			t = t.bajarCaramelosEnColumna(col[i]);
+//>>>>>>> .r100
+//		}
+//		return t;
+//<<<<<<< .mine
+//	}*/
+////	public Tablero bajarCaramelos(){
+////		Tablero t = this;
+////		for(int x = t.getAlto()-1 ; x <= 0; x--){
+////			for(int y = t.getAncho()-1; y <= 0; y--){
+////				Coordenada cor = new Coordenada(x, y);
+////				if(!t.hayCaramelo(cor)){
+////					t.bajarLosDeArriba(cor);
+////				}
+////			}
+////		}	
+////		return t;
+////	}
+//	
+//=======
+//	}*/
+//	public Tablero bajarCaramelos(){
+//		Tablero t = this;
+//		for(int x = t.getAlto()-1 ; x <= 0; x--){
+//			for(int y = t.getAncho()-1; y <= 0; y--){
+//				Coordenada cor = new Coordenada(x, y);
+//				if(!t.hayCaramelo(cor)){
+//				//	t.bajarLosDeArriba(cor);
+//				}
+//			}
+//		}	
+//		return t;
+//	}
+//>>>>>>> .r107
+//	
+//    
+
+
 	public Tablero bajarCaramelos(){
 		Tablero t = this;
 		for(int x = t.getAlto()-1 ; x <= 0; x--){
@@ -227,11 +290,60 @@ public class Tablero implements Serializable{
 		return t;
 	}
 	
-    
+
    
     
     /**
      * @param columna
+<<<<<<< .mine
+     */
+  /*  public Tablero bajarCaramelosEnColumna(int columna){
+    	if(this.hayQueBajarCaramelos(columna)){
+        	Tablero tab = this;
+        	Coordenada c = new Coordenada(tab.getAlto()-1, columna);
+        	Movimiento arriba= new Arriba();
+        	if(tab.hayVecinoParaIntercambiar(c)){
+        		while(tab.hayVecinoParaIntercambiar(c)){
+        			tab.bajarLosDeArriba(c);
+        			c= arriba.coordenadaMovimiento(c);
+        		}
+        		return tab.llenarConAleatorios(c);
+        	}
+        	else{
+        		return tab.llenarConAleatorios(c);
+        	}
+        	}
+    	return this;
+    }*/
+    
+    /**
+     * @param c
+     * @return un tablero en donde se bajaron todos los caramelos arriba de c
+     */
+   /* public Tablero bajarLosDeArriba(Coordenada c){
+    	Movimiento arriba = new Arriba();
+   	    Coordenada cor= arriba.coordenadaMovimiento(c);
+   	    while(this.incluidoEnTablero(cor)){
+   		   if(this.hayCaramelo(cor)){
+   			   this.swapCaramelos(c, cor);
+   			   return this;
+   		   }
+  		   cor = arriba.coordenadaMovimiento(cor);
+   	   }
+<<<<<<< .mine
+<<<<<<< .mine
+  	   return t.dameUnCarameloAleatorio(c);
+=======
+=======
+  	   return t.dameUnCarameloAleatorio(c);
+>>>>>>> .r107
+  	   return this;
+    }*/
+    
+    /**
+     * @param columna
+=======
+>>>>>>> .r108
      * @return un tablero en donde se bajaron los caramelos en la columna 
      */
     public Tablero bajarCaramelosEnColumna(int columna){
@@ -342,6 +454,21 @@ public class Tablero implements Serializable{
      */
     public boolean hayCaramelo(Coordenada c){
     	return ! this.colorCarameloEn(c).equals("vacio");
+    }
+    
+    public List<Fila> filas(){
+    	
+    	List<Fila> filas = new ArrayList<Fila>();
+
+    	for(int i = 0; i < this.getCaramelos().length ; i++){
+    		Fila fila =  new Fila();
+    		for(int j = 0; j < this.getCaramelos()[0].length ; j++){
+    			fila.getCaramelos().add(this.getCaramelos()[i][j]);
+    		}
+    		filas.add(fila);
+    	}
+    	
+    	return filas;
     }
     
 	/**

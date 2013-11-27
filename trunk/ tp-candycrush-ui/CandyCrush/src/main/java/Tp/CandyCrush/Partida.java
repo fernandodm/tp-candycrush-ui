@@ -1,15 +1,37 @@
 package Tp.CandyCrush;
 
+import java.io.Serializable;
+
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Partida {
+public class Partida implements Serializable{
 	
-	private int puntaje;
-	private int cantMovimientosFaltantes;
+	private Integer puntaje;
+	private Integer cantMovimientosFaltantes;
 	private Mundo mundo;
 	private Nivel nivelActual;
+	private Coordenada coordenadaActual;
+	public Movimiento movimientoARealizar;
 	
+	
+	
+	public Coordenada getCoordenadaActual() {
+		return coordenadaActual;
+	}
+
+	public void setCoordenadaActual(Coordenada coordenadaActual) {
+		this.coordenadaActual = coordenadaActual;
+	}
+
+	public Movimiento getMovimientoARealizar() {
+		return movimientoARealizar;
+	}
+
+	public void setMovimientoARealizar(Movimiento movimientoARealizar) {
+		this.movimientoARealizar = movimientoARealizar;
+	}
+
 	public Nivel getNivelActual() {
 		return nivelActual;
 	}
@@ -21,17 +43,19 @@ public class Partida {
 	public Partida(Mundo mund){
 		
 		this.mundo = mund;
+		this.setPuntaje(0);
+		this.setCoordenadaActual(new Coordenada(0,0));
 	} 	
-	public int getPuntaje() {
+	public Integer getPuntaje() {
 		return puntaje;
 	}
-	public void setPuntaje(int puntajeFaltante) {
+	public void setPuntaje(Integer puntajeFaltante) {
 		this.puntaje = puntajeFaltante;
 	}
-	public int getCantMovimientosFaltantes() {
+	public Integer getCantMovimientosFaltantes() {
 		return cantMovimientosFaltantes;
 	}
-	public void setCantMovimientosFaltantes(int cantMovimientosFaltantes) {
+	public void setCantMovimientosFaltantes(Integer cantMovimientosFaltantes) {
 		this.cantMovimientosFaltantes = cantMovimientosFaltantes;
 	}
 	public Mundo getMundo() {

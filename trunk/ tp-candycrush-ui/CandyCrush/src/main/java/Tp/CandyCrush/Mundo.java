@@ -7,7 +7,9 @@ import java.util.List;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Mundo implements Serializable{
+
+public class Mundo implements Serializable {
+
 	private List<Nivel> niveles = new ArrayList<Nivel>();
 	private int nivelActual;
 	private int cantidadNiveles;

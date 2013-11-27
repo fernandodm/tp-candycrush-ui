@@ -1,6 +1,8 @@
 package Tp.CandyCrush;
 
-public class GeneradorNroNivel {
+import java.io.Serializable;
+
+public class GeneradorNroNivel implements Serializable {
 	
 	private static int nro = 0;
 	

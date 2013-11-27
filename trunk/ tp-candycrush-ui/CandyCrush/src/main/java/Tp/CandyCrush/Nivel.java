@@ -1,8 +1,12 @@
 package Tp.CandyCrush;
 
+
+import java.io.Serializable;
+
 import org.uqbar.commons.model.UserException;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +15,7 @@ import org.uqbar.commons.utils.Observable;
 @Observable
 public class Nivel implements Serializable{
 	
-	private Dificultad dificultad;
+	private Dificultad dificultad; 
 	private List<Objetivo> objetivos = new ArrayList<Objetivo>();
 	private boolean termino;
 	private int puntaje;
@@ -21,7 +25,16 @@ public class Nivel implements Serializable{
 	private String nombre;
 	private Integer cantidadMovimientos;
 	private boolean nivPuedeAgregar;
+	private Integer id;
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public void setNivPuedeAgregar(boolean bool){
 		this.nivPuedeAgregar = bool;
 	}
@@ -121,6 +134,15 @@ public class Nivel implements Serializable{
 		
 	public Nivel(){
 		nroNivel = GeneradorNroNivel.generar();
+
+	}
+	
+	public String descripcionEstado(){
+		if(this.isTermino()){
+			return "Completado!";
+		} else {
+			return "No completado";
+		}
 	}
 	
 	public Caramelo carameloAleatorio() {
