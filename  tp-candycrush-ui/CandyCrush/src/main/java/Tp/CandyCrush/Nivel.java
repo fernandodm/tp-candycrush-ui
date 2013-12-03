@@ -47,8 +47,7 @@ public class Nivel implements Serializable{
 		return cantidadMovimientos;
 	}
 
-	public void setCantidadMovimientos(Integer cantidadMovimientos) {
-		this.validarCantidadMovimientos(cantidadMovimientos);		
+	public void setCantidadMovimientos(Integer cantidadMovimientos) {		
 		this.cantidadMovimientos = cantidadMovimientos;
 	}
 
@@ -84,10 +83,8 @@ public class Nivel implements Serializable{
 		return (this.getCantidadMovimientos() < 0);
 	}
 
-	public void setPuntajeMinimo(Integer puntajeMinimo) {
-		this.validarPuntajeMinimo(puntajeMinimo);		
+	public void setPuntajeMinimo(Integer puntajeMinimo) {	
 		this.puntajeMinimo = puntajeMinimo;
-
 	}
 
 	public boolean isTermino() {
@@ -121,17 +118,7 @@ public class Nivel implements Serializable{
 	public void setNroNivel(int nroNivel) {
 		this.nroNivel = nroNivel;
 	}
-	
-	public void validarPuntajeMinimo(Integer unPuntaje) {
-		if (unPuntaje < 1) 
-			throw new UserException("El puntaje mínimo debe ser mayor a 0");
-	}
-	
-	public void validarCantidadMovimientos(Integer movimientos){
-		if (movimientos < 1) 
-			throw new UserException("La cantidad de movimientos debe ser mayor a 0");
-	}
-		
+
 	public Nivel(){
 		nroNivel = GeneradorNroNivel.generar();
 

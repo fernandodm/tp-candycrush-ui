@@ -63,6 +63,8 @@ public class Explosion implements Serializable{
 		return t;
     }
 	
+    
+    
 	/**
 	 * @param t
 	 * @param c
@@ -140,7 +142,7 @@ public class Explosion implements Serializable{
 		boolean explotaVertical = this.explotaVertical(t, c);
 		boolean explotaHorizontal = this.explotaHorizontal(t, c);
 		if(explotaVertical || explotaHorizontal){
-			TipoDeExplosion exp= this.tipoDeExplosion(explotaVertical, explotaHorizontal);
+			TipoDeExplosion exp= this.tipoDeExplosion(explotaHorizontal, explotaVertical);
 			exp.propagarExplosion(t, c);
 		}
 		return explotaVertical || explotaHorizontal;
@@ -152,13 +154,16 @@ public class Explosion implements Serializable{
 	 * @return el tipoDeExplosion correspondiente
 	 */
 	private TipoDeExplosion tipoDeExplosion(boolean v1, boolean v2) {
-		TipoDeExplosion exp= new ExplosionHorizontal();
+		TipoDeExplosion exp;
 		if(v1&&v2){
 			exp = new ExplosionEnCruz(); 
 		}
 		else{
 			if(v2){
 				exp = new ExplosionVertical();
+			}
+			else{
+				exp = new ExplosionHorizontal();
 			}
 		}
 		return exp;

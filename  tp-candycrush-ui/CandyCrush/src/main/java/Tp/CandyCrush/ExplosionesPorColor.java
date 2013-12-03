@@ -45,7 +45,7 @@ public class ExplosionesPorColor extends Objetivo implements Serializable{
 		
 	}
 	public void complete(){
-		if(this.getCantidad() == 0){
+		if(this.getCantidad() < 1){
 			this.setSeCumplio(true);
 		}
 	}
@@ -53,7 +53,12 @@ public class ExplosionesPorColor extends Objetivo implements Serializable{
 	public void actualizarObjetivo(Explosion exp){
 		
 		if(exp.getColor() == this.getColor()){
-			this.setCantidad(this.getCantidad() - exp.getCantidad());
+			if(this.getCantidad()>0){
+				this.setCantidad(this.getCantidad() - exp.getCantidad());
+			}
+			else{
+				this.setCantidad(0);
+			}
 		}
 		this.complete();
 	}

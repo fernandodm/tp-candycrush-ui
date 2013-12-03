@@ -27,9 +27,11 @@ public abstract class TipoDeExplosion implements Serializable{
 		Coordenada vecino = mov.coordenadaMovimiento(c);
 		String color = Caramelo.colorCaramelo(t, c);
 		while(t.incluidoEnTablero(vecino) && Caramelo.colorCaramelo(t, vecino).equals(color)){
-			exp.setCantidad(exp.getCantidad() + 1);
+			int cant = exp.getCantidad();
+			exp.setCantidad(cant + 1);
 			car.add(vecino);
-			vecino = mov.coordenadaMovimiento(vecino);
+			Coordenada cor = mov.coordenadaMovimiento(vecino);
+			vecino = cor;
 		}
 	}
 	
@@ -37,6 +39,9 @@ public abstract class TipoDeExplosion implements Serializable{
 		for(Objetivo each : t.getNivel().getObjetivos()){
 			each.actualizarObjetivo(exp);
 		}
+		int puntosGanados = exp.getCantidad() * 10;
+		int puntaje = t.getNivel().getPuntaje();
+		t.getNivel().setPuntaje(puntaje + puntosGanados);
 		t.getExplosionesARevisar().add(car);
 	}
 }
