@@ -31,16 +31,20 @@ public class GrandesExplosiones extends Objetivo implements Serializable{
 	}
 
 	public void complete(){
-		if(this.getCantidadGrandesExplosiones() == 0){
+		if(this.getCantidadGrandesExplosiones() < 1){
 			this.setSeCumplio(true);
 		}
 	}
 	
 	public void actualizarObjetivo(Explosion exp){
 		
-		if(exp.getColor() == this.getColor() && exp.getCantidad() > 3){
-			this.setCantidadGrandesExplosiones(this.getCantidadGrandesExplosiones() - 1);
-		}
+		if(exp.getColor() == this.getColor() && exp.getCantidad() > 3){}
+			if(this.getCantidadGrandesExplosiones()>0){
+				this.setCantidadGrandesExplosiones(this.getCantidadGrandesExplosiones() - 1);
+			}
+			else{
+				this.setCantidadGrandesExplosiones(0);
+			}
 		this.complete();
 	}
 

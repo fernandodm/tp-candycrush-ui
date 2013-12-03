@@ -47,7 +47,8 @@ public class Partida implements Serializable{
 		this.setCoordenadaActual(new Coordenada(0,0));
 	} 	
 	public Integer getPuntaje() {
-		return puntaje;
+		//return this.getPuntaje();
+		return this.getNivelActual().getPuntaje();
 	}
 	public void setPuntaje(Integer puntajeFaltante) {
 		this.puntaje = puntajeFaltante;
@@ -69,4 +70,10 @@ public class Partida implements Serializable{
 		int index = this.getMundo().getNiveles().indexOf(this.getNivelActual());
 		this.setNivelActual(this.getMundo().getNiveles().get(index + 1));
 	}
+
+	public Object puntajeDelNivelActual() {
+		
+		return getNivelActual().getPuntajeMinimo();
+	}
 }
+

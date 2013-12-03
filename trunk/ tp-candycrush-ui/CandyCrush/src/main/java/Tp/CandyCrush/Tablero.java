@@ -98,8 +98,9 @@ public class Tablero implements Serializable{
 				caramelos[x][y] = caramelo;
 			}
 		}
-       // Explosion exp = new Explosion();
-     //   exp.explosionesEnCadena(this);
+        Explosion exp = new Explosion();
+        exp.explosionesEnCadena(this);
+       // this.getNivel().setPuntaje(0);
 	}
 	
 	
@@ -137,7 +138,7 @@ public class Tablero implements Serializable{
 		boolean huboExplosionEnVecino = exp.generoExplosion(this, vecino);
 		if(huboExplosionEnC || huboExplosionEnVecino){
 			this.llenarHuecos();
-			//exp.explosionesEnCadena(this);
+			exp.explosionesEnCadena(this);
 		}
 		else{
 			this.swapCaramelos(c, vecino);
@@ -201,167 +202,7 @@ public class Tablero implements Serializable{
 		this.getCaramelos()[c2.getFila()][c2.getColumna()].setColor(col1);
 		return this;
 	}
-
-	
-    /**
-     * Baja los caramelos en todo el tablero
-     * @param t
-//     */
-//<<<<<<< .mine
-//
-//   /* public Tablero bajarCaramelos() {
-//		Tablero t = this;
-//    	for(int j = this.getAncho()-1 ; j <= 0; j--){	
-//			t.bajarCaramelosEnColumna(j);
-//=======
-//=======
-//   /* public Tablero bajarCaramelos() {
-//		Tablero t = this;
-//    	for(int j = this.getAncho()-1 ; j <= 0; j--){	
-//			t.bajarCaramelosEnColumna(j);
-//>>>>>>> .r107
-//    public Tablero bajarCaramelos(List<Coordenada> cs) {
-//		int[] col = Coordenada.columnasARevisar(cs);
-//    	Tablero t = this;
-//		for(int i=0; i < col.length-1; i++){	
-//			t = t.bajarCaramelosEnColumna(col[i]);
-//>>>>>>> .r100
-//		}
-//		return t;
-//<<<<<<< .mine
-//	}*/
-////	public Tablero bajarCaramelos(){
-////		Tablero t = this;
-////		for(int x = t.getAlto()-1 ; x <= 0; x--){
-////			for(int y = t.getAncho()-1; y <= 0; y--){
-////				Coordenada cor = new Coordenada(x, y);
-////				if(!t.hayCaramelo(cor)){
-////					t.bajarLosDeArriba(cor);
-////				}
-////			}
-////		}	
-////		return t;
-////	}
-//	
-//=======
-//	}*/
-//	public Tablero bajarCaramelos(){
-//		Tablero t = this;
-//		for(int x = t.getAlto()-1 ; x <= 0; x--){
-//			for(int y = t.getAncho()-1; y <= 0; y--){
-//				Coordenada cor = new Coordenada(x, y);
-//				if(!t.hayCaramelo(cor)){
-//				//	t.bajarLosDeArriba(cor);
-//				}
-//			}
-//		}	
-//		return t;
-//	}
-//>>>>>>> .r107
-//	
-//    
-
-
-	public Tablero bajarCaramelos(){
-		Tablero t = this;
-		for(int x = t.getAlto()-1 ; x <= 0; x--){
-			for(int y = t.getAncho()-1; y <= 0; y--){
-				Coordenada cor = new Coordenada(x, y);
-				if(!t.hayCaramelo(cor)){
-				//	t.bajarLosDeArriba(cor);
-				}
-			}
-		}	
-		return t;
-	}
-	
-
-   
-    
-    /**
-     * @param columna
-<<<<<<< .mine
-     */
-  /*  public Tablero bajarCaramelosEnColumna(int columna){
-    	if(this.hayQueBajarCaramelos(columna)){
-        	Tablero tab = this;
-        	Coordenada c = new Coordenada(tab.getAlto()-1, columna);
-        	Movimiento arriba= new Arriba();
-        	if(tab.hayVecinoParaIntercambiar(c)){
-        		while(tab.hayVecinoParaIntercambiar(c)){
-        			tab.bajarLosDeArriba(c);
-        			c= arriba.coordenadaMovimiento(c);
-        		}
-        		return tab.llenarConAleatorios(c);
-        	}
-        	else{
-        		return tab.llenarConAleatorios(c);
-        	}
-        	}
-    	return this;
-    }*/
-    
-    /**
-     * @param c
-     * @return un tablero en donde se bajaron todos los caramelos arriba de c
-     */
-   /* public Tablero bajarLosDeArriba(Coordenada c){
-    	Movimiento arriba = new Arriba();
-   	    Coordenada cor= arriba.coordenadaMovimiento(c);
-   	    while(this.incluidoEnTablero(cor)){
-   		   if(this.hayCaramelo(cor)){
-   			   this.swapCaramelos(c, cor);
-   			   return this;
-   		   }
-  		   cor = arriba.coordenadaMovimiento(cor);
-   	   }
-<<<<<<< .mine
-<<<<<<< .mine
-  	   return t.dameUnCarameloAleatorio(c);
-=======
-=======
-  	   return t.dameUnCarameloAleatorio(c);
->>>>>>> .r107
-  	   return this;
-    }*/
-    
-    /**
-     * @param columna
-=======
->>>>>>> .r108
-     * @return un tablero en donde se bajaron los caramelos en la columna 
-     */
-    public Tablero bajarCaramelosEnColumna(int columna){
-    	Tablero t = this;
-    	String[] col = t.arrayDeColumna(columna);
-    	col = this.dejarVaciosArriba(col);
-    	//col = this.llenarConAleatorios(col);
-    //	t.setCaramelos(t.reinsertarColumna(col, columna));
-    	return t;
-
-    }
-    
-    /** 
-     * @param col
-     * @param columna
-     * @return baja los caramelos en la columna
-     */
-    public Caramelo[][] reinsertarColumna(List<String> col, int columna){
-    	int tam = this.getAlto();
-    	Caramelo[][] cars = this.getCaramelos();
-    	int i = 0;
-    	for(String each: col){
-    		Coordenada c = new Coordenada(i, columna);
-    		String color = each;
-    	//	System.out.println(this.colorCarameloEn(c));
-    	//	System.out.println(each);
-    		this.cambiarColorCaramelo(c, color);
-    	//	System.out.println(this.colorCarameloEn(c));
-    		i++;
-    	} 	
-    	return cars;
-    }
-    
+ 
     /**
      * @param c
      * @param col
@@ -370,68 +211,6 @@ public class Tablero implements Serializable{
     public void cambiarColorCaramelo(Coordenada c, String col){
        	this.getCaramelos()[c.getFila()][c.getColumna()].setColor(col);
     }
-    
-    /**
-     * @param columna
-     * @return un array con los colores de los caramelos en la columna
-     */
-    public String[] arrayDeColumna(int columna){
-    	String[] col = new String[this.getAlto()];
-    	for(int i=0; i < col.length; i++){
-    		col[i] = this.getCaramelos()[i][columna].getColor();
-    	}
-    	return col;
-    }
-    
-    /**
-     * @param col
-     * @return un array de colores donde se "llenaron" los espacios vacios
-     */
-    public String[] llenarConAleatorios(String[] col){
-    	int i = col.length - 1;
-    	while(i>-1){
-    		if(col[i].equals("vacio")){
-    			String color = this.getNivel().carameloAleatorio().getColor();
-    			col[i] = color;
-    		}
-    		i--;
-    	}
-    	return col;
-    }
-    
-    /**
-     * @param col
-     * @return un array donde los vacios quedaron arriba
-     */
-    public String[] dejarVaciosArriba(String[] col){
-    	int i = col.length - 1;
-    	while(i>-1){
-    		if(col[i].equals("vacio")){
-    			col = this.traerVecinoA(col, i);
-    		}
-    		i--;
-    	}
-    	return this.llenarConAleatorios(col);
-    }
-    
-    /**
-     * @param col
-     * @param celda
-     * @return baja el vecino mas cercano no vacio a la posicion celda del array
-     */
-    public String[] traerVecinoA(String[] col, int celda) {
-    	int vecino = celda-1;
-    	while(vecino>-1)
-    	{
-			if(! col[vecino].equals("vacio")){
-				col[celda] = col[vecino];
-				col[vecino] = "vacio";
-				return col;
-			}
-			vecino--;
-		}
-		return col;
-	}
     
 	/**
      * @param c
